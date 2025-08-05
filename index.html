@@ -8,11 +8,11 @@
     <style>
         /* General Body and Font Styling */
         body {
-            font-family: 'Open Sans', sans-serif; /* A nice, legible sans-serif font */
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 30px;
-            background-color: #f8f8f8; /* Light grey background */
-            color: #333;
+            background-color: #121212; /* Dark background */
+            color: #f0f0f0; /* Light text color for contrast */
             line-height: 1.6;
             display: flex;
             flex-direction: column;
@@ -20,13 +20,25 @@
         }
 
         h1 {
-            font-family: 'Times New Roman', serif; /* Simulating a more elegant header font for the main title */
+            font-family: 'Times New Roman', serif;
             font-size: 2.5em;
             text-align: center;
-            color: #6a053c; /* Darker pink/purple for main title, inspired by image */
-            margin-bottom: 40px;
-            position: relative;
+            color: #fce4ec; /* Lighter pink for main title */
+            margin-bottom: 20px;
             padding-bottom: 10px;
+        }
+
+        /* Container for the credit counter */
+        #credit-counter {
+            background-color: #6a053c; /* Darker pink/purple for counter */
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Container for all cycles */
@@ -34,103 +46,107 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px; /* More space between columns */
+            gap: 25px;
             width: 100%;
-            max-width: 1800px; /* Limit overall width for larger screens */
+            max-width: 1800px;
         }
 
         /* Styling for each cycle column */
         .cycle-column {
-            background-color: #fce4ec; /* Very light pink, similar to image */
-            border-radius: 12px; /* More rounded corners */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            background-color: #212121; /* Dark grey for column background */
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
             padding: 25px 20px;
             flex: 1;
             min-width: 280px;
-            max-width: 380px; /* Adjust max-width for column size */
+            max-width: 380px;
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Space between courses */
+            gap: 12px;
         }
 
-        /* Cycle title (e.g., "1er ciclo") - using the grey bar style from the image */
+        /* Cycle title (e.g., "1er ciclo") */
         .cycle-column h2 {
-            background-color: #d8d8d8; /* Light grey bar for cycle titles, as seen in image for 'Primer Año' etc. */
-            color: #333; /* Dark text for these headers */
-            margin: -25px -20px 20px -20px; /* Adjust margins to fill column width */
+            background-color: #424242; /* Grey for cycle titles */
+            color: #fff;
+            margin: -25px -20px 20px -20px;
             padding: 15px 20px;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
             font-size: 1.6em;
             text-align: center;
             font-weight: 600;
-            /* text-transform: uppercase; Removido para mantener "1er ciclo" tal cual */
         }
 
         /* Styling for individual course blocks */
         .course {
-            background-color: #ffffff; /* White background for courses */
-            border: 1px solid #f8bbd0; /* Light pink border, as seen in the image's course boxes */
-            padding: 10px 15px;
-            border-radius: 8px; /* Rounded corners for courses */
+            background-color: #333; /* Darker grey for courses */
+            border: 1px solid #424242;
+            padding: 12px 18px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
             position: relative;
-            color: #4a4a4a; /* Dark grey text */
+            color: #e0e0e0;
             font-weight: 500;
             display: flex;
-            flex-direction: column; /* Stack code and name if needed */
-            align-items: flex-start; /* Align text to start */
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .course:hover:not(.approved):not(.blocked) {
-            background-color: #fff0f5; /* Even lighter pink on hover */
-            border-color: #f48fb1; /* Slightly darker pink border on hover */
+            background-color: #4a4a4a;
+            border-color: #6a053c; /* Pink border on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* Approved Course Styling */
         .course.approved {
-            background-color: #d1c4e9; /* Light purple for approved, contrasting with pink theme */
+            background-color: #d1c4e9; /* Light purple for approved */
             border-color: #9575cd;
-            color: #4527a0; /* Darker purple text */
-            text-decoration: none; /* No strikethrough for a cleaner look on the box */
+            color: #4527a0;
+            text-decoration: none;
             opacity: 0.9;
             cursor: default;
         }
         .course.approved .course-name,
         .course.approved .course-code {
-            text-decoration: line-through; /* Strikethrough for text inside approved */
+            text-decoration: line-through;
+            color: #4527a0;
         }
-
 
         /* Blocked Course Styling */
         .course.blocked {
-            background-color: #fbe9e7; /* Very light red/orange for blocked */
+            background-color: #fbe9e7;
             border-color: #ffab91;
-            color: #d84315; /* Darker orange text */
+            color: #d84315;
             cursor: not-allowed;
             opacity: 0.7;
             filter: grayscale(10%);
+        }
+        .course.blocked .course-code {
+            color: #d84315;
         }
 
         /* Tooltip for blocked courses */
         .course .tooltip-text {
             visibility: hidden;
-            width: 220px; /* Wider tooltip */
-            background-color: #6a053c; /* Dark pink for tooltip background */
+            width: 220px;
+            background-color: #6a053c;
             color: #fff;
             text-align: center;
             border-radius: 6px;
             padding: 8px 12px;
             position: absolute;
             z-index: 10;
-            bottom: 115%; /* Position above */
+            bottom: 115%;
             left: 50%;
-            transform: translateX(-50%); /* Center the tooltip */
+            transform: translateX(-50%);
             opacity: 0;
             transition: opacity 0.3s, visibility 0.3s;
             font-size: 0.85em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .course .tooltip-text::after {
@@ -150,10 +166,10 @@
         }
 
         .course-code {
-            font-weight: 700; /* Bolder for code */
+            font-weight: 700;
             font-size: 0.95em;
-            margin-bottom: 4px; /* Space between code and name */
-            color: #6a053c; /* Pink for course code, matching the main title */
+            margin-bottom: 4px;
+            color: #fce4ec; /* Lighter pink for course code */
         }
 
         .course-name {
@@ -163,9 +179,9 @@
 
         .credits {
             font-size: 0.8em;
-            color: #888; /* Lighter grey for credits */
+            color: #a0a0a0;
             margin-top: 5px;
-            align-self: flex-end; /* Align credits to the right within the course block */
+            align-self: flex-end;
         }
 
         /* Total credits for each cycle */
@@ -173,9 +189,9 @@
             font-weight: 700;
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 1px dashed #f8bbd0; /* Dashed pink line, matching course borders */
+            border-top: 1px dashed #424242;
             text-align: right;
-            color: #6a053c; /* Darker pink */
+            color: #fce4ec;
             font-size: 1em;
         }
 
@@ -187,7 +203,7 @@
             }
             .cycle-column {
                 width: 90%;
-                max-width: 450px; /* Slightly wider columns on smaller screens */
+                max-width: 450px;
             }
         }
         @media (max-width: 768px) {
@@ -219,7 +235,9 @@
 <body>
 
     <h1>Malla Curricular - Ingeniería Química</h1>
-    
+
+    <div id="credit-counter">Cargando créditos...</div>
+
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
@@ -286,9 +304,7 @@
                 { id: "PI-144", name: "Transferencia de Masa", credits: 4, prereq: ["PI-142"] },
                 { id: "PI-146", name: "Operaciones en Ingeniería Química I", credits: 3, prereq: ["PI-142"] },
                 { id: "PI-365", name: "Polímeros I", credits: 2, prereq: ["QU-338", "PI-318"] },
-                // Asumiendo PI-520 de tu lista original se refiere a PI-514_Ciencias,
-                // si es otra materia, debes añadirla a la estructura coursesData.
-                { id: "PI-521", name: "Introducción a la Bioingeniería", credits: 2, prereq: ["PI-514_Ciencias"] } 
+                { id: "PI-521", name: "Introducción a la Bioingeniería", credits: 2, prereq: ["PI-514_Ciencias"] }
             ],
             "9no ciclo": [
                 { id: "PI-135", name: "Laboratorio de Operaciones Unitarias I", credits: 3, prereq: ["PI-143", "PI-146"] },
@@ -309,23 +325,9 @@
         };
 
         const curriculumDiv = document.getElementById('curriculum');
-        let approvedCourses = JSON.parse(localStorage.getItem('approvedCourses_IQ')) || {}; // Changed key to avoid conflict
+        const creditCounterDiv = document.getElementById('credit-counter');
+        let approvedCourses = JSON.parse(localStorage.getItem('approvedCourses_IQ')) || {};
 
-        // Helper to get total approved credits
-        function getTotalApprovedCredits() {
-            let totalCredits = 0;
-            for (const cycleKey in coursesData) {
-                for (const course of coursesData[cycleKey]) {
-                    // Handle duplicate IDs like PI-514 by ensuring unique IDs in data structure
-                    if (approvedCourses[course.id]) {
-                        totalCredits += course.credits;
-                    }
-                }
-            }
-            return totalCredits;
-        }
-
-        // Flatten all courses into a single object for easy lookup
         function getAllCourses() {
             const allCourses = {};
             for (const cycleKey in coursesData) {
@@ -336,9 +338,20 @@
             return allCourses;
         }
 
+        function getTotalApprovedCredits() {
+            const allCourses = getAllCourses();
+            let totalCredits = 0;
+            for (const courseId in approvedCourses) {
+                if (approvedCourses[courseId] && allCourses[courseId]) {
+                    totalCredits += allCourses[courseId].credits;
+                }
+            }
+            return totalCredits;
+        }
+
         function checkPrerequisites(courseId) {
             const course = getAllCourses()[courseId];
-            if (!course) return true; // Should not happen for valid courseIds
+            if (!course) return true;
 
             let missingPrereqNames = [];
 
@@ -359,8 +372,13 @@
             return missingPrereqNames.length === 0 ? true : missingPrereqNames;
         }
 
+        function updateCreditCounter() {
+            const totalCredits = getTotalApprovedCredits();
+            creditCounterDiv.textContent = `CRÉDITOS APROBADOS: ${totalCredits}`;
+        }
+
         function renderCurriculum() {
-            curriculumDiv.innerHTML = ''; // Clear previous render
+            curriculumDiv.innerHTML = '';
             const allCourses = getAllCourses();
 
             for (const cycleKey in coursesData) {
@@ -368,7 +386,7 @@
                 cycleColumn.classList.add('cycle-column');
 
                 const cycleTitle = document.createElement('h2');
-                cycleTitle.textContent = cycleKey; // Keep original cycle title like "1er ciclo"
+                cycleTitle.textContent = cycleKey;
                 cycleColumn.appendChild(cycleTitle);
 
                 let cycleTotalCredits = 0;
@@ -391,7 +409,6 @@
                         courseDiv.appendChild(tooltip);
                     }
 
-                    // Course content: code and name
                     const courseCodeSpan = document.createElement('span');
                     courseCodeSpan.classList.add('course-code');
                     courseCodeSpan.textContent = course.id;
@@ -402,7 +419,6 @@
                     courseNameSpan.textContent = course.name;
                     courseDiv.appendChild(courseNameSpan);
                     
-                    // Add credits to the course card directly for better visibility
                     const creditsSpan = document.createElement('span');
                     creditsSpan.classList.add('credits');
                     creditsSpan.textContent = `${course.credits} Crd.`;
@@ -421,13 +437,13 @@
                 curriculumDiv.appendChild(cycleColumn);
             }
 
+            updateCreditCounter();
             attachEventListeners();
         }
 
         function attachEventListeners() {
             document.querySelectorAll('.course').forEach(courseDiv => {
-                // Ensure event listener is added only once
-                courseDiv.removeEventListener('click', toggleCourseApproved); 
+                courseDiv.removeEventListener('click', toggleCourseApproved);
                 courseDiv.addEventListener('click', toggleCourseApproved);
             });
         }
@@ -436,32 +452,42 @@
             const courseDiv = event.currentTarget;
             const courseId = courseDiv.dataset.courseId;
 
-            // If the course is blocked, do nothing
             if (courseDiv.classList.contains('blocked')) {
                 return;
             }
 
-            // Toggle approval status
-            if (approvedCourses[courseId]) {
-                delete approvedCourses[courseId];
+            const isApproved = approvedCourses.hasOwnProperty(courseId);
+
+            if (isApproved) {
+                // Check if any other approved course has this one as a prerequisite
+                const canUnapprove = Object.keys(approvedCourses).every(id => {
+                    const course = getAllCourses()[id];
+                    if (course && course.prereq.includes(courseId)) {
+                        return false;
+                    }
+                    return true;
+                });
+
+                if (canUnapprove) {
+                    delete approvedCourses[courseId];
+                } else {
+                    alert(`No puedes desaprobar este curso porque es un prerrequisito para un curso que ya aprobaste.`);
+                    return;
+                }
             } else {
-                // Check prerequisites again before approving
                 const prereqsMet = checkPrerequisites(courseId);
                 if (prereqsMet === true) {
                     approvedCourses[courseId] = true;
                 } else {
-                    // This scenario should ideally be prevented by the 'blocked' class,
-                    // but it's a good fallback.
                     alert(`No puedes aprobar ${getAllCourses()[courseId].name} aún. Faltan los siguientes requisitos: ${prereqsMet.join(', ')}`);
                     return;
                 }
             }
 
-            localStorage.setItem('approvedCourses_IQ', JSON.stringify(approvedCourses)); // Changed key
-            renderCurriculum(); // Re-render to update states of all courses
+            localStorage.setItem('approvedCourses_IQ', JSON.stringify(approvedCourses));
+            renderCurriculum();
         }
 
-        // Initial render when the page loads
         document.addEventListener('DOMContentLoaded', renderCurriculum);
     </script>
 
