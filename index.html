@@ -244,26 +244,26 @@
          // Data for Chemical Engineering Curriculum 
          const coursesData = { 
              "1er ciclo": [ 
-                 { id: "BDI01", name: "Dibujo en Ingeniería I", credits: 4, prereq: [] }, 
-                 { id: "BFI01", name: "Física I", credits: 4, prereq: [] }, 
-                 { id: "BMA01", name: "Cálculo Diferencial", credits: 4, prereq: [] }, 
+                 { id: "BDI01", name: "Dibujo en Ingeniería I", credits: 2, prereq: [] }, 
+                 { id: "BFI01", name: "Física I", credits: 5, prereq: [] }, 
+                 { id: "BMA01", name: "Cálculo Diferencial", credits: 5, prereq: [] }, 
                  { id: "BMA03", name: "Álgebra Lineal", credits: 4, prereq: [] }, 
-                 { id: "BQU01", name: "Química I", credits: 4, prereq: [] }, 
-                 { id: "BRC01", name: "Redacción y Comunicación", credits: 3, prereq: [] } 
+                 { id: "BQU01", name: "Química I", credits: 5, prereq: [] }, 
+                 { id: "BRC01", name: "Redacción y Comunicación", credits: 2, prereq: [] } 
              ], 
              "2do ciclo": [ 
                  { id: "BDI02", name: "Dibujo en Ingeniería II", credits: 3, prereq: ["BDI01"] }, 
-                 { id: "BFI02", name: "Física II", credits: 4, prereq: ["BFI01"] }, 
-                 { id: "BMA02", name: "Cálculo Integral", credits: 4, prereq: ["BMA01"] }, 
+                 { id: "BFI02", name: "Física II", credits: 5, prereq: ["BFI01"] }, 
+                 { id: "BMA02", name: "Cálculo Integral", credits: 5, prereq: ["BMA01"] }, 
                  { id: "BMA04", name: "Matemática Básica", credits: 4, prereq: ["BMA03"] }, 
                  { id: "BQU02", name: "Química II", credits: 4, prereq: ["BQU01"] } 
              ], 
              "3er ciclo": [ 
                  { id: "BEF01", name: "Ética y Filosofía Política", credits: 2, prereq: [] }, 
-                 { id: "BFI03", name: "Física III", credits: 3, prereq: ["BFI02"] }, 
-                 { id: "BEG01", name: "Economía General", credits: 2, prereq: [] }, 
-                 { id: "BIC01", name: "Introducción a la Computación", credits: 3, prereq: [] }, 
-                 { id: "QU-216", name: "Química Inorgánica", credits: 3, prereq: ["BQU02"] }, 
+                 { id: "BFI03", name: "Física III", credits: 5, prereq: ["BFI02"] }, 
+                 { id: "BEG01", name: "Economía General", credits: 3, prereq: [] }, 
+                 { id: "BIC01", name: "Introducción a la Computación", credits: 2, prereq: [] }, 
+                 { id: "QU-216", name: "Química Inorgánica", credits: 5, prereq: ["BQU02"] }, 
                  { id: "BMA05", name: "Matemática Superior I", credits: 4, prereq: ["BMA04", "BMA02"] } 
              ], 
              "4to ciclo": [ 
@@ -272,55 +272,55 @@
                  { id: "EP-308", name: "Economía y Organización de la Empresa", credits: 3, prereq: ["BEG01"] }, 
                  { id: "MA-613", name: "Estadística Aplicada", credits: 4, prereq: ["BMA04"] }, 
                  { id: "MA-713", name: "Programación Digital", credits: 3, prereq: ["BIC01"] }, 
-                 { id: "QU-427", name: "Fisicoquímica I", credits: 4, prereq: ["BQU02", "BFI03"] } 
+                 { id: "QU-427", name: "Fisicoquímica I", credits: 5, prereq: ["BQU02", "BFI03"] } 
              ], 
              "5to ciclo": [ 
-                 { id: "PI-111", name: "Balance de Materia y Energía", credits: 4, prereq: ["QU-427"] }, 
-                 { id: "PI-524", name: "Métodos Numéricos para Ingeniería Química", credits: 3, prereq: ["BMA06"] }, 
-                 { id: "QU-328", name: "Química Orgánica I", credits: 4, prereq: ["QU-427"] }, 
-                 { id: "QU-428", name: "Fisicoquímica II", credits: 4, prereq: ["QU-427"] }, 
-                 { id: "QU-518", name: "Análisis Químico", credits: 3, prereq: ["QU-216"] } 
+                 { id: "PI-111", name: "Balance de Materia y Energía", credits: 3, prereq: ["QU-427"] }, 
+                 { id: "PI-524", name: "Métodos Numéricos para Ingeniería Química", credits: 4, prereq: ["BMA06"] }, 
+                 { id: "QU-328", name: "Química Orgánica I", credits: 5, prereq: ["QU-427"] }, 
+                 { id: "QU-428", name: "Fisicoquímica II", credits: 5, prereq: ["QU-427"] }, 
+                 { id: "QU-518", name: "Análisis Químico", credits: 4, prereq: ["QU-216"] } 
              ], 
              "6to ciclo": [ 
-                 { id: "BRN01", name: "Realidad Nacional Constitución y Derechos Humanos", credits: 2, prereq: [] }, 
+                 { id: "BRN01", name: "Realidad Nacional Constitución y Derechos Humanos", credits: 3, prereq: [] }, 
                  { id: "EC-618", name: "Mecánica y Resistencia de Materiales", credits: 3, prereq: ["BFI04", "BMA06"] }, 
-                 { id: "EE-103", name: "Circuitos e Instalaciones Eléctricas", credits: 2, prereq: ["BFI03", "BMA05"] }, 
+                 { id: "EE-103", name: "Circuitos e Instalaciones Eléctricas", credits: 3, prereq: ["BFI03", "BMA05"] }, 
                  { id: "PI-140", name: "Fenómenos de Transporte", credits: 3, prereq: ["BMA06", "PI-111"] }, 
-                 { id: "PI-216", name: "Termodinámica para Ingeniería Química I", credits: 4, prereq: ["PI-111", "QU-428"] }, 
-                 { id: "QU-338", name: "Química Orgánica II", credits: 3, prereq: ["QU-328"] } 
+                 { id: "PI-216", name: "Termodinámica para Ingeniería Química I", credits: 3, prereq: ["PI-111", "QU-428"] }, 
+                 { id: "QU-338", name: "Química Orgánica II", credits: 5, prereq: ["QU-328"] } 
              ], 
              "7mo ciclo": [ 
-                 { id: "PA-113", name: "Ingeniería de Métodos I", credits: 3, prereq: ["MA-613"] }, 
-                 { id: "PA-714", name: "Investigación de Operaciones I", credits: 4, prereq: ["MA-613", "MA-713"] }, 
+                 { id: "PA-113", name: "Ingeniería de Métodos I", credits: 4, prereq: ["MA-613"] }, 
+                 { id: "PA-714", name: "Investigación de Operaciones I", credits: 3, prereq: ["MA-613", "MA-713"] }, 
                  { id: "PI-142", name: "Transferencia de Cantidad y Movimiento", credits: 3, prereq: ["PI-140"] }, 
-                 { id: "PI-217", name: "Termodinámica para Ingeniería Química II", credits: 4, prereq: ["PI-216", "PI-524"] }, 
-                 { id: "PI-318", name: "Industria de los Procesos Químicos", credits: 4, prereq: ["PI-140", "QU-428"] }, 
+                 { id: "PI-217", name: "Termodinámica para Ingeniería Química II", credits: 3, prereq: ["PI-216", "PI-524"] }, 
+                 { id: "PI-318", name: "Industria de los Procesos Químicos", credits: 5, prereq: ["PI-140", "QU-428"] }, 
                  { id: "PI-514_Ciencias", name: "Ciencias de los Materiales", credits: 2, prereq: ["QU-518"] }, 
-                 { id: "PI-514_Recursos", name: "Recursos Químicos en la Biodiversidad", credits: 2, prereq: ["QU-338", "QU-518"] } 
+                 { id: "PI-514_Recursos", name: "Recursos Químicos en la Biodiversidad", credits: 3, prereq: ["QU-338", "QU-518"] } 
              ], 
              "8vo ciclo": [ 
                  { id: "EP-818", name: "Costos y Presupuestos", credits: 3, prereq: ["EP-308", "PA-714"] }, 
-                 { id: "PI-143", name: "Transferencia de Calor", credits: 4, prereq: ["PI-142"] }, 
-                 { id: "PI-144", name: "Transferencia de Masa", credits: 4, prereq: ["PI-142"] }, 
+                 { id: "PI-143", name: "Transferencia de Calor", credits: 3, prereq: ["PI-142"] }, 
+                 { id: "PI-144", name: "Transferencia de Masa", credits: 3, prereq: ["PI-142"] }, 
                  { id: "PI-146", name: "Operaciones en Ingeniería Química I", credits: 3, prereq: ["PI-142"] }, 
-                 { id: "PI-365", name: "Polímeros I", credits: 2, prereq: ["QU-338", "PI-318"] }, 
-                 { id: "PI-521", name: "Introducción a la Bioingeniería", credits: 2, prereq: ["PI-514_Ciencias"] } 
+                 { id: "PI-365", name: "Polímeros I", credits: 3, prereq: ["QU-338", "PI-318"] }, 
+                 { id: "PI-521", name: "Introducción a la Bioingeniería", credits: 3, prereq: ["PI-514_Ciencias"] } 
              ], 
              "9no ciclo": [ 
-                 { id: "PI-135", name: "Laboratorio de Operaciones Unitarias I", credits: 3, prereq: ["PI-143", "PI-146"] }, 
+                 { id: "PI-135", name: "Laboratorio de Operaciones Unitarias I", credits: 2, prereq: ["PI-143", "PI-146"] }, 
                  { id: "PI-225", name: "Cinética Química y Diseño de Reactores I", credits: 3, prereq: ["PI-217"] }, 
                  { id: "PI-415", name: "Instrumentos de Control", credits: 3, prereq: ["EE-103", "PI-144"] }, 
                  { id: "PI-510", name: "Economía de los Procesos", credits: 3, prereq: ["EP-818", "PI-144"] }, 
                  { id: "PI-555", name: "Seguridad en Procesos Químicos Industriales", credits: 3, prereq: ["PI-143", "PI-144"] }, 
-                 { id: "PI-911", name: "Gestión Tecnológica y Empresarial", credits: 3, prereq: ["173_credits"] }, 
+                 { id: "PI-911", name: "Gestión Tecnológica y Empresarial", credits: 4, prereq: ["173_credits"] }, 
                  { id: "QT-614", name: "Seminario de Tesis I", credits: 2, prereq: ["173_credits"] } 
              ], 
              "10mo ciclo": [ 
-                 { id: "PA-136", name: "Planeamiento y Control de la Producción", credits: 3, prereq: ["PA-113", "PA-714"] }, 
-                 { id: "PI-136", name: "Laboratorio de Operaciones Unitarias II", credits: 3, prereq: ["PI-135", "PI-144"] }, 
+                 { id: "PA-136", name: "Planeamiento y Control de la Producción", credits: 4, prereq: ["PA-113", "PA-714"] }, 
+                 { id: "PI-136", name: "Laboratorio de Operaciones Unitarias II", credits: 2, prereq: ["PI-135", "PI-144"] }, 
                  { id: "PI-426", name: "Simulación y Control de Procesos", credits: 4, prereq: ["PI-225", "PI-415"] }, 
-                 { id: "PI525", name: "Diseño de Plantas", credits: 3, prereq: ["PI-510", "PI-415"] }, 
-                 { id: "QT-615", name: "Seminario de Tesis II", credits: 3, prereq: ["QT-614"] } 
+                 { id: "PI525", name: "Diseño de Plantas", credits: 4, prereq: ["PI-510", "PI-415"] }, 
+                 { id: "QT-615", name: "Seminario de Tesis II", credits: 2, prereq: ["QT-614"] } 
              ] 
          }; 
 
