@@ -12,6 +12,7 @@
             --matcha: #dcedc8;
             --durazno: #ffccbc;
             --text-main: #f5f5f5;
+            --card-off: #252525;
         }
 
         body {
@@ -21,7 +22,7 @@
             background-size: 20px 20px;
             color: var(--text-main);
             margin: 0;
-            padding: 30px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -29,33 +30,39 @@
 
         #credit-counter {
             background: rgba(245, 224, 220, 0.1);
-            padding: 12px 35px;
+            padding: 12px 40px;
             border-radius: 50px;
             border: 1.5px solid var(--crema);
             font-weight: 700;
             color: var(--crema);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            font-size: 1.1em;
         }
 
         .curriculum-container {
             display: flex;
             overflow-x: auto;
-            gap: 25px;
+            gap: 30px;
             width: 100%;
-            padding-bottom: 30px;
+            padding: 10px 20px 40px 20px;
+            scroll-behavior: smooth;
         }
 
-        .cycle-column { min-width: 300px; flex-shrink: 0; }
+        .cycle-column { 
+            min-width: 320px; 
+            flex-shrink: 0; 
+        }
 
         .cycle-header {
             background-color: var(--matcha);
             color: #556b2f;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 0.8em;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
+            letter-spacing: 1px;
         }
 
         .cycle-column:nth-child(even) .cycle-header {
@@ -64,32 +71,72 @@
         }
 
         .course {
-            background: #222;
+            background: var(--card-off);
             border: 1px solid #333;
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 15px;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .course:hover:not(.blocked) {
             transform: translateY(-5px);
             border-color: var(--crema);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
+        /* Color cuando está aprobado (Naranja Otoñal del banner) */
         .course.approved {
-            background-color: rgba(245, 224, 220, 0.15);
-            border-color: var(--crema);
+            background: #d9774a;
+            border-color: #d9774a;
         }
 
-        .course.approved .name { color: var(--crema); }
+        .course.approved .name, 
+        .course.approved .code, 
+        .course.approved .cred { 
+            color: white !important; 
+        }
 
-        .course.blocked { opacity: 0.15; cursor: not-allowed; }
+        .course.blocked { 
+            opacity: 0.15; 
+            cursor: not-allowed; 
+        }
 
-        .code { font-size: 0.65em; font-weight: 700; color: #888; display: block; margin-bottom: 5px; }
-        .name { font-size: 0.9em; font-weight: 700; line-height: 1.3; }
-        .cred { font-size: 0.75em; color: #666; margin-top: 10px; display: block; }
+        .code { 
+            font-size: 0.7em; 
+            font-weight: 700; 
+            color: #888; 
+            display: block; 
+            margin-bottom: 8px; 
+        }
+
+        .name { 
+            font-size: 0.95em; 
+            font-weight: 700; 
+            line-height: 1.3; 
+            color: var(--text-main);
+        }
+
+        .cred { 
+            font-size: 0.8em; 
+            color: #666; 
+            margin-top: 12px; 
+            display: block; 
+            font-weight: 600;
+        }
+
+        /* Scrollbar Aesthetic */
+        ::-webkit-scrollbar { height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: #444; 
+            border-radius: 10px; 
+        }
     </style>
 </head>
 <body>
@@ -164,18 +211,19 @@
                 { id: "PI413", name: "OPERACIONES UNITARIAS III", credits: 4, prereq: ["PI412"] },
                 { id: "PI225", name: "DISEÑO DE PLANTAS QUÍMICAS", credits: 4, prereq: ["PI212"] },
                 { id: "PI510", name: "SEGURIDAD E HIGIENE INDUSTRIAL", credits: 2, prereq: ["PI113"] },
-                { id: "ELC01", name: "ELECTIVO I", credits: 3, prereq: [] }
+                { id: "ELC01", name: "CURSO ELECTIVO I", credits: 3, prereq: [] }
             ],
             "Ciclo 10": [
                 { id: "PI214", name: "DISEÑO DE PROYECTOS", credits: 6, prereq: ["PI225"] },
                 { id: "PI610", name: "CONTROL Y GESTIÓN DE CALIDAD", credits: 3, prereq: ["MA613"] },
                 { id: "PI226", name: "OPTIMIZACIÓN DE PROCESOS", credits: 3, prereq: ["PI144"] },
-                { id: "ELC02", name: "ELECTIVO II", credits: 3, prereq: [] },
-                { id: "ELC03", name: "ELECTIVO III", credits: 3, prereq: [] }
+                { id: "ELC02", name: "CURSO ELECTIVO II", credits: 3, prereq: [] },
+                { id: "ELC03", name: "CURSO ELECTIVO III", credits: 3, prereq: [] }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_aesthetic_vfinal')) || {
+        // Estado real: 61 créditos aprobados
+        let approved = JSON.parse(localStorage.getItem('malla_iq_final_ultra')) || {
             "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
             "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true
@@ -202,7 +250,7 @@
                     `;
                     div.onclick = () => {
                         approved[c.id] = !approved[c.id];
-                        localStorage.setItem('malla_iq_aesthetic_vfinal', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_final_ultra', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
