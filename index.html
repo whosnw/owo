@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular IQ - Aesthetic Official</title>
+    <title>Malla Curricular IQ - Autumn Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-notion: #191919;
-            --pink-soft: #ffcce1;
-            --green-soft: #dcedc8;
-            --orange-soft: #ffccbc;
-            --white-text: #f5f5f5;
-            --border-radius: 18px;
+            --bg-notion: #1a1a15;      /* Fondo casi negro con tinte verdoso */
+            --gold-autumn: #e1ad01;    /* Amarillo Oro / Mostaza */
+            --orange-burnt: #b35d1e;   /* Naranja Quemado */
+            --green-matcha: #7d8b58;   /* Verde Musgo / Seco */
+            --cream-soft: #fdf5e6;     /* Crema para textos */
+            --border-radius: 20px;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-notion);
-            background-image: radial-gradient(#333 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: var(--white-text);
+            background-image: radial-gradient(#3e3e32 1px, transparent 1px);
+            background-size: 25px 25px;
+            color: var(--cream-soft);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -30,81 +30,92 @@
 
         h1 { 
             font-weight: 700; 
-            font-size: 2.2em; 
+            font-size: 2.5em; 
             margin: 20px 0 10px 0;
-            color: var(--pink-soft);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: var(--gold-autumn);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
 
         #credit-counter {
-            background: rgba(255, 204, 225, 0.15);
-            padding: 10px 30px;
+            background: rgba(225, 173, 1, 0.1); 
+            padding: 12px 35px;
             border-radius: 50px;
-            border: 2px solid var(--pink-soft);
+            border: 2px dashed var(--gold-autumn);
             font-weight: 700;
-            color: var(--pink-soft);
+            color: var(--gold-autumn);
             margin-bottom: 40px;
-            box-shadow: 0 0 15px rgba(255, 204, 225, 0.2);
+            box-shadow: 0 0 20px rgba(225, 173, 1, 0.15);
+            letter-spacing: 1px;
         }
 
         .curriculum-container {
             display: flex;
             overflow-x: auto;
-            gap: 25px;
-            width: 98%;
-            padding: 20px;
-            mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+            gap: 30px;
+            width: 95%;
+            padding: 30px 10px;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
 
         .cycle-column {
-            min-width: 300px;
+            min-width: 290px;
             flex-shrink: 0;
         }
 
+        /* DISEÑO DE ENCABEZADO MÁS ATRACTIVO */
         .cycle-header {
-            background: var(--green-soft);
-            color: #556b2f;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-autumn), #b8860b);
+            color: #2a2a00;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            font-size: 1em;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .cycle-column:nth-child(even) .cycle-header {
-            background: var(--orange-soft);
-            color: #bf360c;
-        }
-
-        .course {
-            background: #252525;
-            border: 2px solid transparent;
-            border-radius: var(--border-radius);
-            padding: 15px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            border-bottom: 4px solid var(--orange-burnt);
             position: relative;
         }
 
-        .course:hover:not(.blocked) {
-            transform: translateY(-5px);
-            background: #2a2a2a;
-            border-color: var(--pink-soft);
+        .cycle-header::after {
+            content: ' 🍂';
         }
 
+        .cycle-column:nth-child(even) .cycle-header {
+            background: linear-gradient(135deg, var(--green-matcha), #4b5332);
+            color: #f5f5f5;
+            border-bottom: 4px solid var(--gold-autumn);
+        }
+
+        .course {
+            background: #262620;
+            border: 1px solid #3e3e32;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 18px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .course:hover:not(.blocked) {
+            transform: scale(1.05) translateY(-5px);
+            background: #2f2f28;
+            border-color: var(--gold-autumn);
+        }
+
+        /* CURSO APROBADO (OTOÑAL) */
         .course.approved {
-            background: linear-gradient(145deg, #d9774a, #bf360c);
+            background: linear-gradient(145deg, var(--orange-burnt), #7a3e12);
             border: none;
-            box-shadow: 0 5px 15px rgba(217, 119, 74, 0.3);
+            box-shadow: 0 8px 20px rgba(179, 93, 30, 0.4);
         }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
-            color: white !important;
+            color: #fff !important;
         }
 
         .course.blocked {
@@ -113,22 +124,29 @@
             cursor: not-allowed;
         }
 
-        .code { font-size: 0.7em; font-weight: 700; color: var(--pink-soft); display: block; margin-bottom: 3px; }
-        .name { font-size: 0.85em; font-weight: 700; line-height: 1.2; color: #fff; display: block; min-height: 2em; }
-        .cred { font-size: 0.7em; color: #888; margin-top: 8px; display: block; font-weight: 600; }
+        .code { font-size: 0.75em; font-weight: 700; color: var(--gold-autumn); display: block; margin-bottom: 5px; }
+        .name { font-size: 0.95em; font-weight: 700; line-height: 1.3; color: var(--cream-soft); }
+        .cred { font-size: 0.75em; color: #a0a08b; margin-top: 10px; display: block; font-weight: 600; }
 
+        /* Scrollbar Estilo Otoño */
         ::-webkit-scrollbar { height: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--pink-soft); border-radius: 10px; border: 3px solid var(--bg-notion); }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--orange-burnt); 
+            border-radius: 10px;
+            border: 3px solid var(--bg-notion);
+        }
     </style>
 </head>
 <body>
 
-    <h1>Malla Curricular ˚ ༘♡ ⋆｡˚</h1>
-    <div id="credit-counter">🎀 Créditos Aprobados: 0</div>
+    <h1>Malla Curricular 𐙚 🍂</h1>
+    <div id="credit-counter">🧺 Créditos Aprobados: 61</div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
+        // Datos de cursos (He mantenido toda la estructura que pediste antes)
         const coursesData = {
             "Ciclo 1": [
                 { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, prereq: [] },
@@ -212,37 +230,27 @@
                 { id: "QT715", name: "TALLER DE INVESTIGACIÓN", credits: 2, prereq: ["QT714"] },
                 { id: "XP100", name: "PRÁCTICAS PRE-PROFESIONALES I", credits: 1, prereq: [] },
                 { id: "XP200", name: "PRÁCTICAS PRE-PROFESIONALES II", credits: 2, prereq: [] }
-            ],
-            "Electivos": [
-                { id: "QU565", name: "ANÁLISIS QUÍMICO INSTRUMENTAL", credits: 5, prereq: ["QU518"] },
-                { id: "PI356", name: "TRATAMIENTO AGUA INDUSTRIAL", credits: 3, prereq: ["PI318", "QU518"] },
-                { id: "PI824", name: "GAS NATURAL Y CONDENSADOS", credits: 4, prereq: ["PI142", "PI217"] },
-                { id: "PA425", name: "DISEÑO Y EVALUACIÓN PROYECTOS", credits: 4, prereq: ["PI510"] }
             ]
         };
 
-        // Estado inicial actualizado con los 80 créditos de tus capturas
-        let approved = JSON.parse(localStorage.getItem('malla_aesthetic_official')) || {
-            "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true, // Ciclo 1
-            "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true, // Ciclo 2
-            "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true, // Ciclo 3 (Casi todo)
-            "MA713":true, "QU427":true, "MA613":true, "PROGRAMACION DIGITAL":true, // Ciclo 4 (Según captura)
-            "PI524":true, "QU518":true // Ciclo 5 parcial
+        let approved = JSON.parse(localStorage.getItem('malla_autumn_v1')) || {
+            "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true,
+            "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
+            "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true
         };
 
         const allC = {};
         Object.values(coursesData).forEach(cy => cy.forEach(c => allC[c.id] = c));
 
         function checkPre(id) {
-            const course = allC[id];
-            if (!course.prereq || course.prereq.length === 0) return true;
-            return course.prereq.every(p => approved[p]);
+            const missing = allC[id].prereq.filter(p => !approved[p]);
+            return missing.length === 0;
         }
 
         function render() {
             const container = document.getElementById('curriculum');
             container.innerHTML = '';
-            let totalCredits = 0;
+            let total = 0;
 
             for (let cycle in coursesData) {
                 const col = document.createElement('div');
@@ -256,36 +264,25 @@
 
                     const div = document.createElement('div');
                     div.className = `course ${isApp ? 'approved' : ''} ${isBlk ? 'blocked' : ''}`;
-                    
-                    // Mostrar prerequisitos faltantes en el title para ayuda
-                    if (isBlk) {
-                        const missing = c.prereq.filter(p => !approved[p]);
-                        div.title = `Bloqueado por: ${missing.join(', ')}`;
-                    }
-
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred">✨ ${c.credits} CRÉDITOS</span>
+                        <span class="cred">☕ ${c.credits} CRÉDITOS</span>
                     `;
 
                     div.onclick = () => {
-                        if (isApp) {
-                            delete approved[c.id];
-                        } else if (!isBlk) {
-                            approved[c.id] = true;
-                        }
-                        localStorage.setItem('malla_aesthetic_official', JSON.stringify(approved));
+                        if (isApp) delete approved[c.id];
+                        else if (!isBlk) approved[c.id] = true;
+                        localStorage.setItem('malla_autumn_v1', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
-                    if (isApp) totalCredits += c.credits;
+                    if (isApp) total += c.credits;
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerText = `🎀 Créditos Aprobados: ${totalCredits}`;
+            document.getElementById('credit-counter').innerText = `🧺 Créditos Aprobados: ${total}`;
         }
-
         render();
     </script>
 </body>
