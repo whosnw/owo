@@ -3,144 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Dark Mode Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Malla Curricular IQ - Notion Dark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-negro: #121212;      /* Negro profundo para integración total */
-            --tarjeta-base: #1e1e1e;  /* Gris muy oscuro para las tarjetas */
-            --texto-claro: #e0e0e0;   
-            --verde-otoño: #6b7352;   /* Verde musgo más oscuro */
-            --naranja-vivido: #d9774a; /* Aprobado (naranja del cojín) */
-            --cafe-suave: #3e2723;    /* Ciclos pares */
-            --borde-sutil: #333333;
+            --bg-notion: #191919; /* El negro exacto de Notion Dark */
+            --card-bg: #222222;
+            --text-main: #FFFFFF;
+            --text-dim: #9b9b9b;
+            --accent-green: #4ade80; /* Verde otoñal suave */
+            --accent-orange: #f97316; /* Naranja quemado aprobado */
+            --border-notion: #2f2f2f;
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-negro);
-            color: var(--texto-claro);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-notion);
+            color: var(--text-main);
             margin: 0;
-            padding: 30px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
-        h1 { font-weight: 700; color: #fff; margin-bottom: 10px; }
-        
+        header {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            width: 100%;
+        }
+
+        h1 { font-size: 1.8em; font-weight: 700; letter-spacing: -0.5px; }
+
         #credit-counter {
-            background: #252525;
-            color: var(--naranja-vivido);
-            padding: 12px 35px;
-            border-radius: 15px;
-            border: 1px solid var(--borde-sutil);
-            font-weight: 700;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-size: 0.9em;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border-notion);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
-        .curriculum-container {
+        .malla-grid {
             display: flex;
             overflow-x: auto;
-            gap: 20px;
-            width: 100%;
-            padding: 10px;
+            gap: 24px;
+            padding-bottom: 40px;
+            scroll-behavior: smooth;
         }
 
-        .cycle-column {
+        .ciclo-col {
             min-width: 320px;
             flex-shrink: 0;
         }
 
-        .cycle-header {
-            background-color: var(--verde-otoño);
-            color: #fff;
-            text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.9em;
-            font-weight: 700;
-            margin-bottom: 20px;
+        .ciclo-col h2 {
+            font-size: 0.75em;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            padding-left: 5px;
         }
 
-        .cycle-column:nth-child(even) .cycle-header {
-            background-color: var(--cafe-suave);
-        }
-
-        .course {
-            background: var(--tarjeta-base);
-            border: 1px solid var(--borde-sutil);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
+        .curso {
+            background-color: transparent;
+            border: 1px solid var(--border-notion);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease-in-out;
             position: relative;
         }
 
-        /* EFECTO HOVER */
-        .course:hover:not(.blocked):not(.approved) {
-            border-color: var(--naranja-vivido);
-            background: #252525;
-            transform: scale(1.02);
+        .curso:hover:not(.blocked) {
+            background-color: #252525;
+            border-color: #444;
         }
 
-        /* ESTADO APROBADO (Naranja Otoñal) */
-        .course.approved {
-            background-color: var(--naranja-vivido);
-            border-color: #ff8a50;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(217, 119, 74, 0.3);
+        /* ESTADO APROBADO: Estilo minimalista */
+        .curso.approved {
+            border-color: var(--accent-orange);
+            background-color: rgba(249, 115, 22, 0.1);
         }
+        .curso.approved .name { color: var(--accent-orange); }
 
         /* ESTADO BLOQUEADO */
-        .course.blocked {
-            opacity: 0.4;
-            filter: grayscale(0.8);
+        .curso.blocked {
+            opacity: 0.3;
             cursor: not-allowed;
+            border-style: dashed;
         }
 
-        .code { font-size: 0.7em; font-weight: 700; color: #888; display: block; margin-bottom: 6px; }
-        .name { font-size: 0.88em; font-weight: 700; line-height: 1.3; color: #eee; }
-        .cred { font-size: 0.75em; font-weight: 600; margin-top: 10px; display: block; color: #888; }
-
-        .course.approved .code, .course.approved .cred, .course.approved .name { color: #fff; }
-
-        /* Icono sutil de bloqueo */
-        .course.blocked::after {
-            content: '🍂';
-            position: absolute; right: 12px; top: 12px; opacity: 0.3;
+        .code {
+            font-size: 0.65em;
+            font-weight: 700;
+            color: var(--text-dim);
+            margin-bottom: 6px;
+            display: block;
         }
 
+        .name {
+            font-size: 0.85em;
+            font-weight: 500;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .cred {
+            font-size: 0.7em;
+            margin-top: 12px;
+            color: var(--text-dim);
+            display: block;
+        }
+
+        /* Tooltip minimalista */
         .tooltip {
-            visibility: hidden;
-            background: #000;
-            color: #ffab91;
-            padding: 10px;
-            border-radius: 8px;
+            display: none;
             position: absolute;
-            z-index: 100;
-            font-size: 0.75em;
-            bottom: 105%;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            z-index: 10;
+            bottom: 100%;
             left: 0;
-            width: 95%;
-            border: 1px solid #444;
+            width: 100%;
+            border: 1px solid var(--border-notion);
         }
-        .course.blocked:hover .tooltip { visibility: visible; }
+        .curso.blocked:hover .tooltip { display: block; }
+
+        /* Scrollbar estilo Notion */
+        ::-webkit-scrollbar { height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #373737; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #454545; }
     </style>
 </head>
 <body>
 
-    <h1>Malla Curricular - Ingeniería Química</h1>
-    <div id="credit-counter">🍂 Créditos Aprobados: 0</div>
+    <header>
+        <h1>Ingeniería Química - Avance Curricular</h1>
+        <div id="credit-counter">🍂 0 créditos aprobados de 231</div>
+    </header>
 
-    <div class="curriculum-container" id="curriculum"></div>
+    <div class="malla-grid" id="curriculum"></div>
 
     <script>
+        // Datos del Plan 2018-1 tal cual el PDF
         const coursesData = {
-            "Ciclo 1": [
+            "Ciclo 01": [
                 { id: "BD101", name: "DIBUJO EN INGENIERIA I", credits: 2, prereq: [] },
                 { id: "BF101", name: "FISICA I", credits: 5, prereq: [] },
                 { id: "BMA01", name: "CALCULO DIFERENCIAL", credits: 5, prereq: [] },
@@ -148,14 +160,14 @@
                 { id: "BQU01", name: "QUIMICA I", credits: 5, prereq: [] },
                 { id: "BRC01", name: "REDACCION Y COMUNICACION", credits: 2, prereq: [] }
             ],
-            "Ciclo 2": [
+            "Ciclo 02": [
                 { id: "BD102", name: "DIBUJO EN INGENIERIA II", credits: 3, prereq: ["BD101"] },
                 { id: "BF102", name: "FISICA II", credits: 5, prereq: ["BF101"] },
                 { id: "BMA02", name: "CALCULO INTEGRAL", credits: 5, prereq: ["BMA01"] },
                 { id: "BMA04", name: "MATEMATICAS BASICAS", credits: 4, prereq: ["BMA03"] },
                 { id: "BQU02", name: "QUIMICA II", credits: 5, prereq: ["BQU01"] }
             ],
-            "Ciclo 3": [
+            "Ciclo 03": [
                 { id: "BEF01", name: "ETICA Y FILOSOFIA POLITICA", credits: 2, prereq: [] },
                 { id: "BEG01", name: "ECONOMIA GENERAL", credits: 3, prereq: [] },
                 { id: "BF103", name: "FISICA III", credits: 5, prereq: ["BF102"] },
@@ -163,7 +175,7 @@
                 { id: "BMA05", name: "MATEMATICAS SUPERIOR I", credits: 4, prereq: ["BMA02", "BMA04"] },
                 { id: "QU216", name: "QUIMICA INORGANICA", credits: 5, prereq: ["BQU02"] }
             ],
-            "Ciclo 4": [
+            "Ciclo 04": [
                 { id: "BF104", name: "TOPICOS ESPECIALES EN FISICA", credits: 3, prereq: ["BF103"] },
                 { id: "BMA06", name: "MATEMATICAS SUPERIOR II", credits: 4, prereq: ["BMA05"] },
                 { id: "EP308", name: "ECONOMIA Y ORGANIZACION DE LA EMPRESA", credits: 3, prereq: ["BEG01"] },
@@ -171,61 +183,61 @@
                 { id: "MA713", name: "PROGRAMACION DIGITAL", credits: 3, prereq: ["BIC01"] },
                 { id: "QU427", name: "FISICO QUIMICA I", credits: 5, prereq: ["BF103", "BQU02"] }
             ],
-            "Ciclo 5": [
+            "Ciclo 05": [
                 { id: "PI111", name: "BALANCE DE MATERIA Y ENERGIA", credits: 3, prereq: ["QU427"] },
-                { id: "P1524", name: "METODOS NUMERICOS PARA INGENIERIA QUIMICA", credits: 4, prereq: ["BMA06"] },
+                { id: "PI524", name: "METODOS NUMERICOS PARA INGENIERIA QUIMICA", credits: 4, prereq: ["BMA06"] },
                 { id: "QU328", name: "QUIMICA ORGANICA I", credits: 5, prereq: ["QU427"] },
                 { id: "QU428", name: "FISICO QUIMICA II", credits: 5, prereq: ["QU427"] },
                 { id: "QU518", name: "ANALISIS QUIMICO", credits: 4, prereq: ["QU216"] }
             ],
-            "Ciclo 6": [
+            "Ciclo 06": [
                 { id: "BIE01", name: "IDIOMA EXTRANJERO O LENGUA NATIVA EN EL NIVEL INTERMEDIO", credits: 2, prereq: [] },
                 { id: "BRN01", name: "REALIDAD NACIONAL CONSTITUCION Y DERECHOS HUMANOS", credits: 3, prereq: [] },
                 { id: "EC618", name: "MECANICA Y RESISTENCIA DE LOS MATERIALES", credits: 3, prereq: ["BF104", "BMA06"] },
                 { id: "EE103", name: "CIRCUITOS E INSTALACIONES ELECTRICAS INDUSTRIALES", credits: 3, prereq: ["BF103", "BMA05"] },
-                { id: "P1140", name: "FENOMENOS DE TRANSPORTE", credits: 3, prereq: ["BMA06", "PI111"] },
-                { id: "P1216", name: "TERMODINAMICA PARA INGENIERIA QUIMICA I", credits: 3, prereq: ["PI111", "QU428"] },
+                { id: "PI140", name: "FENOMENOS DE TRANSPORTE", credits: 3, prereq: ["BMA06", "PI111"] },
+                { id: "PI216", name: "TERMODINAMICA PARA INGENIERIA QUIMICA I", credits: 3, prereq: ["PI111", "QU428"] },
                 { id: "QU338", name: "QUIMICA ORGANICA II", credits: 5, prereq: ["QU328"] }
             ],
-            "Ciclo 7": [
+            "Ciclo 07": [
                 { id: "PA113", name: "INGENIERIA DE METODOS I", credits: 4, prereq: ["MA613"] },
                 { id: "PA714", name: "INVESTIGACION DE OPERACIONES I", credits: 3, prereq: ["MA613", "MA713"] },
-                { id: "P1142", name: "TRANSFERENCIA DE CANTIDAD DE MOVIMIENTO", credits: 3, prereq: ["P1140"] },
-                { id: "P1217", name: "TERMODINAMICA PARA INGENIERIA QUIMICA II", credits: 3, prereq: ["P1216", "P1524"] },
-                { id: "P1318", name: "INDUSTRIA DE LOS PROCESOS QUIMICOS", credits: 5, prereq: ["P1140"] },
-                { id: "P1514", name: "CIENCIAS DE LOS MATERIALES", credits: 2, prereq: ["QU518"] },
-                { id: "P1520", name: "RECURSOS QUIMICOS EN LA BIODIVERSIDAD", credits: 3, prereq: ["QU338", "QU518"] }
+                { id: "PI142", name: "TRANSFERENCIA DE CANTIDAD DE MOVIMIENTO", credits: 3, prereq: ["PI140"] },
+                { id: "PI217", name: "TERMODINAMICA PARA INGENIERIA QUIMICA II", credits: 3, prereq: ["PI216", "PI524"] },
+                { id: "PI318", name: "INDUSTRIA DE LOS PROCESOS QUIMICOS", credits: 5, prereq: ["PI140"] },
+                { id: "PI514", name: "CIENCIAS DE LOS MATERIALES", credits: 2, prereq: ["QU518"] },
+                { id: "PI520", name: "RECURSOS QUIMICOS EN LA BIODIVERSIDAD", credits: 3, prereq: ["QU338", "QU518"] }
             ],
-            "Ciclo 8": [
+            "Ciclo 08": [
                 { id: "BAE01", name: "ACTIVIDADES EXTRACURRICULARES", credits: 1, prereq: [] },
                 { id: "EP818", name: "COSTOS Y PRESUPUESTOS", credits: 3, prereq: ["EP308", "PA714"] },
-                { id: "P1143", name: "TRANSFERENCIA DE CALOR", credits: 3, prereq: ["P1142"] },
-                { id: "P1144", name: "TRANSFERENCIA DE MASA", credits: 3, prereq: ["P1142"] },
-                { id: "P1146", name: "OPERACIONES EN INGENIERIA QUIMICA I", credits: 3, prereq: ["P1142"] },
-                { id: "P1225", name: "CINETICA QUIMICA Y DISEÑO DE REACTORES I", credits: 3, prereq: ["P1217"] },
-                { id: "P1521", name: "INTRODUCCION A LA BIOINGENIERIA", credits: 3, prereq: ["P1520"] }
+                { id: "PI143", name: "TRANSFERENCIA DE CALOR", credits: 3, prereq: ["PI142"] },
+                { id: "PI144", name: "TRANSFERENCIA DE MASA", credits: 3, prereq: ["PI142"] },
+                { id: "PI146", name: "OPERACIONES EN INGENIERIA QUIMICA I", credits: 3, prereq: ["PI142"] },
+                { id: "PI225", name: "CINETICA QUIMICA Y DISEÑO DE REACTORES I", credits: 3, prereq: ["PI217"] },
+                { id: "PI521", name: "INTRODUCCION A LA BIOINGENIERIA", credits: 3, prereq: ["PI520"] }
             ],
-            "Ciclo 9": [
-                { id: "P1135", name: "LABORATORIO DE OPERACIONES UNITARIAS I", credits: 2, prereq: ["P1143", "P1146"] },
-                { id: "P1365", name: "POLIMEROS I", credits: 3, prereq: ["QU338"] },
-                { id: "P1415", name: "INSTRUMENTOS DE CONTROL", credits: 3, prereq: ["EE103", "P1144"] },
-                { id: "P1510", name: "ECONOMIA DE PROCESOS", credits: 3, prereq: ["EP818", "P1144"] },
-                { id: "P1555", name: "SEGURIDAD EN PROCESOS QUIMICOS INDUSTRIALES", credits: 3, prereq: ["P1143", "P1144"] },
+            "Ciclo 09": [
+                { id: "PI135", name: "LABORATORIO DE OPERACIONES UNITARIAS I", credits: 2, prereq: ["PI143", "PI146"] },
+                { id: "PI365", name: "POLIMEROS I", credits: 3, prereq: ["QU338"] },
+                { id: "PI415", name: "INSTRUMENTOS DE CONTROL", credits: 3, prereq: ["EE103", "PI144"] },
+                { id: "PI510", name: "ECONOMIA DE PROCESOS", credits: 3, prereq: ["EP818", "PI144"] },
+                { id: "PI555", name: "SEGURIDAD EN PROCESOS QUIMICOS INDUSTRIALES", credits: 3, prereq: ["PI143", "PI144"] },
                 { id: "PI911", name: "GESTION TECNOLOGICA Y EMPRESARIAL", credits: 4, prereq: [] },
                 { id: "QT714", name: "TALLER DE PROYECTO DE INVESTIGACION", credits: 2, prereq: [] }
             ],
             "Ciclo 10": [
                 { id: "PA136", name: "PLANEAMIENTO Y CONTROL DE LA PRODUCCION", credits: 4, prereq: ["PA113", "PA714"] },
-                { id: "P1136", name: "LABORATORIO DE OPERACIONES UNITARIAS II", credits: 2, prereq: ["P1135", "P1144"] },
-                { id: "P1426", name: "SIMULACION Y CONTROL DE PROCESOS", credits: 4, prereq: ["P1225", "P1415"] },
-                { id: "P1525", name: "DISEÑO DE PLANTAS", credits: 4, prereq: ["P1415", "P1510"] },
+                { id: "PI136", name: "LABORATORIO DE OPERACIONES UNITARIAS II", credits: 2, prereq: ["PI135", "PI144"] },
+                { id: "PI426", name: "SIMULACION Y CONTROL DE PROCESOS", credits: 4, prereq: ["PI225", "PI415"] },
+                { id: "PI525", name: "DISEÑO DE PLANTAS", credits: 4, prereq: ["PI415", "PI510"] },
                 { id: "QT715", name: "TALLER DE INVESTIGACION", credits: 2, prereq: ["QT714"] },
                 { id: "XP100", name: "PRACTICAS PRE-PROFESIONALES I", credits: 1, prereq: [] },
                 { id: "XP200", name: "PRACTICAS PRE-PROFESIONALES II", credits: 2, prereq: [] }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_dark_iq')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_notion_iq')) || {};
         const allC = {};
         Object.values(coursesData).forEach(cy => cy.forEach(c => allC[c.id] = c));
 
@@ -241,8 +253,8 @@
 
             for (let cycle in coursesData) {
                 const col = document.createElement('div');
-                col.className = 'cycle-column';
-                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+                col.className = 'ciclo-col';
+                col.innerHTML = `<h2>${cycle}</h2>`;
 
                 coursesData[cycle].forEach(c => {
                     const isApp = approved[c.id];
@@ -250,18 +262,18 @@
                     const isBlk = !isApp && preStatus !== true;
 
                     const div = document.createElement('div');
-                    div.className = `course ${isApp ? 'approved' : ''} ${isBlk ? 'blocked' : ''}`;
+                    div.className = `curso ${isApp ? 'approved' : ''} ${isBlk ? 'blocked' : ''}`;
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred">${c.credits} CRÉDITOS</span>
-                        ${isBlk ? `<div class="tooltip">Falta aprobar: ${preStatus.join(', ')}</div>` : ''}
+                        <span class="cred">${c.credits} CR</span>
+                        ${isBlk ? `<div class="tooltip">Pendiente: ${preStatus.join(', ')}</div>` : ''}
                     `;
 
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('malla_dark_iq', JSON.stringify(approved));
+                        localStorage.setItem('malla_notion_iq', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -269,7 +281,7 @@
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerText = `🍂 Créditos Aprobados: ${total}`;
+            document.getElementById('credit-counter').innerText = `🍂 ${total} créditos aprobados de 231`;
         }
         render();
     </script>
