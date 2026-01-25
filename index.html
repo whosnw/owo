@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,114 +7,172 @@
     <title>Malla Curricular - Ingeniería Química</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* (Mantenemos tu estilo original que está genial, solo añadiré un toque para los aprobados) */
+        :root {
+            --bg-color: #0d0d0d; /* Fondo negro profundo */
+            --course-bg: #1e1e20; /* Gris oscuro para cursos base */
+            --approved-bg: #d682a4; /* Rosado de la imagen */
+            --approved-text: #4b1a30;
+            --available-border: #ff4081; /* Borde rosa brillante para desbloqueados */
+            --blocked-bg: #121212; /* Más oscuro para bloqueados */
+            --blocked-text: #444444;
+            --accent-purple: #5a1a3d; /* Contador */
+        }
+
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 30px;
-            background-color: #121212;
-            color: #f0f0f0;
+            background-color: var(--bg-color);
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         h1 {
-            font-family: 'Times New Roman', serif;
+            font-weight: 700;
             font-size: 2.5em;
             text-align: center;
-            color: #fce4ec;
             margin-bottom: 20px;
         }
 
         #credit-counter {
-            background-color: #6a053c;
-            color: #fff;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 1.2em;
+            background-color: var(--accent-purple);
+            color: #ffffff;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 1.1em;
             font-weight: 700;
             margin-bottom: 40px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             position: sticky;
             top: 20px;
             z-index: 100;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .curriculum-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             width: 100%;
+            max-width: 1600px;
         }
 
         .cycle-column {
-            background-color: #212121;
-            border-radius: 12px;
-            padding: 25px 20px;
+            padding: 10px;
             flex: 1;
-            min-width: 280px;
-            max-width: 380px;
+            min-width: 260px;
+            max-width: 320px;
         }
 
         .cycle-column h2 {
-            background-color: #424242;
-            color: #fff;
-            margin: -25px -20px 20px -20px;
-            padding: 15px 20px;
-            border-radius: 12px 12px 0 0;
-            text-align: center;
+            background-color: #1a1a1c;
+            color: #888;
+            margin: 0 0 15px 0;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            text-transform: uppercase;
         }
 
         .course {
-            background-color: #333;
-            border: 1px solid #424242;
-            padding: 12px 18px;
-            border-radius: 8px;
+            background-color: var(--course-bg);
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 10px;
             cursor: pointer;
             margin-bottom: 12px;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* CURSO APROBADO */
+        /* --- ESTADO: DISPONIBLE (DESBLOQUEADO) --- */
+        .course:not(.blocked):not(.approved) {
+            border: 2px solid var(--available-border);
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.2);
+        }
+
+        /* --- ESTADO: APROBADO --- */
         .course.approved {
-            background-color: #d1c4e9;
-            border-color: #9575cd;
-            color: #4527a0;
+            background-color: var(--approved-bg);
+            color: var(--approved-text);
+            border: 2px solid #ff4081;
         }
-        .course.approved .course-name, .course.approved .course-code {
-            text-decoration: line-through;
-        }
-
-        /* CURSO BLOQUEADO (Faltan requisitos) */
-        .course.blocked {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background-color: #1a1a1a;
-        }
-
-        .course-code { font-weight: 700; color: #fce4ec; display: block; }
-        .course.approved .course-code { color: #4527a0; }
         
+        .course.approved .course-name, 
+        .course.approved .course-code {
+            text-decoration: line-through;
+            color: var(--approved-text);
+        }
+
+        .course.approved .credits {
+            color: var(--approved-text);
+            opacity: 0.7;
+        }
+
+        /* --- ESTADO: BLOQUEADO --- */
+        .course.blocked {
+            background-color: var(--blocked-bg);
+            border: 1px solid #222;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .course.blocked .course-name { color: var(--blocked-text); }
+        .course.blocked .course-code, .course.blocked .credits { color: #333; }
+
+        /* Hover effect para los que puedes clickear */
+        .course:hover:not(.blocked) {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        .course-code { 
+            font-weight: 400; 
+            font-size: 0.75em; 
+            color: #666; 
+            margin-bottom: 4px;
+        }
+        
+        .course-name { 
+            font-weight: 600; 
+            font-size: 1.05em;
+            margin-bottom: 8px;
+        }
+
+        .credits {
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        /* Tooltip para bloqueados */
         .tooltip-text {
             visibility: hidden;
-            background-color: #b71c1c;
+            background-color: #311b92;
             color: white;
             text-align: center;
-            padding: 5px;
-            border-radius: 5px;
+            padding: 8px;
+            border-radius: 6px;
             position: absolute;
-            z-index: 1;
-            bottom: 105%;
+            z-index: 10;
+            bottom: 110%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7em;
+            font-size: 0.75em;
             width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         .course.blocked:hover .tooltip-text { visibility: visible; }
+
+        @media (max-width: 600px) {
+            .cycle-column { min-width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -123,7 +182,7 @@
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
-        // ... (Tus datos de coursesData se mantienen igual) ...
+        // Los datos se mantienen iguales
         const coursesData = {
             "1er ciclo": [
                 { id: "BDI01", name: "Dibujo en Ingeniería I", credits: 2, prereq: [] }, 
@@ -232,21 +291,17 @@
 
         function toggleCourse(id) {
             if (approvedCourses[id]) {
-                // Si lo desmarcamos, tenemos que quitar también los que dependen de este
                 delete approvedCourses[id];
                 unapproveDependents(); 
             } else {
                 if (checkPrerequisites(id) === true) {
                     approvedCourses[id] = true;
-                } else {
-                    alert("¡Aún no puedes llevar este curso! Debes aprobar los requisitos primero.");
                 }
             }
             localStorage.setItem('approvedCourses_IQ', JSON.stringify(approvedCourses));
             renderCurriculum();
         }
 
-        // Función extra: si desapruebas un requisito, se desaprueban los cursos siguientes
         function unapproveDependents() {
             let changed = false;
             for (let id in approvedCourses) {
@@ -255,7 +310,7 @@
                     changed = true;
                 }
             }
-            if (changed) unapproveDependents(); // Recursivo para limpiar toda la cadena
+            if (changed) unapproveDependents();
         }
 
         function renderCurriculum() {
@@ -277,10 +332,10 @@
                     
                     let content = `<span class="course-code">${course.id}</span>
                                    <span class="course-name">${course.name}</span>
-                                   <span class="credits">${course.credits} Crd.</span>`;
+                                   <span class="credits">${course.credits} Créditos</span>`;
                     
                     if (isBlocked) {
-                        content += `<span class="tooltip-text">Requisitos: ${prereqStatus.join(', ')}</span>`;
+                        content += `<span class="tooltip-text">Bloqueado. Requiere: ${prereqStatus.join(', ')}</span>`;
                     }
 
                     card.innerHTML = content;
