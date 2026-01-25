@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular IQ</title>
+    <title>Malla Curricular IQ - Full Aesthetic</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,6 +13,7 @@
             --durazno: #ffccbc;
             --text-main: #f5f5f5;
             --card-off: #252525;
+            --app-orange: #d9774a; /* Naranja otoñal del banner */
         }
 
         body {
@@ -37,6 +38,7 @@
             color: var(--crema);
             margin-bottom: 50px;
             font-size: 1.1em;
+            box-shadow: 0 0 15px rgba(245, 224, 220, 0.1);
         }
 
         .curriculum-container {
@@ -48,10 +50,11 @@
             scroll-behavior: smooth;
         }
 
-        .cycle-column { 
-            min-width: 320px; 
-            flex-shrink: 0; 
-        }
+        /* Ocultar scrollbar pero mantener funcionalidad */
+        .curriculum-container::-webkit-scrollbar { height: 8px; }
+        .curriculum-container::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+
+        .cycle-column { min-width: 320px; flex-shrink: 0; }
 
         .cycle-header {
             background-color: var(--matcha);
@@ -63,6 +66,7 @@
             margin-bottom: 25px;
             text-align: center;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .cycle-column:nth-child(even) .cycle-header {
@@ -90,53 +94,25 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        /* Color cuando está aprobado (Naranja Otoñal del banner) */
+        /* Estilo para curso APROBADO */
         .course.approved {
-            background: #d9774a;
-            border-color: #d9774a;
+            background-color: var(--app-orange);
+            border-color: var(--app-orange);
         }
 
-        .course.approved .name, 
-        .course.approved .code, 
-        .course.approved .cred { 
-            color: white !important; 
+        .course.approved .name, .course.approved .code, .course.approved .cred {
+            color: white !important;
         }
 
-        .course.blocked { 
-            opacity: 0.15; 
-            cursor: not-allowed; 
+        .course.blocked {
+            opacity: 0.15;
+            filter: grayscale(1);
+            cursor: not-allowed;
         }
 
-        .code { 
-            font-size: 0.7em; 
-            font-weight: 700; 
-            color: #888; 
-            display: block; 
-            margin-bottom: 8px; 
-        }
-
-        .name { 
-            font-size: 0.95em; 
-            font-weight: 700; 
-            line-height: 1.3; 
-            color: var(--text-main);
-        }
-
-        .cred { 
-            font-size: 0.8em; 
-            color: #666; 
-            margin-top: 12px; 
-            display: block; 
-            font-weight: 600;
-        }
-
-        /* Scrollbar Aesthetic */
-        ::-webkit-scrollbar { height: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { 
-            background: #444; 
-            border-radius: 10px; 
-        }
+        .code { font-size: 0.7em; font-weight: 700; color: #888; display: block; margin-bottom: 8px; }
+        .name { font-size: 0.95em; font-weight: 700; line-height: 1.3; color: var(--text-main); }
+        .cred { font-size: 0.8em; color: #666; margin-top: 12px; display: block; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -222,12 +198,19 @@
             ]
         };
 
-        // Estado real: 61 créditos aprobados
-        let approved = JSON.parse(localStorage.getItem('malla_iq_final_ultra')) || {
+        let approved = JSON.parse(localStorage.getItem('malla_iq_aesthetic_vfinal')) || {
             "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
             "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true
         };
+
+        const allC = {};
+        Object.values(coursesData).forEach(cy => cy.forEach(c => allC[c.id] = c));
+
+        function checkPre(id) {
+            const missing = allC[id].prereq.filter(p => !approved[p]);
+            return missing.length === 0;
+        }
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -241,16 +224,20 @@
 
                 coursesData[cycle].forEach(c => {
                     const isApp = approved[c.id];
+                    const isBlk = !isApp && !checkPre(c.id);
+
                     const div = document.createElement('div');
-                    div.className = `course ${isApp ? 'approved' : ''}`;
+                    div.className = `course ${isApp ? 'approved' : ''} ${isBlk ? 'blocked' : ''}`;
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
                         <span class="cred">${c.credits} CRÉDITOS</span>
                     `;
+
                     div.onclick = () => {
-                        approved[c.id] = !approved[c.id];
-                        localStorage.setItem('malla_iq_final_ultra', JSON.stringify(approved));
+                        if (isApp) delete approved[c.id];
+                        else if (!isBlk) approved[c.id] = true;
+                        localStorage.setItem('malla_iq_aesthetic_vfinal', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
