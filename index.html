@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Completa IQ UNI</title>
+    <title>Malla Ingeniería Química UNI</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-page: #fdf6ec;
-            --header-text: #6d4c41;
-            --cycle-bg: #f2d5d5;
-            --course-available: #ffffff;
-            --course-approved: #e57373;
-            --course-blocked: #cfd8dc;
-            --border-pink: #f8bbd0;
-            --text-main: #5d4037;
+            --bg-page: #fdf6ec; /* Fondo crema de la imagen */
+            --text-title: #5d4037; /* Café oscuro */
+            --cycle-header: #d7ccc8; /* Gris/café claro */
+            --course-bg: #ffffff; /* Blanco para disponibles */
+            --approved-bg: #e57373; /* Rosa/Rojizo de la imagen */
+            --blocked-bg: #9e9e9e; /* Gris para bloqueados */
+            --border-color: #d7ccc8;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-page);
-            color: var(--text-main);
+            color: var(--text-title);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -28,19 +27,17 @@
             align-items: center;
         }
 
-        h1 { color: var(--header-text); font-size: 2.2em; margin-bottom: 5px; }
+        h1 { font-weight: 700; font-size: 2.2em; margin-bottom: 10px; }
         
         #credit-counter {
-            background-color: #fce4ec;
-            color: #ad1457;
-            padding: 10px 30px;
-            border-radius: 25px;
-            border: 2px dashed #f06292;
+            background-color: #f8bbd0; /* Rosa clarito */
+            color: #880e4f;
+            padding: 12px 35px;
+            border-radius: 30px;
             font-weight: 700;
             margin-bottom: 30px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
+            border: 2px solid #f48fb1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .curriculum-container {
@@ -49,7 +46,6 @@
             gap: 20px;
             width: 100%;
             padding: 20px 10px;
-            align-items: flex-start;
         }
 
         .cycle-column {
@@ -58,66 +54,77 @@
         }
 
         .cycle-column h2 {
-            background-color: var(--cycle-bg);
-            color: #8d6e63;
+            background-color: #e0f2f1; /* Color menta suave de la imagen */
+            color: #004d40;
             text-align: center;
             padding: 10px;
-            border-radius: 15px;
+            border-radius: 20px;
             font-size: 0.9em;
-            margin-bottom: 15px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
         }
 
+        /* CICLO 2 y 4 usan rosa en la imagen */
+        .cycle-column:nth-child(even) h2 { background-color: #f8bbd0; color: #880e4f; }
+        /* CICLO 3 y 5 usan gris en la imagen */
+        .cycle-column:nth-child(3n) h2 { background-color: #cfd8dc; color: #37474f; }
+
         .course {
-            background-color: var(--course-available);
-            border: 2px solid var(--border-pink);
-            border-radius: 15px;
+            background-color: var(--course-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 18px;
             padding: 15px;
             margin-bottom: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
-            box-shadow: 3px 3px 0px var(--border-pink);
+            box-shadow: 3px 3px 0px var(--border-color);
         }
 
+        /* ESTADO: APROBADO (ROSA FUERTE/NARANJA) */
         .course.approved {
-            background-color: var(--course-approved);
+            background-color: #ff8a65; 
             color: white;
-            border-color: #d32f2f;
-            box-shadow: 3px 3px 0px #d32f2f;
+            border-color: #e64a19;
+            box-shadow: 3px 3px 0px #e64a19;
         }
 
-        .course.approved .code, .course.approved .cred { color: #ffebee; }
-
+        /* ESTADO: BLOQUEADO (GRIS OSCURO) */
         .course.blocked {
-            background-color: var(--course-blocked);
-            border-color: #b0bec5;
-            box-shadow: 3px 3px 0px #b0bec5;
+            background-color: #b0bec5;
+            border-color: #78909c;
+            box-shadow: 3px 3px 0px #78909c;
             cursor: not-allowed;
-            opacity: 0.6;
+            opacity: 0.8;
         }
 
-        .course.blocked .name { color: #78909c; }
+        .course.blocked .name, .course.blocked .code { color: #546e7a; }
 
-        .code { font-size: 0.7em; font-weight: bold; color: #bcaaa4; display: block; }
-        .name { font-size: 0.95em; font-weight: 700; display: block; margin: 5px 0; line-height: 1.2; }
-        .cred { font-size: 0.8em; color: #8d6e63; font-weight: 600; }
+        .code { font-size: 0.75em; font-weight: 700; color: #8d6e63; display: block; }
+        .name { font-size: 0.9em; font-weight: 700; display: block; margin: 5px 0; line-height: 1.2; }
+        .cred { font-size: 0.8em; color: #8d6e63; }
 
-        .course.blocked::after { content: '🔒'; position: absolute; right: 10px; top: 10px; font-size: 0.8em; }
+        .course.approved .code, .course.approved .cred { color: #fbe9e7; }
+
+        .course.blocked::after {
+            content: '🔒';
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-size: 0.8em;
+        }
 
         .tooltip {
             visibility: hidden;
-            background: #5d4037;
+            background: #4e342e;
             color: #fff;
             padding: 8px;
-            border-radius: 8px;
+            border-radius: 10px;
             position: absolute;
             z-index: 100;
-            font-size: 0.75em;
+            font-size: 0.7em;
             bottom: 110%;
             left: 0;
             width: 100%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .course.blocked:hover .tooltip { visibility: visible; }
     </style>
@@ -184,7 +191,7 @@
                 { id: "PI142", name: "TRANSF. CANTIDAD MOVIMIENTO", credits: 3, prereq: ["PI140"] },
                 { id: "PI217", name: "TERMODINAMICA IQ II", credits: 3, prereq: ["PI216", "PI524"] },
                 { id: "PI318", name: "INDUSTRIA PROCESOS QUIMICOS", credits: 5, prereq: ["PI140"] },
-                { id: "PI514", name: "CIENCIA DE MATERIALES", credits: 2, prereq: ["QU518"] },
+                { id: "PI1514", name: "CIENCIA DE MATERIALES", credits: 2, prereq: ["QU518"] },
                 { id: "PI520", name: "RECURSOS QUIM. BIODIVERSIDAD", credits: 3, prereq: ["QU338", "QU518"] }
             ],
             "Ciclo 8": [
@@ -192,12 +199,12 @@
                 { id: "EP818", name: "COSTOS Y PRESUPUESTOS", credits: 3, prereq: ["EP308", "PA714"] },
                 { id: "PI143", name: "TRANSFERENCIA DE CALOR", credits: 3, prereq: ["PI142"] },
                 { id: "PI144", name: "TRANSFERENCIA DE MASA", credits: 3, prereq: ["PI142"] },
-                { id: "PI146", name: "OPERACIONES IQ I", credits: 3, prereq: ["PI142"] },
+                { id: "PI146", name: "OPERACIONES EN IQ I", credits: 3, prereq: ["PI142"] },
                 { id: "PI225", name: "CINETICA Y REACTORES I", credits: 3, prereq: ["PI217"] },
-                { id: "PI521", name: "INTRODUCCION BIOINGENIERIA", credits: 3, prereq: ["PI520"] }
+                { id: "PI1521", name: "INTRODUCCION BIOINGENIERIA", credits: 3, prereq: ["PI520"] }
             ],
             "Ciclo 9": [
-                { id: "PI135", name: "LAB. OPERACIONES UNITARIAS I", credits: 2, prereq: ["PI143", "PI146"] },
+                { id: "PI1135", name: "LAB. OPERACIONES UNITARIAS I", credits: 2, prereq: ["PI143", "PI146"] },
                 { id: "PI365", name: "POLIMEROS I", credits: 3, prereq: ["QU338"] },
                 { id: "PI415", name: "INSTRUMENTOS DE CONTROL", credits: 3, prereq: ["EE103", "PI144"] },
                 { id: "PI510", name: "ECONOMIA DE PROCESOS", credits: 3, prereq: ["EP818", "PI144"] },
@@ -207,7 +214,7 @@
             ],
             "Ciclo 10": [
                 { id: "PA136", name: "PLANEAMIENTO Y CONTROL PROD.", credits: 4, prereq: ["PA113", "PA714"] },
-                { id: "PI136", name: "LAB. OPERACIONES UNITARIAS II", credits: 2, prereq: ["PI135", "PI144"] },
+                { id: "PI1136", name: "LAB. OPERACIONES UNITARIAS II", credits: 2, prereq: ["PI1135", "PI144"] },
                 { id: "PI426", name: "SIMULACION Y CONTROL PROC.", credits: 4, prereq: ["PI225", "PI415"] },
                 { id: "PI525", name: "DISEÑO DE PLANTAS", credits: 4, prereq: ["PI415", "PI510"] },
                 { id: "QT715", name: "TALLER DE INVESTIGACION", credits: 2, prereq: ["QT714"] },
@@ -216,7 +223,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('app_iq_final')) || {};
+        let approved = JSON.parse(localStorage.getItem('app_iq_final_v2')) || {};
         const allC = {};
         Object.values(coursesData).forEach(cy => cy.forEach(c => allC[c.id] = c));
 
@@ -252,7 +259,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('app_iq_final', JSON.stringify(approved));
+                        localStorage.setItem('app_iq_final_v2', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
