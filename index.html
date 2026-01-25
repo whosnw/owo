@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Otoñal IQ - UNI</title>
+    <title>Malla Oficial IQ - Otoñal</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-crema: #fdf6ec;      /* Fondo de la imagen */
-            --cafe-oscuro: #5d4037;   /* Texto principal */
-            --verde-hoja: #95a371;    /* Ciclos impares */
-            --naranja-otoño: #d9774a; /* Aprobado (como el cojín) */
+            --bg-crema: #fdf6ec;      /* Fondo de la imagen de los conejitos */
+            --cafe-oscuro: #5d4037;   /* Texto y títulos */
+            --verde-hoja: #95a371;    /* Ciclos */
+            --naranja-otoño: #d9774a; /* Aprobado (color cojín silla) */
             --cafe-claro: #d7ccc8;    /* Bordes y bloqueados */
-            --crema-card: rgba(255, 254, 248, 0.9);
+            --crema-card: rgba(255, 254, 248, 0.95);
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-crema);
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
             color: var(--cafe-oscuro);
             margin: 0;
             padding: 30px;
@@ -27,13 +26,13 @@
             align-items: center;
         }
 
-        h1 { font-weight: 700; font-size: 2.2em; margin-bottom: 5px; color: var(--cafe-oscuro); }
+        h1 { font-weight: 700; font-size: 2.2em; margin-bottom: 20px; text-align: center; }
         
         #credit-counter {
             background: #efebe9;
             color: var(--cafe-oscuro);
-            padding: 12px 35px;
-            border-radius: 15px;
+            padding: 12px 30px;
+            border-radius: 12px;
             border: 2px solid var(--cafe-claro);
             font-weight: 700;
             margin-bottom: 30px;
@@ -48,11 +47,11 @@
             overflow-x: auto;
             gap: 20px;
             width: 100%;
-            padding: 20px;
+            padding: 10px;
         }
 
         .cycle-column {
-            min-width: 270px;
+            min-width: 300px; /* Un poco más ancho para nombres largos */
             flex-shrink: 0;
         }
 
@@ -61,34 +60,29 @@
             color: white;
             text-align: center;
             padding: 12px;
-            border-radius: 12px;
-            font-size: 0.9em;
-            margin-bottom: 20px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Ciclos pares con color café más cálido */
         .cycle-column:nth-child(even) h2 { background-color: #a1887f; }
 
         .course {
             background: var(--crema-card);
             border: 2px solid var(--cafe-claro);
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 15px;
             margin-bottom: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .course:hover:not(.blocked) {
-            transform: translateY(-3px);
-            border-color: var(--naranja-otoño);
-            background: white;
-        }
-
-        /* ESTADO: APROBADO (Naranja Otoñal) */
         .course.approved {
             background-color: var(--naranja-otoño);
             color: white;
@@ -96,9 +90,6 @@
             box-shadow: 3px 3px 0px #8d4524;
         }
 
-        .course.approved .code, .course.approved .cred { color: #ffe0b2; }
-
-        /* ESTADO: BLOQUEADO (Gris tierra) */
         .course.blocked {
             background-color: #e0e0e0;
             border-color: #bdbdbd;
@@ -106,34 +97,31 @@
             opacity: 0.7;
         }
 
-        .course.blocked .name { color: #9e9e9e; }
+        .code { font-size: 0.65em; font-weight: 700; opacity: 0.8; margin-bottom: 4px; }
+        .name { font-size: 0.85em; font-weight: 700; line-height: 1.2; word-wrap: break-word; }
+        .cred { font-size: 0.75em; font-weight: 600; margin-top: 5px; opacity: 0.9; }
 
-        .code { font-size: 0.7em; font-weight: 700; color: #8d6e63; display: block; margin-bottom: 4px; }
-        .name { font-size: 0.9em; font-weight: 700; display: block; margin-bottom: 6px; line-height: 1.2; }
-        .cred { font-size: 0.75em; font-weight: 600; }
+        .course.approved .code, .course.approved .cred { color: #ffe0b2; }
+        .course.blocked .name { color: #888; }
 
-        /* Icono de bloqueo */
         .course.blocked::after {
             content: '🍂'; 
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            font-size: 0.9em;
-            filter: grayscale(1);
+            position: absolute; right: 10px; top: 10px; opacity: 0.5;
         }
 
         .tooltip {
             visibility: hidden;
-            background: var(--cafe-oscuro);
+            background: #4e342e;
             color: #fff;
-            padding: 8px;
+            padding: 10px;
             border-radius: 8px;
             position: absolute;
             z-index: 100;
             font-size: 0.7em;
-            bottom: 110%;
+            bottom: 105%;
             left: 0;
-            width: 100%;
+            width: 90%;
+            pointer-events: none;
         }
         .course.blocked:hover .tooltip { visibility: visible; }
     </style>
@@ -141,12 +129,11 @@
 <body>
 
     <h1>Malla Curricular - Ingeniería Química</h1>
-    <div id="credit-counter">Créditos Aprobados: 0</div>
+    <div id="credit-counter">🍂 Créditos Aprobados: 0</div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
-        // Datos oficiales UNI de tu PDF
         const coursesData = {
             "Ciclo 1": [
                 { id: "BDI01", name: "DIBUJO EN INGENIERIA I", credits: 2, prereq: [] },
@@ -167,73 +154,73 @@
                 { id: "BEF01", name: "ETICA Y FILOSOFIA POLITICA", credits: 2, prereq: [] },
                 { id: "BEG01", name: "ECONOMIA GENERAL", credits: 3, prereq: [] },
                 { id: "BFI03", name: "FISICA III", credits: 5, prereq: ["BFI02"] },
-                { id: "BIC01", name: "INTRODUCCIÓN A LA COMPUTACIÓN", credits: 2, prereq: [] },
+                { id: "BIC01", name: "INTRODUCCION A LA COMPUTACION", credits: 2, prereq: [] },
                 { id: "BMA05", name: "MATEMATICAS SUPERIOR I", credits: 4, prereq: ["BMA02", "BMA04"] },
                 { id: "QU216", name: "QUIMICA INORGANICA", credits: 5, prereq: ["BQU02"] }
             ],
             "Ciclo 4": [
                 { id: "BFI04", name: "TOPICOS ESPECIALES EN FISICA", credits: 3, prereq: ["BFI03"] },
                 { id: "BMA06", name: "MATEMATICAS SUPERIOR II", credits: 4, prereq: ["BMA05"] },
-                { id: "EP308", name: "ECONOMIA Y ORG. DE LA EMPRESA", credits: 3, prereq: ["BEG01"] },
+                { id: "EP308", name: "ECONOMIA Y ORGANIZACION DE LA EMPRESA", credits: 3, prereq: ["BEG01"] },
                 { id: "MA613", name: "ESTADISTICA APLICADA", credits: 4, prereq: ["BMA04"] },
                 { id: "MA713", name: "PROGRAMACION DIGITAL", credits: 3, prereq: ["BIC01"] },
                 { id: "QU427", name: "FISICO QUIMICA I", credits: 5, prereq: ["BFI03", "BQU02"] }
             ],
             "Ciclo 5": [
                 { id: "PI111", name: "BALANCE DE MATERIA Y ENERGIA", credits: 3, prereq: ["QU427"] },
-                { id: "PI524", name: "METODOS NUMERICOS PARA IQ", credits: 4, prereq: ["BMA06"] },
+                { id: "PI524", name: "METODOS NUMERICOS PARA INGENIERIA QUIMICA", credits: 4, prereq: ["BMA06"] },
                 { id: "QU328", name: "QUIMICA ORGANICA I", credits: 5, prereq: ["QU427"] },
                 { id: "QU428", name: "FISICO QUIMICA II", credits: 5, prereq: ["QU427"] },
                 { id: "QU518", name: "ANALISIS QUIMICO", credits: 4, prereq: ["QU216"] }
             ],
             "Ciclo 6": [
-                { id: "BIE01", name: "IDIOMA EXTRANJERO", credits: 2, prereq: [] },
-                { id: "BRN01", name: "REALIDAD NACIONAL", credits: 3, prereq: [] },
-                { id: "EC618", name: "MECANICA Y RESIST. MATERIALES", credits: 3, prereq: ["BFI04", "BMA06"] },
-                { id: "EE103", name: "CIRCUITOS E INST. ELECTRICAS", credits: 3, prereq: ["BFI03", "BMA05"] },
+                { id: "BIE01", name: "IDIOMA EXTRANJERO O LENGUA NATIVA", credits: 2, prereq: [] },
+                { id: "BRN01", name: "REALIDAD NACIONAL CONSTITUCION Y DD.HH.", credits: 3, prereq: [] },
+                { id: "EC618", name: "MECANICA Y RESISTENCIA DE LOS MATERIALES", credits: 3, prereq: ["BFI04", "BMA06"] },
+                { id: "EE103", name: "CIRCUITOS E INSTALACIONES ELECTRICAS IND.", credits: 3, prereq: ["BFI03", "BMA05"] },
                 { id: "PI140", name: "FENOMENOS DE TRANSPORTE", credits: 3, prereq: ["BMA06", "PI111"] },
-                { id: "PI216", name: "TERMODINAMICA IQ I", credits: 3, prereq: ["PI111", "QU428"] },
+                { id: "PI216", name: "TERMODINAMICA PARA INGENIERIA QUIMICA I", credits: 3, prereq: ["PI111", "QU428"] },
                 { id: "QU338", name: "QUIMICA ORGANICA II", credits: 5, prereq: ["QU328"] }
             ],
             "Ciclo 7": [
                 { id: "PA113", name: "INGENIERIA DE METODOS I", credits: 4, prereq: ["MA613"] },
-                { id: "PA714", name: "INV. DE OPERACIONES I", credits: 3, prereq: ["MA613", "MA713"] },
-                { id: "PI142", name: "TRANSF. CANTIDAD MOVIMIENTO", credits: 3, prereq: ["PI140"] },
-                { id: "PI217", name: "TERMODINAMICA IQ II", credits: 3, prereq: ["PI216", "PI524"] },
-                { id: "PI318", name: "INDUSTRIA PROCESOS QUIMICOS", credits: 5, prereq: ["PI140"] },
-                { id: "PI514", name: "CIENCIA DE MATERIALES", credits: 2, prereq: ["QU518"] },
-                { id: "PI520", name: "RECURSOS QUIM. BIODIVERSIDAD", credits: 3, prereq: ["QU338", "QU518"] }
+                { id: "PA714", name: "INVESTIGACION DE OPERACIONES I", credits: 3, prereq: ["MA613", "MA713"] },
+                { id: "PI142", name: "TRANSFERENCIA DE CANTIDAD DE MOVIMIENTO", credits: 3, prereq: ["PI140"] },
+                { id: "PI217", name: "TERMODINAMICA PARA INGENIERIA QUIMICA II", credits: 3, prereq: ["PI216", "PI524"] },
+                { id: "PI318", name: "INDUSTRIA DE LOS PROCESOS QUIMICOS", credits: 5, prereq: ["PI140"] },
+                { id: "PI1514", name: "CIENCIAS DE LOS MATERIALES", credits: 2, prereq: ["QU518"] },
+                { id: "PI520", name: "RECURSOS QUIMICOS EN LA BIODIVERSIDAD", credits: 3, prereq: ["QU338", "QU518"] }
             ],
             "Ciclo 8": [
                 { id: "BAE01", name: "ACTIVIDADES EXTRACURRICULARES", credits: 1, prereq: [] },
                 { id: "EP818", name: "COSTOS Y PRESUPUESTOS", credits: 3, prereq: ["EP308", "PA714"] },
                 { id: "PI143", name: "TRANSFERENCIA DE CALOR", credits: 3, prereq: ["PI142"] },
                 { id: "PI144", name: "TRANSFERENCIA DE MASA", credits: 3, prereq: ["PI142"] },
-                { id: "PI146", name: "OPERACIONES IQ I", credits: 3, prereq: ["PI142"] },
-                { id: "PI225", name: "CINETICA Y REACTORES I", credits: 3, prereq: ["PI217"] },
-                { id: "PI521", name: "INTRODUCCION BIOINGENIERIA", credits: 3, prereq: ["PI520"] }
+                { id: "PI146", name: "OPERACIONES EN INGENIERIA QUIMICA I", credits: 3, prereq: ["PI142"] },
+                { id: "PI225", name: "CINETICA QUIMICA Y DISEÑO DE REACTORES I", credits: 3, prereq: ["PI217"] },
+                { id: "PI1521", name: "INTRODUCCION A LA BIOINGENIERIA", credits: 3, prereq: ["PI520"] }
             ],
             "Ciclo 9": [
-                { id: "PI135", name: "LAB. OPERACIONES UNITARIAS I", credits: 2, prereq: ["PI143", "PI146"] },
+                { id: "PI1135", name: "LABORATORIO DE OPERACIONES UNITARIAS I", credits: 2, prereq: ["PI143", "PI146"] },
                 { id: "PI365", name: "POLIMEROS I", credits: 3, prereq: ["QU338"] },
-                { id: "PI415", name: "INSTRUMENTOS DE CONTROL", credits: 3, prereq: ["EE103", "PI144"] },
+                { id: "PI1415", name: "INSTRUMENTOS DE CONTROL", credits: 3, prereq: ["EE103", "PI144"] },
                 { id: "PI510", name: "ECONOMIA DE PROCESOS", credits: 3, prereq: ["EP818", "PI144"] },
-                { id: "PI555", name: "SEGURIDAD PROCESOS QUIMICOS", credits: 3, prereq: ["PI143", "PI144"] },
-                { id: "PI911", name: "GESTION TECNO. Y EMPRESARIAL", credits: 4, prereq: [] },
-                { id: "QT714", name: "TALLER PROYECTO INVESTIGACION", credits: 2, prereq: [] }
+                { id: "PI1555", name: "SEGURIDAD EN PROCESOS QUIMICOS IND.", credits: 3, prereq: ["PI143", "PI144"] },
+                { id: "PI911", name: "GESTION TECNOLOGICA Y EMPRESARIAL", credits: 4, prereq: [] },
+                { id: "QT714", name: "TALLER DE PROYECTO DE INVESTIGACION", credits: 2, prereq: [] }
             ],
             "Ciclo 10": [
-                { id: "PA136", name: "PLANEAMIENTO Y CONTROL PROD.", credits: 4, prereq: ["PA113", "PA714"] },
-                { id: "PI136", name: "LAB. OPERACIONES UNITARIAS II", credits: 2, prereq: ["PI135", "PI144"] },
-                { id: "PI426", name: "SIMULACION Y CONTROL PROC.", credits: 4, prereq: ["PI225", "PI415"] },
-                { id: "PI525", name: "DISEÑO DE PLANTAS", credits: 4, prereq: ["PI415", "PI510"] },
+                { id: "PA136", name: "PLANEAMIENTO Y CONTROL DE LA PRODUCCION", credits: 4, prereq: ["PA113", "PA714"] },
+                { id: "PI1136", name: "LABORATORIO DE OPERACIONES UNITARIAS II", credits: 2, prereq: ["PI1135", "PI144"] },
+                { id: "PI1426", name: "SIMULACION Y CONTROL DE PROCESOS", credits: 4, prereq: ["PI225", "PI1415"] },
+                { id: "PI1525", name: "DISEÑO DE PLANTAS", credits: 4, prereq: ["PI1415", "PI510"] },
                 { id: "QT715", name: "TALLER DE INVESTIGACION", credits: 2, prereq: ["QT714"] },
-                { id: "XP100", name: "PRACTICAS PRE-PROF. I", credits: 1, prereq: [] },
-                { id: "XP200", name: "PRACTICAS PRE-PROF. II", credits: 2, prereq: [] }
+                { id: "XP100", name: "PRACTICAS PRE-PROFESIONALES I", credits: 1, prereq: [] },
+                { id: "XP200", name: "PRACTICAS PRE-PROFESIONALES II", credits: 2, prereq: [] }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('app_otoño_iq')) || {};
+        let approved = JSON.parse(localStorage.getItem('app_iq_final_official')) || {};
         const allC = {};
         Object.values(coursesData).forEach(cy => cy.forEach(c => allC[c.id] = c));
 
@@ -263,13 +250,13 @@
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
                         <span class="cred">${c.credits} créditos</span>
-                        ${isBlk ? `<div class="tooltip">Pendiente: ${preStatus.join(', ')}</div>` : ''}
+                        ${isBlk ? `<div class="tooltip">Necesitas: ${preStatus.join(', ')}</div>` : ''}
                     `;
 
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('app_otoño_iq', JSON.stringify(approved));
+                        localStorage.setItem('app_iq_final_official', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
