@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Mint & Peach Edition</title>
+    <title>Malla Curricular IQ - Custom Palette</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0f1111;
-            --mint-soft: #cce3de;      /* Verde menta sutil */
-            --mint-dark: #a4c3b2;
-            --peach-soft: #f7d1ba;     /* Melocotón crema (Terracota suave) */
-            --peach-deep: #e3b69c;
-            --sand-light: #f6fff8;     /* Blanco roto para textos */
-            --glass-bg: rgba(255, 255, 255, 0.03);
+            --bg-dark: #0d0d0d;
+            --my-green: #C1D3A1;
+            --my-orange: #FFB87D;
+            --my-terra: #DC9176;
+            --my-yellow: #F6E582;
+            --text-main: #f8f8f8;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            /* Puntos muy finos y modernos */
-            background-image: radial-gradient(rgba(204, 227, 222, 0.1) 1px, transparent 1px);
-            background-size: 25px 25px;
-            color: var(--sand-light);
+            /* Puntos de fondo notorios pero estéticos */
+            background-image: radial-gradient(rgba(246, 229, 130, 0.15) 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--text-main);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -32,103 +31,100 @@
 
         h1 { 
             font-weight: 700; 
-            font-size: 2.5em; 
-            color: var(--mint-soft);
-            letter-spacing: -1px;
-            text-shadow: 0 0 15px rgba(204, 227, 222, 0.2);
+            font-size: 2.8em; 
+            color: var(--my-yellow);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* CONTADOR ESTILIZADO */
+        /* CONTADOR RESALTADO CON TU AMARILLO */
         #credit-counter {
-            background: linear-gradient(135deg, var(--mint-soft), var(--mint-dark));
-            padding: 12px 35px;
-            border-radius: 12px;
+            background: linear-gradient(180deg, var(--my-yellow), #d4c46a);
+            padding: 12px 40px;
+            border-radius: 50px;
             font-weight: 800;
-            color: #1a1a1a;
+            color: #2d2d2d;
             margin-bottom: 40px;
-            box-shadow: 0 8px 20px rgba(164, 195, 178, 0.2);
-            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 8px 20px rgba(246, 229, 130, 0.3);
+            border: 2px solid white;
         }
 
         .curriculum-container {
             display: flex;
             overflow-x: auto;
-            gap: 20px;
+            gap: 25px;
             width: 95vw;
-            padding: 20px;
-            background: var(--glass-bg);
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 20px;
-            backdrop-filter: blur(5px);
         }
 
         .cycle-column {
-            min-width: 280px;
+            min-width: 290px;
             flex-shrink: 0;
         }
 
-        /* ENCABEZADOS CON DEGRADADOS SUTILES */
+        /* ENCABEZADOS CON DEGRADADOS DE TUS COLORES */
         .cycle-header {
-            background: linear-gradient(180deg, var(--mint-soft) 0%, var(--mint-dark) 100%);
+            background: linear-gradient(180deg, var(--my-green), #9fb37f);
             color: #1a1a1a;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 0.9em;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 0.95em;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
-        /* ALTERNANCIA CON MELOCOTÓN CREMA */
         .cycle-column:nth-child(even) .cycle-header {
-            background: linear-gradient(180deg, var(--peach-soft) 0%, var(--peach-deep) 100%);
-            color: #2d2d2d;
+            background: linear-gradient(180deg, var(--my-yellow), #decb5d);
         }
 
         .course {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 16px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .course:hover:not(.blocked) {
-            border-color: var(--mint-soft);
+            border-color: var(--my-orange);
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
+            background: #222;
         }
 
-        /* CURSO APROBADO: MELOCOTÓN SUAVE CON VOLUMEN */
+        /* CURSO APROBADO: DEGRADADO ORANGE TO TERRACOTA */
         .course.approved {
-            background: linear-gradient(145deg, var(--peach-soft), var(--peach-deep));
+            background: linear-gradient(145deg, var(--my-orange), var(--my-terra));
             border: none;
-            box-shadow: 0 5px 15px rgba(247, 209, 186, 0.3);
+            box-shadow: 0 6px 18px rgba(220, 145, 118, 0.4);
         }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
-            color: #2d2d2d !important;
+            color: #1a1a1a !important;
             font-weight: 700;
         }
 
         .course.blocked {
-            opacity: 0.05;
+            opacity: 0.1;
             filter: grayscale(1);
             cursor: not-allowed;
         }
 
-        .code { font-size: 0.7em; font-weight: 800; color: var(--mint-soft); display: block; margin-bottom: 4px; }
-        .name { font-size: 0.85em; font-weight: 700; line-height: 1.3; }
-        .cred { font-size: 0.7em; color: #666; margin-top: 10px; display: block; }
+        .code { font-size: 0.75em; font-weight: 800; color: var(--my-orange); display: block; margin-bottom: 5px; }
+        .name { font-size: 0.9em; font-weight: 700; line-height: 1.4; color: #eee; }
+        .cred { font-size: 0.7em; color: #888; margin-top: 10px; display: block; font-weight: 600; }
 
-        /* SCROLLBARS LIMPIAS */
-        .curriculum-container::-webkit-scrollbar { height: 8px; }
+        /* SCROLLBARS DE TUS COLORES */
+        .curriculum-container::-webkit-scrollbar { height: 10px; }
         .curriculum-container::-webkit-scrollbar-thumb { 
-            background: var(--mint-soft); 
+            background: linear-gradient(90deg, var(--my-green), var(--my-yellow));
             border-radius: 10px; 
         }
     </style>
@@ -136,20 +132,18 @@
 <body>
 
     <h1>Malla Curricular 𐙚</h1>
-    <div id="credit-counter">🧺 Créditos Aprobados: 61</div>
+    <div id="credit-counter">⭐ Créditos Aprobados: 61</div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
-        // Lógica de datos de tu avance curricular
         const coursesData = {
             "Ciclo 1": [
                 { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, prereq: [] },
                 { id: "BF101", name: "FÍSICA I", credits: 5, prereq: [] },
                 { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5, prereq: [] },
                 { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4, prereq: [] },
-                { id: "BQU01", name: "QUÍMICA I", credits: 5, prereq: [] },
-                { id: "BRC01", name: "REDACCIÓN Y COMUNICACIÓN", credits: 2, prereq: [] }
+                { id: "BQU01", name: "QUÍMICA I", credits: 5, prereq: [] }
             ],
             "Ciclo 2": [
                 { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3, prereq: ["BD101"] },
@@ -162,23 +156,15 @@
                 { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2, prereq: [] },
                 { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3, prereq: [] },
                 { id: "BF103", name: "FÍSICA III", credits: 5, prereq: ["BF102"] },
-                { id: "BIC01", name: "INTRODUCCIÓN A LA COMPUTACIÓN", credits: 2, prereq: [] },
                 { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4, prereq: ["BMA02", "BMA04"] },
                 { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5, prereq: ["BQU02"] }
-            ],
-            "Ciclo 4": [
-                { id: "BF104", name: "TÓPICOS ESPECIALES EN FÍSICA", credits: 3, prereq: ["BF103"] },
-                { id: "BMA06", name: "MATEMÁTICAS SUPERIOR II", credits: 4, prereq: ["BMA05"] },
-                { id: "EP308", name: "ECONOMÍA Y ORG. DE LA EMPRESA", credits: 3, prereq: ["BEG01"] },
-                { id: "MA613", name: "ESTADÍSTICA APLICADA", credits: 4, prereq: ["BMA04"] },
-                { id: "QU427", name: "FISICOQUÍMICA I", credits: 5, prereq: ["BF103", "BQU02"] }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_soft_mint')) || {
-            "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true,
+        let approved = JSON.parse(localStorage.getItem('malla_custom_v1')) || {
+            "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
-            "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true
+            "BEF01":true, "BEG01":true, "BMA05":true, "QU216":true
         };
 
         const allC = {};
@@ -214,7 +200,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('malla_soft_mint', JSON.stringify(approved));
+                        localStorage.setItem('malla_custom_v1', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -222,7 +208,7 @@
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerText = `🧺 Créditos Aprobados: ${total}`;
+            document.getElementById('credit-counter').innerText = `⭐ Créditos Llevados: ${total}`;
         }
         render();
     </script>
