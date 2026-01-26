@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular IQ - Degradado Vertical</title>
+    <title>Malla IQ - Otoño Vertical Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #070707;
+            --bg-dark: #050505;
             
-            /* DEGRADADOS DE ABAJO HACIA ARRIBA (to top) */
-            /* Oscuro abajo (#939858) -> Medio (#B9BB66) -> Claro arriba (#E5E283) */
-            --gr-verde: linear-gradient(to top, #939858, #B9BB66, #E5E283);
+            /* DEGRADADOS VERTICALES (Abajo oscuro -> Arriba claro) */
+            /* Verde: #5B6734 (O) -> #85964E (M) -> #9FB45E (C) */
+            --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
             
-            /* Oscuro abajo (#D9B95E) -> Medio (#F6E281) -> Claro arriba (#F8EC89) */
-            --gr-amarillo: linear-gradient(to top, #D9B95E, #F6E281, #F8EC89);
+            /* Anaranjado: #863E21 (O) -> #C15C34 (M) -> #E66F40 (C) */
+            --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
             
-            /* Oscuro abajo (#E6883A) -> Medio (#ED9851) -> Claro arriba (#FDBF6D) */
-            --gr-naranja: linear-gradient(to top, #E6883A, #ED9851, #FDBF6D);
+            /* Mostaza (Cursos): #856A40 (O) -> #C19A60 (M) -> #E5B774 (C) */
+            --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
             
-            /* Oscuro abajo (#C26056) -> Medio (#C97269) -> Claro arriba (#E08F7A) */
-            --gr-terra: linear-gradient(to top, #C26056, #C97269, #E08F7A);
+            /* Amarillo (Título/Contador): #D9B95E (O) -> #F6E281 (M) -> #F8EC89 (C) */
+            --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
         }
 
         body {
@@ -43,30 +43,23 @@
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(246, 226, 129, 0.6));
+            filter: drop-shadow(0 0 15px rgba(246, 226, 129, 0.8));
             margin: 20px 0;
             text-transform: uppercase;
         }
 
-        /* CUADRO DE CRÉDITOS (ESTILO IMAGEN) */
+        /* CONTADOR ESTILO IMAGEN */
         #credit-counter {
             background: var(--gr-amarillo);
             padding: 12px 45px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 800;
             color: #1a1a1a;
             margin-bottom: 50px;
-            box-shadow: 0 0 25px rgba(217, 185, 94, 0.5);
+            box-shadow: 0 0 25px rgba(246, 226, 129, 0.6);
             border: 2px solid #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-
-        #credit-counter:hover {
-            box-shadow: 0 0 40px rgba(248, 236, 137, 0.8);
-            transform: translateY(-3px);
+            text-transform: uppercase;
+            font-size: 1.1em;
         }
 
         .curriculum-container {
@@ -74,16 +67,7 @@
             overflow-x: auto;
             gap: 25px;
             width: 95vw;
-            padding: 40px 20px;
-        }
-
-        /* SCROLLBAR PERSONALIZADO (LÍNEA ABAJO) */
-        .curriculum-container::-webkit-scrollbar {
-            height: 10px;
-        }
-        .curriculum-container::-webkit-scrollbar-thumb {
-            background: var(--gr-naranja);
-            border-radius: 10px;
+            padding: 20px;
         }
 
         .cycle-column {
@@ -91,61 +75,66 @@
             flex-shrink: 0;
         }
 
+        /* ENCABEZADOS SEGÚN CICLO */
         .cycle-header {
-            color: #1a1a1a;
-            padding: 18px;
-            border-radius: 12px;
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
             font-size: 1.1em;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* Encabezados con degradado vertical */
-        .cycle-column:nth-child(1) .cycle-header { background: var(--gr-verde); }
-        .cycle-column:nth-child(2) .cycle-header { background: var(--gr-terra); }
-        .cycle-column:nth-child(3) .cycle-header { background: var(--gr-verde); }
+        /* Ciclos Impares (Verde) / Pares (Naranja) */
+        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
+        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
+        /* CURSOS CON DEGRADADO MOSTAZA VERTICAL */
         .course {
-            background: #181818;
-            border: 1px solid #333;
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 20px;
+            background: var(--gr-mostaza);
+            border: 1.5px solid #fff;
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(133, 106, 64, 0.4);
+            transition: 0.3s;
         }
 
-        /* CURSO APROBADO: DEGRADADO VERTICAL + GLOW */
-        .course.approved {
-            background: var(--gr-naranja);
-            border: 2px solid #fff;
-            box-shadow: 0 0 25px rgba(230, 136, 58, 0.6);
+        .course:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(229, 183, 116, 0.6);
         }
 
-        /* LETRAS ILUMINADAS */
-        .course.approved .name, 
-        .course.approved .code {
+        /* LETRAS ILUMINADAS Y LEIBLES */
+        .name, .code {
             color: #fff !important;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.3);
+            display: block;
+        }
+
+        .code { font-size: 0.85em; margin-bottom: 5px; opacity: 0.9; }
+        .name { font-size: 1.05em; line-height: 1.2; }
+        .cred { 
+            font-size: 0.75em; 
+            color: #fff; 
+            margin-top: 12px; 
+            display: block; 
             font-weight: 800;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
-        .course:hover:not(.blocked) {
-            transform: scale(1.03);
-            border-color: #F8EC89;
+        /* SCROLLBAR */
+        .curriculum-container::-webkit-scrollbar { height: 8px; }
+        .curriculum-container::-webkit-scrollbar-thumb { 
+            background: var(--gr-amarillo); 
+            border-radius: 10px; 
         }
-
-        .course.blocked {
-            opacity: 0.1;
-            filter: grayscale(1);
-        }
-
-        .code { font-size: 0.8em; font-weight: 800; color: #F6E281; display: block; margin-bottom: 8px; }
-        .name { font-size: 1em; font-weight: 700; color: #f0f0f0; }
-        .cred { font-size: 0.75em; color: #888; margin-top: 15px; display: block; }
     </style>
 </head>
 <body>
@@ -161,32 +150,26 @@
     <script>
         const coursesData = {
             "Ciclo 1": [
-                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, prereq: [] },
-                { id: "BF101", name: "FÍSICA I", credits: 5, prereq: [] },
-                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5, prereq: [] },
-                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4, prereq: [] },
-                { id: "BQU01", name: "QUÍMICA I", credits: 5, prereq: [] }
+                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2 },
+                { id: "BF101", name: "FÍSICA I", credits: 5 },
+                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5 },
+                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4 },
+                { id: "BQU01", name: "QUÍMICA I", credits: 5 }
             ],
             "Ciclo 2": [
-                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3, prereq: ["BD101"] },
-                { id: "BF102", name: "FÍSICA II", credits: 5, prereq: ["BF101"] },
-                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5, prereq: ["BMA01"] },
-                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4, prereq: ["BMA03"] },
-                { id: "BQU02", name: "QUÍMICA II", credits: 5, prereq: ["BQU01"] }
+                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3 },
+                { id: "BF102", name: "FÍSICA II", credits: 5 },
+                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
+                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
+                { id: "BQU02", name: "QUÍMICA II", credits: 5 }
             ],
             "Ciclo 3": [
-                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2, prereq: [] },
-                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3, prereq: [] },
-                { id: "BF103", name: "FÍSICA III", credits: 5, prereq: ["BF102"] },
-                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4, prereq: ["BMA02", "BMA04"] },
-                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5, prereq: ["BQU02"] }
+                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
+                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
+                { id: "BF103", name: "FÍSICA III", credits: 5 },
+                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
+                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
             ]
-        };
-
-        let approved = JSON.parse(localStorage.getItem('malla_vertical')) || {
-            "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true,
-            "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
-            "BEG01":true, "BF103":true, "BMA05":true
         };
 
         function render() {
@@ -200,23 +183,15 @@
                 col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
                 coursesData[cycle].forEach(c => {
-                    const isApp = approved[c.id];
                     const div = document.createElement('div');
-                    div.className = `course ${isApp ? 'approved' : ''}`;
+                    div.className = 'course';
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
                         <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
                     `;
-
-                    div.onclick = () => {
-                        if (isApp) delete approved[c.id];
-                        else approved[c.id] = true;
-                        localStorage.setItem('malla_vertical', JSON.stringify(approved));
-                        render();
-                    };
                     col.appendChild(div);
-                    if (isApp) total += c.credits;
+                    total += c.credits;
                 });
                 container.appendChild(col);
             }
