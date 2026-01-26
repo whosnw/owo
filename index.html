@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Otoño Interactivo</title>
+    <title>Malla IQ - Otoño Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
-            
-            /* DEGRADADOS VERTICALES (0deg = Abajo oscuro -> Arriba claro) */
             --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
-            
-            /* MOSTAZA (Solo cuando se aprueba): #856A40 abajo -> #E5B774 arriba */
             --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
-            
-            /* AMARILLO (Título/Contador): #D9B95E abajo -> #F8EC89 arriba */
             --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
+            
+            /* Color para los Scrollbars (Mezcla otoño) */
+            --gr-scroll: linear-gradient(to right, #863E21, #E5B774);
+            --gr-scroll-v: linear-gradient(to bottom, #863E21, #E5B774);
+        }
+
+        /* --- ESTILO DE LAS BARRAS DE DESPLAZAMIENTO (SCROLLBARS) --- */
+        /* Para Chrome, Safari y Edge */
+        
+        /* Barra General (Vertical) */
+        ::-webkit-scrollbar {
+            width: 10px; /* Grosor vertical */
+            height: 10px; /* Grosor horizontal */
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gr-scroll-v);
+            border-radius: 10px;
+            border: 2px solid #111;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gr-amarillo);
+        }
+
+        /* Barra del Contenedor (Horizontal) */
+        .curriculum-container::-webkit-scrollbar-thumb {
+            background: var(--gr-scroll);
         }
 
         body {
@@ -34,8 +58,7 @@
         }
 
         h1 { 
-            font-weight: 800; 
-            font-size: 3.5em; 
+            font-weight: 800; font-size: 3.5em; 
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -62,12 +85,10 @@
             gap: 25px;
             width: 95vw;
             padding: 20px;
+            padding-bottom: 30px; /* Espacio para el scroll horizontal */
         }
 
-        .cycle-column {
-            min-width: 320px;
-            flex-shrink: 0;
-        }
+        .cycle-column { min-width: 320px; flex-shrink: 0; }
 
         .cycle-header {
             color: #fff;
@@ -85,9 +106,8 @@
         .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
         .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
-        /* CURSO POR DEFECTO (No aprobado) */
         .course {
-            background: #1a1a1a; /* Oscuro por defecto */
+            background: #1a1a1a;
             border: 1.5px solid #333;
             border-radius: 15px;
             padding: 22px;
@@ -96,27 +116,13 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* CURSO CUANDO LE HACES CLIC (Aprobado) */
         .course.approved {
-            background: var(--gr-mostaza); /* MOSTAZA VERTICAL */
+            background: var(--gr-mostaza);
             border-color: #fff;
             box-shadow: 0 0 20px rgba(229, 183, 116, 0.5);
         }
 
-        .course:hover {
-            border-color: #F8EC89;
-            background: #252525;
-        }
-
-        .course.approved:hover {
-            background: var(--gr-mostaza);
-            transform: scale(1.02);
-        }
-
-        /* TEXTO ILUMINADO EN CURSO APROBADO */
-        .course.approved .name, 
-        .course.approved .code,
-        .course.approved .cred {
+        .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
         }
@@ -124,21 +130,13 @@
         .code { font-size: 0.85em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 5px; }
         .name { font-size: 1.05em; font-weight: 700; color: #ccc; }
         .cred { font-size: 0.75em; color: #666; margin-top: 12px; display: block; font-weight: 800; }
-
         .course.approved .cred { color: #fff; }
-
-        .curriculum-container::-webkit-scrollbar { height: 8px; }
-        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-amarillo); border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <h1>Avance Curricular 🍂</h1>
-    
-    <div id="credit-counter">
-        🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span>
-    </div>
-
+    <div id="credit-counter">🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span></div>
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
@@ -156,18 +154,10 @@
                 { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
                 { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
                 { id: "BQU02", name: "QUÍMICA II", credits: 5 }
-            ],
-            "Ciclo 3": [
-                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
-                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
-                { id: "BF103", name: "FÍSICA III", credits: 5 },
-                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
-                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
             ]
         };
 
-        // Cargar progreso del usuario
-        let approved = JSON.parse(localStorage.getItem('malla_final_user')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_premium')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -188,11 +178,10 @@
                         <span class="name">${c.name}</span>
                         <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
                     `;
-
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_final_user', JSON.stringify(approved));
+                        localStorage.setItem('malla_premium', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
