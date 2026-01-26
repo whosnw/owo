@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Otoño Vertical Pro</title>
+    <title>Malla IQ - Otoño Interactivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
             
-            /* DEGRADADOS VERTICALES (Abajo oscuro -> Arriba claro) */
-            /* Verde: #5B6734 (O) -> #85964E (M) -> #9FB45E (C) */
+            /* DEGRADADOS VERTICALES (0deg = Abajo oscuro -> Arriba claro) */
             --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
-            
-            /* Anaranjado: #863E21 (O) -> #C15C34 (M) -> #E66F40 (C) */
             --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
             
-            /* Mostaza (Cursos): #856A40 (O) -> #C19A60 (M) -> #E5B774 (C) */
+            /* MOSTAZA (Solo cuando se aprueba): #856A40 abajo -> #E5B774 arriba */
             --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
             
-            /* Amarillo (Título/Contador): #D9B95E (O) -> #F6E281 (M) -> #F8EC89 (C) */
+            /* AMARILLO (Título/Contador): #D9B95E abajo -> #F8EC89 arriba */
             --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
         }
 
@@ -36,7 +33,6 @@
             align-items: center;
         }
 
-        /* TÍTULO ILUMINADO */
         h1 { 
             font-weight: 800; 
             font-size: 3.5em; 
@@ -48,7 +44,6 @@
             text-transform: uppercase;
         }
 
-        /* CONTADOR ESTILO IMAGEN */
         #credit-counter {
             background: var(--gr-amarillo);
             padding: 12px 45px;
@@ -59,7 +54,6 @@
             box-shadow: 0 0 25px rgba(246, 226, 129, 0.6);
             border: 2px solid #fff;
             text-transform: uppercase;
-            font-size: 1.1em;
         }
 
         .curriculum-container {
@@ -75,7 +69,6 @@
             flex-shrink: 0;
         }
 
-        /* ENCABEZADOS SEGÚN CICLO */
         .cycle-header {
             color: #fff;
             padding: 15px;
@@ -85,56 +78,57 @@
             text-transform: uppercase;
             margin-bottom: 25px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* Ciclos Impares (Verde) / Pares (Naranja) */
         .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
         .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
-        /* CURSOS CON DEGRADADO MOSTAZA VERTICAL */
+        /* CURSO POR DEFECTO (No aprobado) */
         .course {
-            background: var(--gr-mostaza);
-            border: 1.5px solid #fff;
+            background: #1a1a1a; /* Oscuro por defecto */
+            border: 1.5px solid #333;
             border-radius: 15px;
             padding: 22px;
             margin-bottom: 18px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(133, 106, 64, 0.4);
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* CURSO CUANDO LE HACES CLIC (Aprobado) */
+        .course.approved {
+            background: var(--gr-mostaza); /* MOSTAZA VERTICAL */
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(229, 183, 116, 0.5);
         }
 
         .course:hover {
+            border-color: #F8EC89;
+            background: #252525;
+        }
+
+        .course.approved:hover {
+            background: var(--gr-mostaza);
             transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(229, 183, 116, 0.6);
         }
 
-        /* LETRAS ILUMINADAS Y LEIBLES */
-        .name, .code {
+        /* TEXTO ILUMINADO EN CURSO APROBADO */
+        .course.approved .name, 
+        .course.approved .code,
+        .course.approved .cred {
             color: #fff !important;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.3);
-            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
         }
 
-        .code { font-size: 0.85em; margin-bottom: 5px; opacity: 0.9; }
-        .name { font-size: 1.05em; line-height: 1.2; }
-        .cred { 
-            font-size: 0.75em; 
-            color: #fff; 
-            margin-top: 12px; 
-            display: block; 
-            font-weight: 800;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-        }
+        .code { font-size: 0.85em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 5px; }
+        .name { font-size: 1.05em; font-weight: 700; color: #ccc; }
+        .cred { font-size: 0.75em; color: #666; margin-top: 12px; display: block; font-weight: 800; }
 
-        /* SCROLLBAR */
+        .course.approved .cred { color: #fff; }
+
         .curriculum-container::-webkit-scrollbar { height: 8px; }
-        .curriculum-container::-webkit-scrollbar-thumb { 
-            background: var(--gr-amarillo); 
-            border-radius: 10px; 
-        }
+        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-amarillo); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -142,7 +136,7 @@
     <h1>Avance Curricular 🍂</h1>
     
     <div id="credit-counter">
-        🛒 CRÉDITOS LLEVADOS: <span id="total-credits">60</span>
+        🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span>
     </div>
 
     <div class="curriculum-container" id="curriculum"></div>
@@ -172,6 +166,9 @@
             ]
         };
 
+        // Cargar progreso del usuario
+        let approved = JSON.parse(localStorage.getItem('malla_final_user')) || {};
+
         function render() {
             const container = document.getElementById('curriculum');
             container.innerHTML = '';
@@ -183,15 +180,23 @@
                 col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
                 coursesData[cycle].forEach(c => {
+                    const isApp = approved[c.id];
                     const div = document.createElement('div');
-                    div.className = 'course';
+                    div.className = `course ${isApp ? 'approved' : ''}`;
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
                         <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
                     `;
+
+                    div.onclick = () => {
+                        if (isApp) delete approved[c.id];
+                        else approved[c.id] = true;
+                        localStorage.setItem('malla_final_user', JSON.stringify(approved));
+                        render();
+                    };
                     col.appendChild(div);
-                    total += c.credits;
+                    if (isApp) total += c.credits;
                 });
                 container.appendChild(col);
             }
