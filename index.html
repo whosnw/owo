@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Glow Cristal</title>
+    <title>Malla IQ - Glow Cristal Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
-            --gr-verde: linear-gradient(180deg, rgba(159, 180, 94, 0.8) 0%, #5B6734 100%);
-            --gr-naranja: linear-gradient(180deg, rgba(230, 111, 64, 0.8) 0%, #863E21 100%);
-            --gr-mostaza: linear-gradient(180deg, rgba(229, 183, 116, 0.8) 0%, #856A40 100%);
-            --gr-amarillo: linear-gradient(180deg, #F8EC89 0%, #D9B95E 100%);
+            /* Degradados de abajo (oscuro) hacia arriba (claro) */
+            --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
+            --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
+            --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
             --gr-scroll: linear-gradient(to right, #863E21, #E5B774);
         }
 
@@ -30,29 +31,33 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
+        /* TÍTULO AMARILLO CON GLOW */
         h1 { 
             font-weight: 800; font-size: 3.5em; 
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(246, 226, 129, 0.5));
+            filter: drop-shadow(0 0 15px rgba(248, 236, 137, 0.8));
             margin: 20px 0; text-transform: uppercase;
+            text-align: center;
         }
 
+        /* CONTADOR AMARILLO CON REFLEJO */
         #credit-counter {
             background: var(--gr-amarillo);
-            padding: 12px 40px;
+            padding: 15px 50px;
             border-radius: 12px;
             font-weight: 800;
-            color: #1a1a1a;
+            color: #000;
             margin-bottom: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Reflejo fino */
+            border: 1px solid rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(246, 226, 129, 0.6), inset 0 2px 5px rgba(255,255,255,0.5);
+            box-shadow: 0 0 30px rgba(217, 185, 94, 0.6), inset 0 2px 10px rgba(255,255,255,0.8);
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
             animation: pulse-yellow 2.5s infinite ease-in-out;
         }
 
-        /* --- ENCABEZADOS CON EFECTO REFLEJO --- */
+        /* --- ENCABEZADOS DE CICLO --- */
         .cycle-header {
             color: #fff; 
             padding: 18px; 
@@ -61,39 +66,21 @@
             text-transform: uppercase; 
             margin-bottom: 30px; 
             text-align: center;
-            font-size: 1.2em;
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Borde de reflejo sutil */
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
+            font-size: 1.3em;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Iluminación de letras */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 5px rgba(255,255,255,0.4);
         }
 
-        /* Ciclos Impares (Verde) */
+        /* Impares: Verde | Pares: Naranja */
         .cycle-column:nth-child(odd) .cycle-header {
             background: var(--gr-verde);
-            animation: glow-green-reflejo 3s infinite alternate;
+            box-shadow: 0 0 25px rgba(159, 180, 94, 0.5), inset 0 2px 8px rgba(255,255,255,0.5);
         }
 
-        /* Ciclos Pares (Naranja) */
         .cycle-column:nth-child(even) .cycle-header {
             background: var(--gr-naranja);
-            animation: glow-orange-reflejo 3s infinite alternate;
-        }
-
-        /* Animación de brillo + reflejo interno */
-        @keyframes glow-green-reflejo {
-            from { box-shadow: 0 0 15px rgba(159, 180, 94, 0.4), inset 0 1px 2px rgba(255,255,255,0.3); }
-            to { box-shadow: 0 0 45px rgba(159, 180, 94, 0.9), inset 0 2px 8px rgba(255,255,255,0.6); }
-        }
-
-        @keyframes glow-orange-reflejo {
-            from { box-shadow: 0 0 15px rgba(230, 111, 64, 0.4), inset 0 1px 2px rgba(255,255,255,0.3); }
-            to { box-shadow: 0 0 45px rgba(230, 111, 64, 0.9), inset 0 2px 8px rgba(255,255,255,0.6); }
-        }
-
-        @keyframes pulse-yellow {
-            0%, 100% { box-shadow: 0 0 20px rgba(246, 226, 129, 0.5), inset 0 1px 2px rgba(255,255,255,0.4); }
-            50% { box-shadow: 0 0 50px rgba(248, 236, 137, 0.9), inset 0 2px 10px rgba(255,255,255,0.7); transform: scale(1.02); }
+            box-shadow: 0 0 25px rgba(230, 111, 64, 0.5), inset 0 2px 8px rgba(255,255,255,0.5);
         }
 
         /* --- CURSOS --- */
@@ -101,7 +88,7 @@
         .cycle-column { min-width: 320px; flex-shrink: 0; }
 
         .course {
-            background: #111;
+            background: #121212;
             border: 1px solid #333;
             border-radius: 15px;
             padding: 22px;
@@ -110,27 +97,33 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        /* APROBADOS: MOSTAZA CON REFLEJO */
         .course.approved {
             background: var(--gr-mostaza);
-            border: 1px solid rgba(255, 255, 255, 0.4); /* Reflejo en curso aprobado */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 2px 8px rgba(255,255,255,0.6);
         }
 
         .course.approved:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(229, 183, 116, 0.7), inset 0 2px 10px rgba(255,255,255,0.6);
+            transform: scale(1.06);
+            box-shadow: 0 0 35px rgba(229, 183, 116, 0.7), inset 0 2px 10px rgba(255,255,255,0.8);
         }
 
-        /* TEXTOS */
+        /* TEXTOS DENTRO DE CURSOS */
         .code { font-size: 0.85em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 5px; }
-        .name { font-size: 1.05em; font-weight: 700; color: #ccc; }
+        .name { font-size: 1.05em; font-weight: 700; color: #ccc; transition: 0.3s; }
         .cred { font-size: 0.75em; color: #777; margin-top: 12px; display: block; font-weight: 800; }
-        
+
+        /* Letras iluminadas en aprobados */
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.7), 0 0 8px rgba(255,255,255,0.4);
         }
-        .course.approved .cred { color: rgba(255,255,255,0.9); }
+
+        @keyframes pulse-yellow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(217, 185, 94, 0.5); }
+            50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(248, 236, 137, 0.8); }
+        }
     </style>
 </head>
 <body>
@@ -164,7 +157,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_infinite_glow')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_glow')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -188,7 +181,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_infinite_glow', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_glow', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
