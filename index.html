@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Cinzel Supreme Glow</title>
+    <title>Malla IQ - Hyper Elegant Glow</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #050505;
+            --bg-dark: #020202;
             --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
             --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
@@ -18,120 +18,128 @@
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             color: #fff; margin: 0; padding: 20px;
             display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden;
         }
 
+        /* --- TÍTULO CON ILUMINACIÓN RADIAL --- */
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; font-size: 3.8em; letter-spacing: 12px;
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(248, 236, 137, 0.4));
+            /* Luz densa */
+            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.6)) drop-shadow(0 0 40px rgba(217, 185, 94, 0.2));
             margin: 40px 0; text-transform: uppercase;
         }
 
-        /* --- CONTADOR CON AURA ALEJADA Y NÚMERO DINÁMICO --- */
+        /* --- CONTADOR CON AURA EXPLOSIVA --- */
         .counter-wrapper {
             position: relative;
-            margin-bottom: 80px;
-            padding: 10px;
+            margin-bottom: 90px;
         }
 
-        /* Iluminación sutil alejada (Aura) */
         .counter-aura {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110%; height: 120%;
-            background: rgba(217, 185, 94, 0.15);
-            filter: blur(40px);
-            border-radius: 20px;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 130%; height: 150%;
+            background: radial-gradient(circle, rgba(217, 185, 94, 0.25) 0%, transparent 70%);
+            filter: blur(30px);
             z-index: -1;
+            animation: pulse-aura 3s infinite alternate;
         }
 
         #credit-counter {
             font-family: 'Cinzel', serif;
             letter-spacing: 3px;
-            background: #0a0a0a;
-            padding: 20px 60px;
-            border: 1px solid rgba(248, 236, 137, 0.5);
-            border-radius: 4px;
+            background: #000;
+            padding: 22px 65px;
+            border: 2px solid var(--gold);
+            border-radius: 2px;
             font-weight: 700; font-size: 1.2em;
             color: var(--gold);
+            /* Sombra debajo + Brillo externo neón */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 25px rgba(248, 236, 137, 0.4), inset 0 0 15px rgba(248, 236, 137, 0.2);
             display: flex; align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(248, 236, 137, 0.1);
         }
 
-        /* El número que se acerca, se aleja y brilla */
         #total-credits {
-            font-size: 1.5em;
-            color: #fff;
-            margin-left: 15px;
-            text-shadow: 0 0 10px #fff, 0 0 30px var(--gold);
-            display: inline-block;
-            animation: pulse-zoom 2s infinite ease-in-out;
+            font-size: 1.7em; color: #fff; margin-left: 20px;
+            text-shadow: 0 0 15px #fff, 0 0 30px var(--gold), 0 0 50px var(--gold);
+            animation: zoom-glow 2s infinite ease-in-out;
         }
 
-        @keyframes pulse-zoom {
-            0%, 100% { transform: scale(1); filter: brightness(1); }
-            50% { transform: scale(1.3); filter: brightness(1.5); text-shadow: 0 0 20px #fff, 0 0 50px var(--gold); }
-        }
-
-        /* --- CABECERAS DE CICLO CON SOMBRA Y LUZ --- */
+        /* --- CICLOS CON GLOW DESBORDADO --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 6px;
-            color: #fff; padding: 22px; border-radius: 12px;
+            color: #fff; padding: 25px; border-radius: 8px;
             font-weight: 700; text-transform: uppercase;
-            margin-bottom: 50px; text-align: center; font-size: 1.4em;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            /* Sombra debajo e iluminación interna */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.2);
+            margin-bottom: 60px; text-align: center; font-size: 1.5em;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
         }
 
-        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
-        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
+        /* Glow dinámico para los ciclos */
+        .cycle-column:nth-child(odd) .cycle-header { 
+            background: var(--gr-verde);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(159, 180, 94, 0.7); 
+        }
+        .cycle-column:nth-child(even) .cycle-header { 
+            background: var(--gr-naranja);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(230, 111, 64, 0.7); 
+        }
 
-        /* --- CURSOS CON SOMBRA Y RELIEVE --- */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 45px; width: 95vw; padding: 40px 30px; }
-        .cycle-column { min-width: 340px; }
+        /* --- CURSOS CON RELIEVE Y LUZ --- */
+        .curriculum-container { display: flex; overflow-x: auto; gap: 50px; width: 95vw; padding: 50px 30px; }
+        .cycle-column { min-width: 350px; }
 
         .course {
-            background: #0f0f0f;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
+            background: #080808;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 28px;
+            margin-bottom: 35px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            /* Sombra profunda debajo */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
+        /* Iluminación al aprobar (Estilo Oro Fundido) */
         .course.approved {
             background: var(--gr-mostaza);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            /* Iluminación cuando está aprobado */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(229, 183, 116, 0.3), inset 0 0 15px rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            /* Sombra proyectada + Resplandor de base */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(229, 183, 116, 0.5), inset 0 0 20px rgba(255,255,255,0.3);
+            transform: scale(1.02);
         }
 
         .course:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.8), 0 0 15px rgba(248, 236, 137, 0.2);
         }
 
-        .code { font-size: 0.85em; font-weight: 700; color: var(--gold); display: block; margin-bottom: 10px; letter-spacing: 1px; }
-        .name { font-size: 1.1em; font-weight: 700; color: #eee; text-transform: uppercase; }
-        .cred { font-size: 0.75em; color: #555; margin-top: 15px; display: block; font-weight: 800; letter-spacing: 1px; }
+        .code { font-size: 0.85em; font-weight: 700; color: var(--gold); display: block; margin-bottom: 12px; letter-spacing: 2px; }
+        .name { font-size: 1.15em; font-weight: 700; color: #eee; letter-spacing: 0.5px; }
+        .cred { font-size: 0.75em; color: #444; margin-top: 20px; display: block; font-weight: 800; letter-spacing: 1px; }
 
-        .course.approved .name, .course.approved .code, .course.approved .cred {
-            color: #fff !important;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        .course.approved .cred { color: rgba(255,255,255,0.8); }
+
+        /* ANIMACIONES */
+        @keyframes zoom-glow {
+            0%, 100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 10px var(--gold)); }
+            50% { transform: scale(1.25); filter: brightness(1.3) drop-shadow(0 0 30px var(--gold)); }
         }
+
+        @keyframes pulse-aura {
+            from { opacity: 0.5; width: 110%; }
+            to { opacity: 1; width: 140%; }
+        }
+
     </style>
 </head>
 <body>
@@ -172,7 +180,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_supreme')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_hyper')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -196,7 +204,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_iq_supreme', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_hyper', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
