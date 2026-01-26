@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Cinzel Ultra Glow</title>
+    <title>Malla IQ - Cinzel Supreme Glow</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,136 +12,125 @@
             --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
             --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
             --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
-            --gold-light: #F8EC89;
+            --gold: #F8EC89;
         }
-
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(#863E21, #E5B774); border-radius: 10px; }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
             background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
-            color: #fff;
-            margin: 0; padding: 20px;
+            color: #fff; margin: 0; padding: 20px;
             display: flex; flex-direction: column; align-items: center;
         }
 
         h1 { 
             font-family: 'Cinzel', serif;
-            font-weight: 900; font-size: 3.8em; 
-            letter-spacing: 12px;
+            font-weight: 900; font-size: 3.8em; letter-spacing: 12px;
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(248, 236, 137, 0.5));
-            margin: 30px 0 30px 0; text-transform: uppercase;
-            text-align: center;
+            filter: drop-shadow(0 0 15px rgba(248, 236, 137, 0.4));
+            margin: 40px 0; text-transform: uppercase;
         }
 
-        /* --- CONTADOR ULTRA RESALTADO --- */
-        .counter-container {
+        /* --- CONTADOR CON AURA ALEJADA Y NÚMERO DINÁMICO --- */
+        .counter-wrapper {
             position: relative;
-            padding: 3px; /* Espacio para el borde animado */
-            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-            background-size: 200% 100%;
-            animation: move-light 3s linear infinite;
-            border-radius: 8px;
-            margin-bottom: 70px;
-            box-shadow: 0 0 50px rgba(217, 185, 94, 0.2);
+            margin-bottom: 80px;
+            padding: 10px;
+        }
+
+        /* Iluminación sutil alejada (Aura) */
+        .counter-aura {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%; height: 120%;
+            background: rgba(217, 185, 94, 0.15);
+            filter: blur(40px);
+            border-radius: 20px;
+            z-index: -1;
         }
 
         #credit-counter {
             font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            background: #000; /* Fondo negro sólido para contraste */
+            letter-spacing: 3px;
+            background: #0a0a0a;
             padding: 20px 60px;
-            border-radius: 6px;
-            font-weight: 700; font-size: 1.3em;
-            color: var(--gold-light);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Resplandor interno y externo */
-            box-shadow: inset 0 0 20px rgba(248, 236, 137, 0.2);
-            border: 1px solid rgba(248, 236, 137, 0.3);
+            border: 1px solid rgba(248, 236, 137, 0.5);
+            border-radius: 4px;
+            font-weight: 700; font-size: 1.2em;
+            color: var(--gold);
+            display: flex; align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(248, 236, 137, 0.1);
         }
 
+        /* El número que se acerca, se aleja y brilla */
         #total-credits {
-            font-size: 1.6em;
+            font-size: 1.5em;
             color: #fff;
             margin-left: 15px;
-            font-weight: 900;
-            text-shadow: 0 0 10px #fff, 0 0 20px var(--gold-light), 0 0 40px var(--gold-light);
-            animation: pulse-gold 1.5s infinite alternate;
+            text-shadow: 0 0 10px #fff, 0 0 30px var(--gold);
+            display: inline-block;
+            animation: pulse-zoom 2s infinite ease-in-out;
         }
 
-        /* Animación del borde del contador */
-        @keyframes move-light {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+        @keyframes pulse-zoom {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.3); filter: brightness(1.5); text-shadow: 0 0 20px #fff, 0 0 50px var(--gold); }
         }
 
-        @keyframes pulse-gold {
-            from { transform: scale(1); opacity: 0.9; }
-            to { transform: scale(1.1); opacity: 1; text-shadow: 0 0 20px #fff, 0 0 40px var(--gold-light); }
-        }
-
-        /* --- RESTO DE LA MALLA --- */
+        /* --- CABECERAS DE CICLO CON SOMBRA Y LUZ --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 6px;
-            color: #fff; padding: 22px; border-radius: 18px; font-weight: 700;
-            text-transform: uppercase; margin-bottom: 45px; text-align: center;
-            font-size: 1.5em;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+            color: #fff; padding: 22px; border-radius: 12px;
+            font-weight: 700; text-transform: uppercase;
+            margin-bottom: 50px; text-align: center; font-size: 1.4em;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* Sombra debajo e iluminación interna */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.2);
         }
 
-        .cycle-column:nth-child(odd) .cycle-header {
-            background: var(--gr-verde);
-            box-shadow: 0 0 35px rgba(159, 180, 94, 0.6);
-        }
+        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
+        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
-        .cycle-column:nth-child(even) .cycle-header {
-            background: var(--gr-naranja);
-            box-shadow: 0 0 35px rgba(230, 111, 64, 0.6);
-        }
-
+        /* --- CURSOS CON SOMBRA Y RELIEVE --- */
         .curriculum-container { display: flex; overflow-x: auto; gap: 45px; width: 95vw; padding: 40px 30px; }
         .cycle-column { min-width: 340px; }
 
         .course {
-            background: #0d0d0d;
-            border: 1px solid #222;
-            border-radius: 15px;
+            background: #0f0f0f;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
             padding: 25px;
             margin-bottom: 30px;
             cursor: pointer;
             transition: all 0.4s ease;
+            /* Sombra profunda debajo */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
         .course.approved {
             background: var(--gr-mostaza);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 25px rgba(229, 183, 116, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Iluminación cuando está aprobado */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(229, 183, 116, 0.3), inset 0 0 15px rgba(255,255,255,0.2);
         }
 
-        .course.approved:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 40px rgba(229, 183, 116, 0.7);
+        .course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
 
-        .code { font-size: 0.9em; font-weight: 700; color: var(--gold-light); display: block; margin-bottom: 8px; }
-        .name { font-size: 1.1em; font-weight: 700; color: #eee; line-height: 1.2; text-transform: uppercase; }
-        .cred { font-size: 0.8em; color: #666; margin-top: 15px; display: block; font-weight: 800; }
+        .code { font-size: 0.85em; font-weight: 700; color: var(--gold); display: block; margin-bottom: 10px; letter-spacing: 1px; }
+        .name { font-size: 1.1em; font-weight: 700; color: #eee; text-transform: uppercase; }
+        .cred { font-size: 0.75em; color: #555; margin-top: 15px; display: block; font-weight: 800; letter-spacing: 1px; }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 0 0 8px rgba(255,255,255,0.4);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -149,7 +138,8 @@
 
     <h1>Avance Curricular</h1>
     
-    <div class="counter-container">
+    <div class="counter-wrapper">
+        <div class="counter-aura"></div>
         <div id="credit-counter">
             🍂 Créditos Logrados: <span id="total-credits">0</span>
         </div>
@@ -182,7 +172,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_ultra')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_supreme')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -206,7 +196,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_iq_ultra', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_supreme', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
