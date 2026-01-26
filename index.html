@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Otoño Premium</title>
+    <title>Malla IQ - Otoño Glow Estelar</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,49 +12,22 @@
             --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
             --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
             --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
-            
-            /* Color para los Scrollbars (Mezcla otoño) */
             --gr-scroll: linear-gradient(to right, #863E21, #E5B774);
-            --gr-scroll-v: linear-gradient(to bottom, #863E21, #E5B774);
         }
 
-        /* --- ESTILO DE LAS BARRAS DE DESPLAZAMIENTO (SCROLLBARS) --- */
-        /* Para Chrome, Safari y Edge */
-        
-        /* Barra General (Vertical) */
-        ::-webkit-scrollbar {
-            width: 10px; /* Grosor vertical */
-            height: 10px; /* Grosor horizontal */
-        }
-        ::-webkit-scrollbar-track {
-            background: #111;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gr-scroll-v);
-            border-radius: 10px;
-            border: 2px solid #111;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gr-amarillo);
-        }
-
-        /* Barra del Contenedor (Horizontal) */
-        .curriculum-container::-webkit-scrollbar-thumb {
-            background: var(--gr-scroll);
-        }
+        /* --- SCROLLBARS DEGRADADOS --- */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #111; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--gr-scroll); border-radius: 10px; border: 2px solid #111; }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(248, 236, 137, 0.07) 1px, transparent 1px);
             background-size: 30px 30px;
             color: #fff;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         h1 { 
@@ -62,43 +35,40 @@
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(246, 226, 129, 0.8));
-            margin: 20px 0;
-            text-transform: uppercase;
+            filter: drop-shadow(0 0 20px rgba(246, 226, 129, 0.5));
+            margin: 20px 0; text-transform: uppercase;
         }
 
+        /* --- CONTADOR DE CRÉDITOS ULTRA ILUMINADO --- */
         #credit-counter {
             background: var(--gr-amarillo);
-            padding: 12px 45px;
-            border-radius: 10px;
+            padding: 15px 50px;
+            border-radius: 12px;
             font-weight: 800;
             color: #1a1a1a;
             margin-bottom: 50px;
-            box-shadow: 0 0 25px rgba(246, 226, 129, 0.6);
             border: 2px solid #fff;
             text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(246, 226, 129, 0.7);
+            animation: pulse-glow 3s infinite;
+            transition: 0.3s;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 20px rgba(246, 226, 129, 0.6); }
+            50% { box-shadow: 0 0 45px rgba(248, 236, 137, 0.9); transform: scale(1.02); }
+            100% { box-shadow: 0 0 20px rgba(246, 226, 129, 0.6); }
         }
 
         .curriculum-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 25px;
-            width: 95vw;
-            padding: 20px;
-            padding-bottom: 30px; /* Espacio para el scroll horizontal */
+            display: flex; overflow-x: auto; gap: 25px; width: 95vw; padding: 20px 20px 40px 20px;
         }
 
         .cycle-column { min-width: 320px; flex-shrink: 0; }
 
         .cycle-header {
-            color: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            text-align: center;
+            color: #fff; padding: 15px; border-radius: 10px; font-weight: 800;
+            text-transform: uppercase; margin-bottom: 25px; text-align: center;
             border: 1px solid rgba(255,255,255,0.2);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
@@ -106,6 +76,7 @@
         .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
         .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
+        /* --- CURSOS --- */
         .course {
             background: #1a1a1a;
             border: 1.5px solid #333;
@@ -113,18 +84,27 @@
             padding: 22px;
             margin-bottom: 18px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        /* EFECTO CUANDO ESTÁ APROBADO Y PASAS EL MOUSE */
         .course.approved {
             background: var(--gr-mostaza);
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(229, 183, 116, 0.5);
+            border-color: rgba(255,255,255,0.5);
+            box-shadow: 0 0 15px rgba(133, 106, 64, 0.4);
         }
 
+        .course.approved:hover {
+            transform: scale(1.08); /* Se agranda más */
+            border-color: #ffffff; /* Borde blanco brillante */
+            box-shadow: 0 0 35px rgba(229, 183, 116, 0.8); /* Glow intenso */
+            z-index: 10;
+        }
+
+        /* TEXTOS */
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 255, 255, 0.5);
         }
 
         .code { font-size: 0.85em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 5px; }
@@ -154,10 +134,17 @@
                 { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
                 { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
                 { id: "BQU02", name: "QUÍMICA II", credits: 5 }
+            ],
+            "Ciclo 3": [
+                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
+                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
+                { id: "BF103", name: "FÍSICA III", credits: 5 },
+                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
+                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_premium')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_glow_final')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -181,7 +168,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_premium', JSON.stringify(approved));
+                        localStorage.setItem('malla_glow_final', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
