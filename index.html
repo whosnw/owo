@@ -3,164 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Hyper Glow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Malla IQ - Elegance Glow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #050505;
+            --bg-dark: #030303;
             --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
             --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
             --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
-            --gr-scroll: linear-gradient(to right, #863E21, #E5B774);
         }
 
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: var(--gr-scroll); border-radius: 10px; }
-
         body {
-            font-family: 'Quicksand', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: radial-gradient(rgba(229, 183, 116, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
             color: #fff;
             margin: 0; padding: 20px;
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- TÍTULO CON FUENTE MONTSERRAT Y GLOW --- */
+        /* --- TÍTULO ELEGANTE --- */
         h1 { 
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900; font-size: 4em; letter-spacing: -2px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700; font-size: 3.5em; letter-spacing: 8px;
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.7)) drop-shadow(0 0 50px rgba(217, 185, 94, 0.3));
-            margin: 30px 0 10px 0; text-transform: uppercase;
+            filter: drop-shadow(0 0 10px rgba(248, 236, 137, 0.4));
+            margin: 40px 0 10px 0; text-transform: uppercase;
         }
 
-        /* --- CONTADOR DE CRÉDITOS --- */
+        /* --- CONTADOR ESTILO JOYERÍA --- */
         #credit-counter {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--gr-amarillo);
-            padding: 18px 70px;
-            border-radius: 50px; /* Más redondeado para que parezca una píldora de luz */
-            font-weight: 800; font-size: 1.2em;
-            color: #000;
+            font-family: 'Cinzel', serif;
+            background: transparent;
+            padding: 12px 50px;
+            border-radius: 0px; /* Rectangular más elegante */
+            font-weight: 400; font-size: 1.1em; letter-spacing: 3px;
+            color: #F8EC89;
             margin-bottom: 70px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(217, 185, 94, 1), 
-                        0 0 70px rgba(217, 185, 94, 0.5),
-                        inset 0 0 15px rgba(255,255,255,0.8);
-            animation: pulse-yellow 2s infinite ease-in-out;
+            border-top: 1px solid rgba(248, 236, 137, 0.5);
+            border-bottom: 1px solid rgba(248, 236, 137, 0.5);
+            box-shadow: 0 0 20px rgba(217, 185, 94, 0.2);
+            text-shadow: 0 0 10px rgba(248, 236, 137, 0.5);
         }
 
-        /* --- ENCABEZADOS DE CICLO (ULTRA GLOW) --- */
+        /* --- ENCABEZADOS DE CICLO (GLOW REFINADO) --- */
         .cycle-header {
-            font-family: 'Montserrat', sans-serif;
-            color: #fff; padding: 22px; border-radius: 18px; font-weight: 900;
+            font-family: 'Cinzel', serif;
+            color: #fff; padding: 15px; border-radius: 4px; font-weight: 700;
             text-transform: uppercase; margin-bottom: 45px; text-align: center;
-            font-size: 1.6em; letter-spacing: 1px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 4px 10px rgba(0,0,0,0.5);
+            font-size: 1.4em; letter-spacing: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
         }
 
-        /* Iluminación VERDE (Encendido) */
         .cycle-column:nth-child(odd) .cycle-header {
             background: var(--gr-verde);
-            box-shadow: 0 0 40px rgba(159, 180, 94, 0.8), 
-                        0 0 100px rgba(159, 180, 94, 0.4),
-                        inset 0 0 20px rgba(255,255,255,0.5);
+            box-shadow: 0 0 35px rgba(159, 180, 94, 0.4), inset 0 0 15px rgba(255,255,255,0.2);
         }
 
-        /* Iluminación NARANJA (Encendido) */
         .cycle-column:nth-child(even) .cycle-header {
             background: var(--gr-naranja);
-            box-shadow: 0 0 40px rgba(230, 111, 64, 0.8), 
-                        0 0 100px rgba(230, 111, 64, 0.4),
-                        inset 0 0 20px rgba(255,255,255,0.5);
+            box-shadow: 0 0 35px rgba(230, 111, 64, 0.4), inset 0 0 15px rgba(255,255,255,0.2);
         }
 
         /* --- CURSOS --- */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 45px; width: 95vw; padding: 40px 30px; }
-        .cycle-column { min-width: 340px; }
+        .curriculum-container { display: flex; overflow-x: auto; gap: 40px; width: 95vw; padding: 40px 30px; }
+        .cycle-column { min-width: 320px; }
 
         .course {
-            background: #0d0d0d;
-            border: 1px solid #222;
-            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
             padding: 25px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+            transition: all 0.5s ease;
         }
 
         .course.approved {
             background: var(--gr-mostaza);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 30px rgba(229, 183, 116, 0.6), 
-                        0 0 60px rgba(229, 183, 116, 0.3),
-                        inset 0 0 15px rgba(255,255,255,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(229, 183, 116, 0.3);
         }
 
         .course.approved:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 0 50px rgba(229, 183, 116, 1), 
-                        inset 0 0 20px rgba(255,255,255,0.8);
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(229, 183, 116, 0.5);
         }
 
-        /* TEXTOS */
-        .code { font-size: 0.9em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 8px; opacity: 0.9; }
-        .name { font-family: 'Quicksand', sans-serif; font-size: 1.15em; font-weight: 700; color: #eee; line-height: 1.2; }
-        .cred { font-size: 0.85em; color: #555; margin-top: 15px; display: block; font-weight: 800; letter-spacing: 1px; }
+        /* TEXTOS ILUMINADOS CON CLASE */
+        .code { 
+            font-size: 0.75em; font-weight: 600; color: #D9B95E; 
+            display: block; margin-bottom: 10px; letter-spacing: 2px;
+        }
+        .name { 
+            font-family: 'Montserrat', sans-serif; font-size: 1em; 
+            font-weight: 400; color: #ddd; letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .cred { 
+            font-size: 0.7em; color: rgba(255,255,255,0.3); 
+            margin-top: 15px; display: block; font-weight: 400; letter-spacing: 1px;
+        }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
         }
 
-        @keyframes pulse-yellow {
-            0%, 100% { box-shadow: 0 0 30px rgba(217, 185, 94, 0.8), 0 0 60px rgba(217, 185, 94, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 50px rgba(248, 236, 137, 1), 0 0 90px rgba(248, 236, 137, 0.6); transform: scale(1.02); }
-        }
+        .course.approved .cred { color: rgba(255,255,255,0.7) !important; }
+
     </style>
 </head>
 <body>
 
-    <h1>Avance Curricular 🍂</h1>
-    <div id="credit-counter">🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span></div>
+    <h1>Avance Curricular</h1>
+    <div id="credit-counter">CRÉDITOS TOTALES: <span id="total-credits">0</span></div>
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
         const coursesData = {
             "Ciclo 1": [
-                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2 },
-                { id: "BF101", name: "FÍSICA I", credits: 5 },
-                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5 },
-                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4 },
-                { id: "BQU01", name: "QUÍMICA I", credits: 5 }
+                { id: "BD101", name: "Dibujo en Ingeniería I", credits: 2 },
+                { id: "BF101", name: "Física I", credits: 5 },
+                { id: "BMA01", name: "Cálculo Diferencial", credits: 5 },
+                { id: "BMA03", name: "Álgebra Lineal", credits: 4 },
+                { id: "BQU01", name: "Química I", credits: 5 }
             ],
             "Ciclo 2": [
-                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3 },
-                { id: "BF102", name: "FÍSICA II", credits: 5 },
-                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
-                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
-                { id: "BQU02", name: "QUÍMICA II", credits: 5 }
+                { id: "BD102", name: "Dibujo en Ingeniería II", credits: 3 },
+                { id: "BF102", name: "Física II", credits: 5 },
+                { id: "BMA02", name: "Cálculo Integral", credits: 5 },
+                { id: "BMA04", name: "Matemáticas Básicas", credits: 4 },
+                { id: "BQU02", name: "Química II", credits: 5 }
             ],
             "Ciclo 3": [
-                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
-                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
-                { id: "BF103", name: "FÍSICA III", credits: 5 },
-                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
-                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
+                { id: "BEF01", name: "Ética y Filosofía Política", credits: 2 },
+                { id: "BEG01", name: "Economía General", credits: 3 },
+                { id: "BF103", name: "Física III", credits: 5 },
+                { id: "BMA05", name: "Matemáticas Superior I", credits: 4 },
+                { id: "QU216", name: "Química Inorgánica", credits: 5 }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_glow_v4')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_elegant')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -179,12 +169,12 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
+                        <span class="cred">${c.credits} CRÉDITOS</span>
                     `;
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_iq_glow_v4', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_elegant', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
