@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Glow Horizontal Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Malla IQ - Cyber Neon Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #050505;
-            /* Tus degradados HORIZONTALES (Oscuro -> Medio -> Claro) */
-            --gr-verde: linear-gradient(to right, #939858, #B9BB66, #E5E283);
-            --gr-amarillo: linear-gradient(to right, #D9B95E, #F6E281, #F8EC89);
-            --gr-naranja: linear-gradient(to right, #E6883A, #ED9851, #FDBF6D);
-            --gr-terra: linear-gradient(to right, #C26056, #C97269, #E08F7A);
+            --bg-dark: #020205;
+            --neon-blue: #00d2ff;
+            --neon-purple: #9d50bb;
+            --neon-pink: #ff0080;
+            --neon-cyan: #3a7bd5;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(246, 226, 129, 0.1) 1.5px, transparent 1.5px);
-            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
             color: #fff;
             margin: 0;
             padding: 20px;
@@ -28,34 +30,30 @@
             align-items: center;
         }
 
-        /* TÍTULO ILUMINADO */
         h1 { 
-            font-weight: 800; 
-            font-size: 3.2em; 
-            background: var(--gr-amarillo);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700; 
+            font-size: 3em; 
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(248, 236, 137, 0.6));
-            margin: 20px 0;
-            letter-spacing: -2px;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5));
         }
 
-        /* CUADRO DE CRÉDITOS ILUMINADO AL PASAR EL MOUSE */
+        /* CONTADOR TIPO DISPLAY DIGITAL */
         #credit-counter {
-            background: var(--gr-amarillo);
-            padding: 18px 50px;
-            border-radius: 15px;
-            font-weight: 800;
-            color: #1a1a1a;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--neon-blue);
             margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(217, 185, 94, 0.4);
-            border: 2px solid #fff;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        #credit-counter:hover {
-            box-shadow: 0 0 40px rgba(246, 226, 129, 0.8);
-            transform: scale(1.02);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3), inset 0 0 10px rgba(0, 210, 255, 0.2);
+            text-transform: uppercase;
         }
 
         .curriculum-container {
@@ -64,9 +62,10 @@
             gap: 25px;
             width: 95vw;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .cycle-column {
@@ -74,91 +73,77 @@
             flex-shrink: 0;
         }
 
-        /* ENCABEZADOS CON DEGRADADO HORIZONTAL */
+        /* ENCABEZADOS MORADOS/NEON */
         .cycle-header {
-            background: var(--gr-verde);
-            color: #000;
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 1em;
-            font-weight: 800;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9em;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .cycle-column:nth-child(even) .cycle-header {
-            background: var(--gr-amarillo);
+            box-shadow: 0 0 15px rgba(106, 17, 203, 0.5);
         }
 
         .course {
-            background: #121212;
-            border: 1px solid #333;
-            border-radius: 18px;
-            padding: 22px;
-            margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* ILUMINACIÓN AL PASAR POR CURSO */
         .course:hover:not(.blocked) {
-            transform: scale(1.03);
-            border-color: #F8EC89;
-            box-shadow: 0 0 20px rgba(248, 236, 137, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+            transform: skewX(-2deg);
         }
 
-        /* CURSO APROBADO: TERRACOTA HORIZONTAL + GLOW */
+        /* CURSO APROBADO: AZUL ELECTRICO */
         .course.approved {
-            background: var(--gr-terra);
-            border: 1px solid #fff;
-            box-shadow: 0 0 25px rgba(194, 96, 86, 0.5);
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 114, 255, 0.6);
         }
 
-        .course.approved .name, .course.approved .code, .course.approved .cred {
+        .course.approved .name, .course.approved .code {
             color: #fff !important;
-            font-weight: 800;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
 
         .course.blocked {
-            opacity: 0.1;
-            filter: grayscale(1);
+            opacity: 0.05;
+            filter: blur(2px);
         }
 
-        .code { font-size: 0.8em; font-weight: 800; color: #FDBF6D; display: block; margin-bottom: 5px; filter: drop-shadow(0 0 5px rgba(253, 191, 109, 0.3)); }
-        .name { font-size: 0.95em; font-weight: 700; color: #f0f0f0; }
-        .cred { font-size: 0.75em; color: #777; margin-top: 10px; display: block; font-weight: 600; }
+        .code { font-family: 'Orbitron', sans-serif; font-size: 0.75em; color: var(--neon-pink); display: block; margin-bottom: 5px; }
+        .name { font-size: 0.9em; font-weight: 700; letter-spacing: 0.5px; }
+        .cred { font-size: 0.7em; color: #888; margin-top: 10px; display: block; }
 
-        /* SCROLLBAR CON DEGRADADO NARANJA */
-        .curriculum-container::-webkit-scrollbar {
-            height: 12px;
-        }
-        .curriculum-container::-webkit-scrollbar-track {
-            background: #111;
-            border-radius: 10px;
-        }
+        /* SCROLLBAR TIPO LASER */
+        .curriculum-container::-webkit-scrollbar { height: 6px; }
         .curriculum-container::-webkit-scrollbar-thumb { 
-            background: var(--gr-naranja);
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(230, 136, 58, 0.5);
         }
-
-        /* Línea lateral de la página */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--gr-verde); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <h1>Avance Curricular IQ</h1>
-    <div id="credit-counter">⭐ Créditos Llevados: 61</div>
+    <h1>Malla Curricular IQ</h1>
+    <div id="credit-counter">Status: 61 Credits Loaded</div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
-        // Tus datos reales extraídos del documento
         const coursesData = {
             "Ciclo 1": [
                 { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, prereq: [] },
@@ -183,8 +168,7 @@
             ]
         };
 
-        // Estado inicial de aprobación según tu doc.pdf (61 créditos)
-        let approved = JSON.parse(localStorage.getItem('malla_glow_final')) || {
+        let approved = JSON.parse(localStorage.getItem('malla_cyber')) || {
             "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
             "BEF01":true, "BEG01":true, "BMA05":true, "QU216":true
@@ -217,13 +201,13 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred">✨ ${c.credits} CRÉDITOS</span>
+                        <span class="cred">// CR: ${c.credits}</span>
                     `;
 
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('malla_glow_final', JSON.stringify(approved));
+                        localStorage.setItem('malla_cyber', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -231,7 +215,7 @@
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerText = `⭐ Créditos Llevados: ${total}`;
+            document.getElementById('credit-counter').innerText = `Status: ${total} Credits Loaded`;
         }
         render();
     </script>
