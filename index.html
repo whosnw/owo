@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Horizontal Glow Pro</title>
+    <title>Malla Curricular IQ - Degradado Vertical</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #050505;
+            --bg-dark: #070707;
             
-            /* DEGRADADOS HORIZONTALES (IZQUIERDA A DERECHA) */
-            /* Oscuro (#939858) -> Medio (#B9BB66) -> Claro (#E5E283) */
-            --gr-verde: linear-gradient(to right, #939858, #B9BB66, #E5E283);
+            /* DEGRADADOS DE ABAJO HACIA ARRIBA (to top) */
+            /* Oscuro abajo (#939858) -> Medio (#B9BB66) -> Claro arriba (#E5E283) */
+            --gr-verde: linear-gradient(to top, #939858, #B9BB66, #E5E283);
             
-            /* Oscuro (#D9B95E) -> Medio (#F6E281) -> Claro (#F8EC89) */
-            --gr-amarillo: linear-gradient(to right, #D9B95E, #F6E281, #F8EC89);
+            /* Oscuro abajo (#D9B95E) -> Medio (#F6E281) -> Claro arriba (#F8EC89) */
+            --gr-amarillo: linear-gradient(to top, #D9B95E, #F6E281, #F8EC89);
             
-            /* Oscuro (#E6883A) -> Medio (#ED9851) -> Claro (#FDBF6D) */
-            --gr-naranja: linear-gradient(to right, #E6883A, #ED9851, #FDBF6D);
+            /* Oscuro abajo (#E6883A) -> Medio (#ED9851) -> Claro arriba (#FDBF6D) */
+            --gr-naranja: linear-gradient(to top, #E6883A, #ED9851, #FDBF6D);
             
-            /* Oscuro (#C26056) -> Medio (#C97269) -> Claro (#E08F7A) */
-            --gr-terra: linear-gradient(to right, #C26056, #C97269, #E08F7A);
+            /* Oscuro abajo (#C26056) -> Medio (#C97269) -> Claro arriba (#E08F7A) */
+            --gr-terra: linear-gradient(to top, #C26056, #C97269, #E08F7A);
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.1) 1.5px, transparent 1.5px);
+            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
             background-size: 30px 30px;
             color: #fff;
             margin: 0;
@@ -36,35 +36,37 @@
             align-items: center;
         }
 
-        /* TÍTULO CON ILUMINACIÓN DINÁMICA */
+        /* TÍTULO ILUMINADO */
         h1 { 
             font-weight: 800; 
-            font-size: 3.2em; 
+            font-size: 3.5em; 
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(248, 236, 137, 0.7));
+            filter: drop-shadow(0 0 15px rgba(246, 226, 129, 0.6));
             margin: 20px 0;
             text-transform: uppercase;
-            letter-spacing: -1px;
         }
 
-        /* CUADRO DE CRÉDITOS ILUMINADO (GLOW) */
+        /* CUADRO DE CRÉDITOS (ESTILO IMAGEN) */
         #credit-counter {
             background: var(--gr-amarillo);
-            padding: 15px 50px;
+            padding: 12px 45px;
             border-radius: 12px;
             font-weight: 800;
             color: #1a1a1a;
-            margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(217, 185, 94, 0.5);
+            margin-bottom: 50px;
+            box-shadow: 0 0 25px rgba(217, 185, 94, 0.5);
             border: 2px solid #fff;
-            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: 0.3s;
         }
+
         #credit-counter:hover {
             box-shadow: 0 0 40px rgba(248, 236, 137, 0.8);
-            transform: scale(1.05);
+            transform: translateY(-3px);
         }
 
         .curriculum-container {
@@ -72,63 +74,68 @@
             overflow-x: auto;
             gap: 25px;
             width: 95vw;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 20px;
+            padding: 40px 20px;
+        }
+
+        /* SCROLLBAR PERSONALIZADO (LÍNEA ABAJO) */
+        .curriculum-container::-webkit-scrollbar {
+            height: 10px;
+        }
+        .curriculum-container::-webkit-scrollbar-thumb {
+            background: var(--gr-naranja);
+            border-radius: 10px;
         }
 
         .cycle-column {
-            min-width: 300px;
+            min-width: 320px;
             flex-shrink: 0;
         }
 
-        /* ENCABEZADOS HORIZONTALES */
         .cycle-header {
-            background: var(--gr-verde);
-            color: #000;
+            color: #1a1a1a;
             padding: 18px;
-            border-radius: 10px;
-            font-size: 1em;
+            border-radius: 12px;
+            font-size: 1.1em;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
-        .cycle-column:nth-child(even) .cycle-header {
-            background: var(--gr-amarillo);
-        }
+        /* Encabezados con degradado vertical */
+        .cycle-column:nth-child(1) .cycle-header { background: var(--gr-verde); }
+        .cycle-column:nth-child(2) .cycle-header { background: var(--gr-terra); }
+        .cycle-column:nth-child(3) .cycle-header { background: var(--gr-verde); }
 
         .course {
-            background: #111;
+            background: #181818;
             border: 1px solid #333;
-            border-radius: 15px;
-            padding: 22px;
-            margin-bottom: 15px;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        /* ILUMINACIÓN CUANDO PASAS EL CURSO */
-        .course:hover:not(.blocked) {
-            transform: translateY(-5px);
-            border-color: #F8EC89;
-            box-shadow: 0 0 20px rgba(248, 236, 137, 0.4);
-        }
-
-        /* CURSO APROBADO: TERRACOTA HORIZONTAL + GLOW */
+        /* CURSO APROBADO: DEGRADADO VERTICAL + GLOW */
         .course.approved {
-            background: var(--gr-terra);
-            border: 1px solid #fff;
-            box-shadow: 0 0 25px rgba(194, 96, 86, 0.6);
+            background: var(--gr-naranja);
+            border: 2px solid #fff;
+            box-shadow: 0 0 25px rgba(230, 136, 58, 0.6);
         }
 
-        /* LETRAS ILUMINADAS EN APROBADOS */
-        .course.approved .name, .course.approved .code, .course.approved .cred {
+        /* LETRAS ILUMINADAS */
+        .course.approved .name, 
+        .course.approved .code {
             color: #fff !important;
             font-weight: 800;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        .course:hover:not(.blocked) {
+            transform: scale(1.03);
+            border-color: #F8EC89;
         }
 
         .course.blocked {
@@ -136,33 +143,18 @@
             filter: grayscale(1);
         }
 
-        .code { font-size: 0.8em; font-weight: 800; color: #ED9851; display: block; margin-bottom: 5px; }
-        .name { font-size: 0.95em; font-weight: 700; color: #eee; }
-        .cred { font-size: 0.75em; color: #666; margin-top: 10px; display: block; font-weight: 600; }
-
-        /* SCROLLBARS CON DEGRADADO HORIZONTAL */
-        .curriculum-container::-webkit-scrollbar {
-            height: 12px;
-        }
-        .curriculum-container::-webkit-scrollbar-track {
-            background: #0a0a0a;
-            border-radius: 10px;
-        }
-        .curriculum-container::-webkit-scrollbar-thumb { 
-            background: var(--gr-naranja);
-            border-radius: 10px;
-            border: 2px solid #0a0a0a;
-        }
-
-        /* Scroll vertical */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--gr-verde); border-radius: 10px; }
+        .code { font-size: 0.8em; font-weight: 800; color: #F6E281; display: block; margin-bottom: 8px; }
+        .name { font-size: 1em; font-weight: 700; color: #f0f0f0; }
+        .cred { font-size: 0.75em; color: #888; margin-top: 15px; display: block; }
     </style>
 </head>
 <body>
 
-    <h1>Avance Curricular IQ</h1>
-    <div id="credit-counter">🧺 Créditos Aprobados: 61</div>
+    <h1>Avance Curricular 🍂</h1>
+    
+    <div id="credit-counter">
+        🛒 CRÉDITOS LLEVADOS: <span id="total-credits">60</span>
+    </div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
@@ -191,18 +183,11 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_final_h')) || {
+        let approved = JSON.parse(localStorage.getItem('malla_vertical')) || {
             "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
-            "BEF01":true, "BEG01":true, "BMA05":true, "QU216":true
+            "BEG01":true, "BF103":true, "BMA05":true
         };
-
-        const allC = {};
-        Object.values(coursesData).forEach(cy => cy.forEach(c => allC[c.id] = c));
-
-        function checkPre(id) {
-            return allC[id].prereq.every(p => approved[p]);
-        }
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -216,11 +201,8 @@
 
                 coursesData[cycle].forEach(c => {
                     const isApp = approved[c.id];
-                    const canTake = checkPre(c.id);
-                    const isBlk = !isApp && !canTake;
-
                     const div = document.createElement('div');
-                    div.className = `course ${isApp ? 'approved' : ''} ${isBlk ? 'blocked' : ''}`;
+                    div.className = `course ${isApp ? 'approved' : ''}`;
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
@@ -229,8 +211,8 @@
 
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
-                        else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('malla_final_h', JSON.stringify(approved));
+                        else approved[c.id] = true;
+                        localStorage.setItem('malla_vertical', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -238,7 +220,7 @@
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerText = `🧺 Créditos Llevados: ${total}`;
+            document.getElementById('total-credits').innerText = total;
         }
         render();
     </script>
