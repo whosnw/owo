@@ -86,4 +86,115 @@
 
         /* --- CURSOS --- */
         .curriculum-container { display: flex; overflow-x: auto; gap: 45px; width: 95vw; padding: 40px 30px; }
-        .cycle-column { min-width:
+        .cycle-column { min-width: 340px; }
+
+        .course {
+            background: #0d0d0d;
+            border: 1px solid #222;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .course.approved {
+            background: var(--gr-mostaza);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 30px rgba(229, 183, 116, 0.6), 
+                        0 0 60px rgba(229, 183, 116, 0.3),
+                        inset 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        .course.approved:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 50px rgba(229, 183, 116, 1), 
+                        inset 0 0 20px rgba(255,255,255,0.8);
+        }
+
+        /* TEXTOS */
+        .code { font-size: 0.9em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 8px; opacity: 0.9; }
+        .name { font-family: 'Quicksand', sans-serif; font-size: 1.15em; font-weight: 700; color: #eee; line-height: 1.2; }
+        .cred { font-size: 0.85em; color: #555; margin-top: 15px; display: block; font-weight: 800; letter-spacing: 1px; }
+
+        .course.approved .name, .course.approved .code, .course.approved .cred {
+            color: #fff !important;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes pulse-yellow {
+            0%, 100% { box-shadow: 0 0 30px rgba(217, 185, 94, 0.8), 0 0 60px rgba(217, 185, 94, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 0 50px rgba(248, 236, 137, 1), 0 0 90px rgba(248, 236, 137, 0.6); transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Avance Curricular 🍂</h1>
+    <div id="credit-counter">🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span></div>
+    <div class="curriculum-container" id="curriculum"></div>
+
+    <script>
+        const coursesData = {
+            "Ciclo 1": [
+                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2 },
+                { id: "BF101", name: "FÍSICA I", credits: 5 },
+                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5 },
+                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4 },
+                { id: "BQU01", name: "QUÍMICA I", credits: 5 }
+            ],
+            "Ciclo 2": [
+                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3 },
+                { id: "BF102", name: "FÍSICA II", credits: 5 },
+                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
+                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
+                { id: "BQU02", name: "QUÍMICA II", credits: 5 }
+            ],
+            "Ciclo 3": [
+                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
+                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
+                { id: "BF103", name: "FÍSICA III", credits: 5 },
+                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
+                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
+            ]
+        };
+
+        let approved = JSON.parse(localStorage.getItem('malla_iq_glow_v4')) || {};
+
+        function render() {
+            const container = document.getElementById('curriculum');
+            container.innerHTML = '';
+            let total = 0;
+
+            for (let cycle in coursesData) {
+                const col = document.createElement('div');
+                col.className = 'cycle-column';
+                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+
+                coursesData[cycle].forEach(c => {
+                    const isApp = approved[c.id];
+                    const div = document.createElement('div');
+                    div.className = `course ${isApp ? 'approved' : ''}`;
+                    div.innerHTML = `
+                        <span class="code">${c.id}</span>
+                        <span class="name">${c.name}</span>
+                        <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
+                    `;
+                    div.onclick = () => {
+                        if (isApp) delete approved[c.id];
+                        else approved[c.id] = true;
+                        localStorage.setItem('malla_iq_glow_v4', JSON.stringify(approved));
+                        render();
+                    };
+                    col.appendChild(div);
+                    if (isApp) total += c.credits;
+                });
+                container.appendChild(col);
+            }
+            document.getElementById('total-credits').innerText = total;
+        }
+        render();
+    </script>
+</body>
+</html>
