@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Hyper Glow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Malla IQ - Cinzel Glow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
@@ -20,7 +20,7 @@
         ::-webkit-scrollbar-thumb { background: var(--gr-scroll); border-radius: 10px; }
 
         body {
-            font-family: 'Cinzel', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
             background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
@@ -29,24 +29,27 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- TÍTULO CON FUENTE MONTSERRAT Y GLOW --- */
+        /* --- TÍTULO CON FUENTE CINZEL Y ESPACIADO --- */
         h1 { 
-            font-family: 'Cinzel', sans-serif;
-            font-weight: 900; font-size: 4em; letter-spacing: -2px;
+            font-family: 'Cinzel', serif;
+            font-weight: 900; font-size: 3.8em; 
+            letter-spacing: 12px; /* Espaciado elegante */
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.7)) drop-shadow(0 0 50px rgba(217, 185, 94, 0.3));
             margin: 30px 0 10px 0; text-transform: uppercase;
+            text-align: center;
         }
 
         /* --- CONTADOR DE CRÉDITOS --- */
         #credit-counter {
-            font-family: 'Cinzel', sans-serif;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px; /* Espaciado para el contador */
             background: var(--gr-amarillo);
             padding: 18px 70px;
-            border-radius: 50px; /* Más redondeado para que parezca una píldora de luz */
-            font-weight: 800; font-size: 1.2em;
+            border-radius: 50px;
+            font-weight: 700; font-size: 1.1em;
             color: #000;
             margin-bottom: 70px;
             border: 2px solid rgba(255, 255, 255, 0.8);
@@ -57,18 +60,18 @@
             animation: pulse-yellow 2s infinite ease-in-out;
         }
 
-        /* --- ENCABEZADOS DE CICLO (ULTRA GLOW) --- */
+        /* --- ENCABEZADOS DE CICLO CON CINZEL --- */
         .cycle-header {
-            font-family: 'Cinzel', sans-serif;
-            color: #fff; padding: 22px; border-radius: 18px; font-weight: 900;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 6px; /* Espaciado para los ciclos */
+            color: #fff; padding: 22px; border-radius: 18px; font-weight: 700;
             text-transform: uppercase; margin-bottom: 45px; text-align: center;
-            font-size: 1.6em; letter-spacing: 1px;
+            font-size: 1.5em;
             border: 2px solid rgba(255, 255, 255, 0.5);
             text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 4px 10px rgba(0,0,0,0.5);
-            position: relative;
         }
 
-        /* Iluminación VERDE (Encendido) */
+        /* Iluminación VERDE */
         .cycle-column:nth-child(odd) .cycle-header {
             background: var(--gr-verde);
             box-shadow: 0 0 40px rgba(159, 180, 94, 0.8), 
@@ -76,7 +79,7 @@
                         inset 0 0 20px rgba(255,255,255,0.5);
         }
 
-        /* Iluminación NARANJA (Encendido) */
+        /* Iluminación NARANJA */
         .cycle-column:nth-child(even) .cycle-header {
             background: var(--gr-naranja);
             box-shadow: 0 0 40px rgba(230, 111, 64, 0.8), 
@@ -96,7 +99,6 @@
             margin-bottom: 30px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
         }
 
         .course.approved {
@@ -113,9 +115,8 @@
                         inset 0 0 20px rgba(255,255,255,0.8);
         }
 
-        /* TEXTOS */
         .code { font-size: 0.9em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 8px; opacity: 0.9; }
-        .name { font-family: 'Cinzel', sans-serif; font-size: 1.15em; font-weight: 700; color: #eee; line-height: 1.2; }
+        .name { font-family: 'Quicksand', sans-serif; font-size: 1.15em; font-weight: 700; color: #eee; line-height: 1.2; }
         .cred { font-size: 0.85em; color: #555; margin-top: 15px; display: block; font-weight: 800; letter-spacing: 1px; }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
@@ -128,10 +129,10 @@
             50% { box-shadow: 0 0 50px rgba(248, 236, 137, 1), 0 0 90px rgba(248, 236, 137, 0.6); transform: scale(1.02); }
         }
     </style>
-</head>
+ head>
 <body>
 
-    <h1>Avance Curricular 🍂</h1>
+    <h1>Avance Curricular</h1>
     <div id="credit-counter">🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span></div>
     <div class="curriculum-container" id="curriculum"></div>
 
@@ -160,7 +161,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_glow_v4')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_cinzel')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -184,7 +185,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_iq_glow_v4', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_cinzel', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
