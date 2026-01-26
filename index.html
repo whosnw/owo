@@ -46,47 +46,47 @@
             font-weight: 800;
             color: #1a1a1a;
             margin-bottom: 50px;
-            border: 2px solid #fff;
+            /* SE QUITÓ EL BORDE BLANCO */
             text-transform: uppercase;
             box-shadow: 0 0 35px rgba(246, 226, 129, 0.8);
             animation: pulse-yellow 2.5s infinite ease-in-out;
         }
 
-        /* --- ENCABEZADOS CON BRILLO CONSTANTE --- */
+        /* --- ENCABEZADOS CON BRILLO INTENSO --- */
         .cycle-header {
             color: #fff; padding: 18px; border-radius: 12px; font-weight: 800;
             text-transform: uppercase; margin-bottom: 30px; text-align: center;
-            border: 2px solid #fff; /* Borde blanco para resaltar el brillo */
-            text-shadow: 0 0 10px rgba(0,0,0,1), 1px 1px 2px rgba(0,0,0,1);
+            /* SE QUITÓ EL BORDE BLANCO */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
             font-size: 1.2em;
         }
 
-        /* Resplandor Verde Permanente (Ciclos Impares) */
+        /* Resplandor Verde Permanente */
         .cycle-column:nth-child(odd) .cycle-header {
             background: var(--gr-verde);
-            animation: glow-green-permanent 3s infinite alternate;
+            animation: glow-green-intense 3s infinite alternate;
         }
 
-        /* Resplandor Naranja Permanente (Ciclos Pares) */
+        /* Resplandor Naranja Permanente */
         .cycle-column:nth-child(even) .cycle-header {
             background: var(--gr-naranja);
-            animation: glow-orange-permanent 3s infinite alternate;
+            animation: glow-orange-intense 3s infinite alternate;
         }
 
-        /* KEYFRAMES BRILLO PERMANENTE */
-        @keyframes glow-green-permanent {
-            from { box-shadow: 0 0 20px rgba(159, 180, 94, 0.6), inset 0 0 10px rgba(255,255,255,0.2); }
-            to { box-shadow: 0 0 45px rgba(159, 180, 94, 1), inset 0 0 15px rgba(255,255,255,0.4); }
+        /* KEYFRAMES BRILLO INTENSO (SIN BORDES) */
+        @keyframes glow-green-intense {
+            from { box-shadow: 0 0 20px rgba(159, 180, 94, 0.6); }
+            to { box-shadow: 0 0 60px rgba(159, 180, 94, 1), inset 0 0 20px rgba(255,255,255,0.3); }
         }
 
-        @keyframes glow-orange-permanent {
-            from { box-shadow: 0 0 20px rgba(230, 111, 64, 0.6), inset 0 0 10px rgba(255,255,255,0.2); }
-            to { box-shadow: 0 0 45px rgba(230, 111, 64, 1), inset 0 0 15px rgba(255,255,255,0.4); }
+        @keyframes glow-orange-intense {
+            from { box-shadow: 0 0 20px rgba(230, 111, 64, 0.6); }
+            to { box-shadow: 0 0 60px rgba(230, 111, 64, 1), inset 0 0 20px rgba(255,255,255,0.3); }
         }
 
         @keyframes pulse-yellow {
             0%, 100% { box-shadow: 0 0 25px rgba(246, 226, 129, 0.6); }
-            50% { box-shadow: 0 0 50px rgba(248, 236, 137, 1); transform: scale(1.02); }
+            50% { box-shadow: 0 0 60px rgba(248, 236, 137, 1); transform: scale(1.02); }
         }
 
         /* --- CURSOS --- */
@@ -105,19 +105,19 @@
 
         .course.approved {
             background: var(--gr-mostaza);
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(229, 183, 116, 0.5);
+            border-color: transparent; /* SE QUITÓ EL BORDE BLANCO */
+            box-shadow: 0 0 25px rgba(229, 183, 116, 0.6);
         }
 
         .course.approved:hover {
             transform: scale(1.08);
-            box-shadow: 0 0 45px rgba(229, 183, 116, 1);
+            box-shadow: 0 0 50px rgba(229, 183, 116, 1);
         }
 
         /* TEXTOS */
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.7);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.5);
         }
 
         .code { font-size: 0.85em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 5px; }
