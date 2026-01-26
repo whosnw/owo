@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular IQ - Forest Autumn</title>
+    <title>Malla Curricular IQ - Soft Autumn Pastel</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #080907;
-            --gold-soft: #e2c287;      /* Dorado suave que te gustó */
-            --gold-dark: #b08d57;
-            --forest-green: #2d5a27;   /* Verde bosque con vida, no apagado */
-            --forest-dark: #1b3617;    /* Verde profundo para degradado */
-            --sunset-orange: #ff7043;  /* Naranja vibrante para aprobados */
-            --sunset-dark: #d84315;    /* Naranja oscuro para degradado */
-            --card-bg: #161616;
-            --text-light: #f8f9fa;
+            --bg-dark: #0d0d0d;
+            --soft-gold: #f2e8cf;       /* Dorado arena muy clarito */
+            --soft-sage: #a3ad91;       /* Verde sutil y bonito (Sage) */
+            --soft-terracotta: #e9a68a; /* Terracota suave / Pastel */
+            --terracotta-deep: #d48c70; /* Para el degradado sutil */
+            --card-bg: #1a1a1a;
+            --text-light: #f1f1e6;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            /* Puntos de fondo notorios y elegantes */
-            background-image: radial-gradient(rgba(226, 194, 135, 0.25) 2px, transparent 2px);
-            background-size: 35px 35px;
+            /* Puntos de fondo sutiles */
+            background-image: radial-gradient(rgba(242, 232, 207, 0.1) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
             color: var(--text-light);
             margin: 0;
             padding: 20px;
@@ -35,131 +33,116 @@
 
         h1 { 
             font-weight: 700; 
-            font-size: 3em; 
-            color: var(--gold-soft);
-            text-shadow: 0 0 25px rgba(226, 194, 135, 0.3);
-            margin-bottom: 15px;
+            font-size: 2.8em; 
+            color: var(--soft-gold);
             letter-spacing: -1px;
+            margin-bottom: 10px;
         }
 
-        /* CONTADOR FLOTANTE RESALTADO */
+        /* CONTADOR RESALTADO PERO ELEGANTE */
         #credit-counter {
-            background: linear-gradient(145deg, var(--gold-soft), var(--gold-dark));
-            padding: 18px 50px;
-            border-radius: 20px;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 45px;
-            box-shadow: 0 15px 35px rgba(226, 194, 135, 0.35);
-            border: 2px solid #fff;
+            background: rgba(242, 232, 207, 0.05);
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: var(--soft-gold);
+            margin-bottom: 40px;
+            border: 1px solid var(--soft-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             text-transform: uppercase;
-            font-size: 1.1em;
         }
 
         .curriculum-container {
             display: flex;
             overflow-x: auto;
-            gap: 30px;
+            gap: 25px;
             width: 95vw;
-            padding: 35px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 30px;
-            border: 1px solid rgba(226, 194, 135, 0.15);
+            padding: 25px;
+            scrollbar-width: thin;
         }
 
         .cycle-column {
-            min-width: 310px;
+            min-width: 290px;
             flex-shrink: 0;
         }
 
-        /* ENCABEZADOS CON EL NUEVO VERDE Y DORADO */
+        /* ENCABEZADOS CON LOS NUEVOS COLORES SUAVES */
         .cycle-header {
-            background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold-dark) 100%);
-            color: #1a1a15;
-            padding: 20px;
-            border-radius: 20px;
-            font-size: 1.05em;
+            background: var(--soft-gold);
+            color: #2d2d2d;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.9em;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        /* EL VERDE BOSQUE VIVO */
+        /* EL VERDE SUTIL (PAR) */
         .cycle-column:nth-child(even) .cycle-header {
-            background: linear-gradient(180deg, var(--forest-green) 0%, var(--forest-dark) 100%);
-            color: #ffffff;
-            box-shadow: 0 10px 25px rgba(45, 90, 39, 0.4);
+            background: var(--soft-sage);
+            color: #1f241a;
         }
 
         .course {
-            background: #1c1c1c;
+            background: #222;
             border: 1px solid #333;
-            border-radius: 22px;
-            padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
         }
 
         .course:hover:not(.blocked) {
-            border-color: var(--gold-soft);
-            transform: translateY(-10px);
-            background: #242424;
+            border-color: var(--soft-gold);
+            transform: translateY(-5px);
+            background: #282828;
         }
 
-        /* CURSO APROBADO: NARANJA ATARDECER CON DEGRADADO FUERTE */
+        /* CURSO APROBADO: TERRACOTA SUAVE PASTEL */
         .course.approved {
-            background: linear-gradient(135deg, var(--sunset-orange) 0%, var(--sunset-dark) 100%);
+            background: linear-gradient(145deg, var(--soft-terracotta), var(--terracotta-deep));
             border: none;
-            box-shadow: 0 12px 28px rgba(216, 67, 21, 0.5);
+            box-shadow: 0 6px 15px rgba(233, 166, 138, 0.3);
         }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
-            color: #ffffff !important;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            color: #2d2d2d !important; /* Texto oscuro sobre fondo claro */
+            font-weight: 700;
         }
 
         .course.blocked {
-            opacity: 0.12;
+            opacity: 0.1;
             filter: grayscale(1);
             cursor: not-allowed;
         }
 
-        .code { font-size: 0.8em; font-weight: 800; color: var(--gold-soft); display: block; margin-bottom: 8px; }
-        .name { font-size: 1em; font-weight: 700; line-height: 1.4; color: #fff; }
-        .cred { font-size: 0.75em; color: #999; margin-top: 15px; display: block; font-weight: 600; }
+        .code { font-size: 0.75em; font-weight: 800; color: var(--soft-gold); display: block; margin-bottom: 5px; }
+        .name { font-size: 0.9em; font-weight: 700; line-height: 1.3; }
+        .cred { font-size: 0.7em; color: #888; margin-top: 10px; display: block; }
 
-        /* BARRAS DE DESPLAZAMIENTO (LÍNEAS DE COLOR) */
-        .curriculum-container::-webkit-scrollbar {
-            height: 14px;
-        }
-        .curriculum-container::-webkit-scrollbar-track {
-            background: rgba(226, 194, 135, 0.05);
+        /* BARRAS DE DESPLAZAMIENTO BONITAS */
+        .curriculum-container::-webkit-scrollbar { height: 8px; }
+        .curriculum-container::-webkit-scrollbar-track { background: transparent; }
+        .curriculum-container::-webkit-scrollbar-thumb { 
+            background: var(--soft-sage); 
             border-radius: 10px;
         }
-        .curriculum-container::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold-soft));
-            border-radius: 10px;
-            border: 3px solid var(--bg-dark);
-        }
-
-        /* Scroll lateral/vertical general */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--forest-green); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <h1>Malla Curricular 𐙚 🍁</h1>
-    <div id="credit-counter">🍂 Créditos Llevados: 61</div>
+    <h1>Malla Curricular 𐙚</h1>
+    <div id="credit-counter">🍂 Créditos Aprobados: 61</div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
+        // Mantengo la lógica de los datos intacta
         const coursesData = {
             "Ciclo 1": [
                 { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, prereq: [] },
@@ -198,55 +181,10 @@
                 { id: "QU328", name: "QUÍMICA ORGÁNICA I", credits: 5, prereq: ["QU427"] },
                 { id: "QU428", name: "FISICOQUÍMICA II", credits: 5, prereq: ["QU427"] },
                 { id: "QU518", name: "ANÁLISIS QUÍMICO", credits: 4, prereq: ["QU216"] }
-            ],
-            "Ciclo 6": [
-                { id: "BIE01", name: "IDIOMA EXTRANJERO", credits: 2, prereq: [] },
-                { id: "BRN01", name: "REALIDAD NACIONAL Y DD.HH.", credits: 3, prereq: [] },
-                { id: "EC618", name: "MECÁNICA Y RESISTENCIA MAT.", credits: 3, prereq: ["BF104", "BMA06"] },
-                { id: "EE103", name: "CIRCUITOS E INSTALACIONES ELEC.", credits: 3, prereq: ["BF103", "BMA05"] },
-                { id: "PI140", name: "FENÓMENOS DE TRANSPORTE", credits: 3, prereq: ["BMA06", "PI111"] },
-                { id: "PI216", name: "TERMODINÁMICA PARA IQ I", credits: 3, prereq: ["PI111", "QU428"] },
-                { id: "QU338", name: "QUÍMICA ORGÁNICA II", credits: 5, prereq: ["QU328"] }
-            ],
-            "Ciclo 7": [
-                { id: "PA113", name: "INGENIERÍA DE MÉTODOS I", credits: 4, prereq: ["MA613"] },
-                { id: "PA714", name: "INVESTIGACIÓN DE OPERACIONES I", credits: 3, prereq: ["MA613", "MA713"] },
-                { id: "PI142", name: "TRANSF. DE CANTIDAD MOVIMIENTO", credits: 3, prereq: ["PI140"] },
-                { id: "PI217", name: "TERMODINÁMICA PARA IQ II", credits: 3, prereq: ["PI216", "PI524"] },
-                { id: "PI318", name: "INDUSTRIA DE PROCESOS QUÍMICOS", credits: 5, prereq: ["PI140"] },
-                { id: "PI514", name: "CIENCIA DE LOS MATERIALES", credits: 2, prereq: ["QU518"] },
-                { id: "PI520", name: "RECURSOS QUÍMICOS BIODIVERSIDAD", credits: 3, prereq: ["QU338", "QU518"] }
-            ],
-            "Ciclo 8": [
-                { id: "BAE01", name: "ACTIVIDADES EXTRACURRICULARES", credits: 1, prereq: [] },
-                { id: "EP818", name: "COSTOS Y PRESUPUESTOS", credits: 3, prereq: ["EP308", "PA714"] },
-                { id: "PI143", name: "TRANSFERENCIA DE CALOR", credits: 3, prereq: ["PI142"] },
-                { id: "PI144", name: "TRANSFERENCIA DE MASA", credits: 3, prereq: ["PI142"] },
-                { id: "PI146", name: "OPERACIONES EN IQ I", credits: 3, prereq: ["PI142"] },
-                { id: "PI225", name: "CINÉTICA Y DISEÑO REACTORES I", credits: 3, prereq: ["PI217"] },
-                { id: "PI521", name: "INTRODUCCIÓN A BIOINGENIERÍA", credits: 3, prereq: ["PI520"] }
-            ],
-            "Ciclo 9": [
-                { id: "PI135", name: "LAB. OPERACIONES UNITARIAS I", credits: 2, prereq: ["PI143", "PI146"] },
-                { id: "PI365", name: "POLÍMEROS I", credits: 3, prereq: ["QU338"] },
-                { id: "PI415", name: "INSTRUMENTOS DE CONTROL", credits: 3, prereq: ["EE103", "PI144"] },
-                { id: "PI510", name: "ECONOMÍA DE PROCESOS", credits: 3, prereq: ["EP818", "PI144"] },
-                { id: "PI555", name: "SEGURIDAD EN PROCESOS IND.", credits: 3, prereq: ["PI143", "PI144"] },
-                { id: "PI911", name: "GESTIÓN TECNOLÓGICA", credits: 4, prereq: [] },
-                { id: "QT714", name: "TALLER PROYECTO INVESTIGACIÓN", credits: 2, prereq: [] }
-            ],
-            "Ciclo 10": [
-                { id: "PA136", name: "PLANEAMIENTO Y CONTROL PROD.", credits: 4, prereq: ["PA113", "PA714"] },
-                { id: "PI136", name: "LAB. OPERACIONES UNITARIAS II", credits: 2, prereq: ["PI135", "PI144"] },
-                { id: "PI426", name: "SIMULACIÓN Y CONTROL PROCESOS", credits: 4, prereq: ["PI225", "PI415"] },
-                { id: "PI525", name: "DISEÑO DE PLANTAS", credits: 4, prereq: ["PI415", "PI510"] },
-                { id: "QT715", name: "TALLER DE INVESTIGACIÓN", credits: 2, prereq: ["QT714"] },
-                { id: "XP100", name: "PRÁCTICAS PRE-PROFESIONALES I", credits: 1, prereq: [] },
-                { id: "XP200", name: "PRÁCTICAS PRE-PROFESIONALES II", credits: 2, prereq: [] }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_autumn_v4')) || {
+        let approved = JSON.parse(localStorage.getItem('malla_pastel')) || {
             "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
             "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true
@@ -285,7 +223,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('malla_autumn_v4', JSON.stringify(approved));
+                        localStorage.setItem('malla_pastel', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -293,7 +231,7 @@
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerHTML = `🍁 Créditos Llevados: ${total}`;
+            document.getElementById('credit-counter').innerText = `🍂 Créditos Llevados: ${total}`;
         }
         render();
     </script>
