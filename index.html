@@ -29,62 +29,70 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- TÍTULO CON FUENTE CINZEL Y ESPACIADO --- */
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; font-size: 3.8em; 
-            letter-spacing: 12px; /* Espaciado elegante */
+            letter-spacing: 12px;
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.7)) drop-shadow(0 0 50px rgba(217, 185, 94, 0.3));
-            margin: 30px 0 10px 0; text-transform: uppercase;
+            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.7));
+            margin: 30px 0 20px 0; text-transform: uppercase;
             text-align: center;
         }
 
-        /* --- CONTADOR DE CRÉDITOS --- */
+        /* --- NUEVO ESTILO: CONTADOR DE CRÉDITOS TIPO DISPLAY --- */
         #credit-counter {
             font-family: 'Cinzel', serif;
-            letter-spacing: 4px; /* Espaciado para el contador */
-            background: var(--gr-amarillo);
-            padding: 18px 70px;
-            border-radius: 50px;
-            font-weight: 700; font-size: 1.1em;
-            color: #000;
+            letter-spacing: 3px;
+            /* Fondo oscuro semi-transparente */
+            background: rgba(10, 10, 10, 0.8); 
+            padding: 15px 50px;
+            border-radius: 4px;
+            font-weight: 700; font-size: 1.2em;
+            color: #F8EC89;
             margin-bottom: 70px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            /* Borde doble estilo elegante */
+            border: 1px solid rgba(217, 185, 94, 0.5);
+            outline: 4px solid rgba(217, 185, 94, 0.1);
+            outline-offset: 4px;
+            
             text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(217, 185, 94, 1), 
-                        0 0 70px rgba(217, 185, 94, 0.5),
-                        inset 0 0 15px rgba(255,255,255,0.8);
-            animation: pulse-yellow 2s infinite ease-in-out;
+            /* Resplandor suave pero profundo */
+            box-shadow: 0 0 40px rgba(0, 0, 0, 1), 
+                        0 0 20px rgba(217, 185, 94, 0.3),
+                        inset 0 0 15px rgba(217, 185, 94, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* --- ENCABEZADOS DE CICLO CON CINZEL --- */
+        /* El número de créditos resalta más */
+        #total-credits {
+            font-size: 1.4em;
+            color: #fff;
+            text-shadow: 0 0 15px #F8EC89;
+            margin-left: 10px;
+        }
+
+        /* --- ENCABEZADOS DE CICLO --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
-            letter-spacing: 6px; /* Espaciado para los ciclos */
+            letter-spacing: 6px;
             color: #fff; padding: 22px; border-radius: 18px; font-weight: 700;
             text-transform: uppercase; margin-bottom: 45px; text-align: center;
             font-size: 1.5em;
             border: 2px solid rgba(255, 255, 255, 0.5);
-            text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 4px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 0 15px rgba(255,255,255,0.6);
         }
 
-        /* Iluminación VERDE */
         .cycle-column:nth-child(odd) .cycle-header {
             background: var(--gr-verde);
-            box-shadow: 0 0 40px rgba(159, 180, 94, 0.8), 
-                        0 0 100px rgba(159, 180, 94, 0.4),
-                        inset 0 0 20px rgba(255,255,255,0.5);
+            box-shadow: 0 0 40px rgba(159, 180, 94, 0.8), 0 0 100px rgba(159, 180, 94, 0.4);
         }
 
-        /* Iluminación NARANJA */
         .cycle-column:nth-child(even) .cycle-header {
             background: var(--gr-naranja);
-            box-shadow: 0 0 40px rgba(230, 111, 64, 0.8), 
-                        0 0 100px rgba(230, 111, 64, 0.4),
-                        inset 0 0 20px rgba(255,255,255,0.5);
+            box-shadow: 0 0 40px rgba(230, 111, 64, 0.8), 0 0 100px rgba(230, 111, 64, 0.4);
         }
 
         /* --- CURSOS --- */
@@ -104,36 +112,32 @@
         .course.approved {
             background: var(--gr-mostaza);
             border: 2px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 30px rgba(229, 183, 116, 0.6), 
-                        0 0 60px rgba(229, 183, 116, 0.3),
-                        inset 0 0 15px rgba(255,255,255,0.5);
+            box-shadow: 0 0 30px rgba(229, 183, 116, 0.6), inset 0 0 15px rgba(255,255,255,0.5);
         }
 
         .course.approved:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 0 50px rgba(229, 183, 116, 1), 
-                        inset 0 0 20px rgba(255,255,255,0.8);
+            box-shadow: 0 0 50px rgba(229, 183, 116, 1);
         }
 
         .code { font-size: 0.9em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 8px; opacity: 0.9; }
-        .name { font-family: 'Quicksand', sans-serif; font-size: 1.15em; font-weight: 700; color: #eee; line-height: 1.2; }
-        .cred { font-size: 0.85em; color: #555; margin-top: 15px; display: block; font-weight: 800; letter-spacing: 1px; }
+        .name { font-size: 1.15em; font-weight: 700; color: #eee; line-height: 1.2; }
+        .cred { font-size: 0.85em; color: #555; margin-top: 15px; display: block; font-weight: 800; }
 
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        @keyframes pulse-yellow {
-            0%, 100% { box-shadow: 0 0 30px rgba(217, 185, 94, 0.8), 0 0 60px rgba(217, 185, 94, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 50px rgba(248, 236, 137, 1), 0 0 90px rgba(248, 236, 137, 0.6); transform: scale(1.02); }
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
     </style>
- head>
+</head>
 <body>
 
     <h1>Avance Curricular</h1>
-    <div id="credit-counter">🛒 CRÉDITOS LLEVADOS: <span id="total-credits">0</span></div>
+    
+    <div id="credit-counter">
+        🍂 Créditos Logrados: <span id="total-credits">0</span>
+    </div>
+
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
@@ -161,7 +165,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_cinzel')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_display')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -185,7 +189,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_iq_cinzel', JSON.stringify(approved));
+                        localStorage.setItem('malla_iq_display', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
