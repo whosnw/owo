@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Otoño Glow Estelar</title>
+    <title>Malla IQ - Full Glow Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,7 +15,7 @@
             --gr-scroll: linear-gradient(to right, #863E21, #E5B774);
         }
 
-        /* --- SCROLLBARS DEGRADADOS --- */
+        /* SCROLLBARS */
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: #111; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: var(--gr-scroll); border-radius: 10px; border: 2px solid #111; }
@@ -35,11 +35,11 @@
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(246, 226, 129, 0.5));
+            filter: drop-shadow(0 0 20px rgba(246, 226, 129, 0.6));
             margin: 20px 0; text-transform: uppercase;
         }
 
-        /* --- CONTADOR DE CRÉDITOS ULTRA ILUMINADO --- */
+        /* CONTADOR ANIMADO */
         #credit-counter {
             background: var(--gr-amarillo);
             padding: 15px 50px;
@@ -48,35 +48,52 @@
             color: #1a1a1a;
             margin-bottom: 50px;
             border: 2px solid #fff;
+            box-shadow: 0 0 25px rgba(246, 226, 129, 0.6);
+            animation: pulse-yellow 3s infinite ease-in-out;
             text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(246, 226, 129, 0.7);
-            animation: pulse-glow 3s infinite;
-            transition: 0.3s;
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 20px rgba(246, 226, 129, 0.6); }
-            50% { box-shadow: 0 0 45px rgba(248, 236, 137, 0.9); transform: scale(1.02); }
-            100% { box-shadow: 0 0 20px rgba(246, 226, 129, 0.6); }
-        }
-
-        .curriculum-container {
-            display: flex; overflow-x: auto; gap: 25px; width: 95vw; padding: 20px 20px 40px 20px;
-        }
-
-        .cycle-column { min-width: 320px; flex-shrink: 0; }
-
+        /* --- BRILLO PARA LOS CICLOS --- */
         .cycle-header {
             color: #fff; padding: 15px; border-radius: 10px; font-weight: 800;
             text-transform: uppercase; margin-bottom: 25px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            border: 1.5px solid rgba(255,255,255,0.4);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            transition: 0.3s;
         }
 
-        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
-        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
+        /* Animación verde para Ciclos 1, 3... */
+        .cycle-column:nth-child(odd) .cycle-header {
+            background: var(--gr-verde);
+            box-shadow: 0 0 20px rgba(91, 103, 52, 0.6);
+            animation: pulse-green 4s infinite ease-in-out;
+        }
 
-        /* --- CURSOS --- */
+        /* Animación naranja para Ciclo 2... */
+        .cycle-column:nth-child(even) .cycle-header {
+            background: var(--gr-naranja);
+            box-shadow: 0 0 20px rgba(134, 62, 33, 0.6);
+            animation: pulse-orange 4s infinite ease-in-out;
+        }
+
+        /* KEYFRAMES DE BRILLO */
+        @keyframes pulse-yellow {
+            0%, 100% { box-shadow: 0 0 20px rgba(246, 226, 129, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(248, 236, 137, 0.8); }
+        }
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 15px rgba(133, 150, 78, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(159, 180, 94, 0.8); }
+        }
+        @keyframes pulse-orange {
+            0%, 100% { box-shadow: 0 0 15px rgba(134, 62, 33, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(230, 111, 64, 0.8); }
+        }
+
+        /* CURSOS */
+        .curriculum-container { display: flex; overflow-x: auto; gap: 25px; width: 95vw; padding: 20px 20px 40px 20px; }
+        .cycle-column { min-width: 320px; flex-shrink: 0; }
+
         .course {
             background: #1a1a1a;
             border: 1.5px solid #333;
@@ -87,24 +104,22 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* EFECTO CUANDO ESTÁ APROBADO Y PASAS EL MOUSE */
         .course.approved {
             background: var(--gr-mostaza);
-            border-color: rgba(255,255,255,0.5);
+            border-color: rgba(255,255,255,0.6);
             box-shadow: 0 0 15px rgba(133, 106, 64, 0.4);
         }
 
         .course.approved:hover {
-            transform: scale(1.08); /* Se agranda más */
-            border-color: #ffffff; /* Borde blanco brillante */
-            box-shadow: 0 0 35px rgba(229, 183, 116, 0.8); /* Glow intenso */
-            z-index: 10;
+            transform: scale(1.08);
+            border-color: #ffffff;
+            box-shadow: 0 0 40px rgba(229, 183, 116, 0.9);
         }
 
-        /* TEXTOS */
+        /* TEXTOS ILUMINADOS */
         .course.approved .name, .course.approved .code, .course.approved .cred {
             color: #fff !important;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 255, 255, 0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.6);
         }
 
         .code { font-size: 0.85em; font-weight: 700; color: #F6E281; display: block; margin-bottom: 5px; }
@@ -144,7 +159,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_glow_final')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_full_glow')) || {};
 
         function render() {
             const container = document.getElementById('curriculum');
@@ -168,7 +183,7 @@
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_glow_final', JSON.stringify(approved));
+                        localStorage.setItem('malla_full_glow', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
