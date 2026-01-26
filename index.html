@@ -3,148 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular IQ - Gold Autumn</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Malla Curricular IQ - Minimalist Autumn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-notion: #141411;      /* Negro carbón cálido */
-            --gold-primary: #d4af37;   /* Oro clásico */
-            --gold-bright: #ffd700;    /* Oro brillante para detalles */
-            --terracotta: #a0522d;     /* Marrón siena/terracota */
-            --amber-glow: #ffbf00;     /* Ámbar para luces */
-            --cream-text: #fff4e6;     /* Crema suave */
-            --border-radius: 22px;
+            --bg: #121210;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gold: #c5a059;
+            --gold-light: #e2c287;
+            --accent: #8e5a3e; /* Terracota suave */
+            --text: #e0e0d5;
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-notion);
-            background-image: radial-gradient(#2d2d24 1.5px, transparent 1.5px);
-            background-size: 25px 25px;
-            color: var(--cream-text);
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        h1 { 
-            font-weight: 700; 
-            font-size: 2.6em; 
-            margin: 20px 0 5px 0;
-            color: var(--gold-primary);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
-            letter-spacing: -1px;
+        h1 {
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 10px;
         }
 
         #credit-counter {
-            background: linear-gradient(rgba(212, 175, 55, 0.1), rgba(160, 82, 45, 0.1)); 
-            padding: 12px 40px;
-            border-radius: 50px;
-            border: 2px solid var(--gold-primary);
-            font-weight: 700;
-            color: var(--amber-glow);
-            margin-bottom: 45px;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
-            text-transform: uppercase;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 8px 25px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            background: rgba(197, 160, 89, 0.05);
         }
 
         .curriculum-container {
             display: flex;
+            gap: 25px;
             overflow-x: auto;
-            gap: 28px;
-            width: 96%;
-            padding: 30px 15px;
-            mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+            width: 100%;
+            padding-bottom: 30px;
+            scrollbar-width: thin;
         }
 
         .cycle-column {
-            min-width: 300px;
-            flex-shrink: 0;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* ENCABEZADOS DE CICLO MÁS ATRACTIVOS (ORO/TERRACOTA) */
+        /* RECTÁNGULOS DE CICLO MÁS ATRACTIVOS Y MINIMALISTAS */
         .cycle-header {
-            background: linear-gradient(145deg, var(--gold-primary), #8b6b00);
-            color: #1a1a15;
-            padding: 16px;
-            border-radius: 20px;
-            font-size: 1.05em;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            margin-bottom: 25px;
+            padding: 12px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            position: relative;
-        }
-
-        .cycle-column:nth-child(even) .cycle-header {
-            background: linear-gradient(145deg, var(--terracotta), #5d2e1a);
-            color: var(--cream-text);
-            border-color: var(--gold-primary);
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            border-bottom: 1px solid var(--gold);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, transparent, rgba(197, 160, 89, 0.1), transparent);
         }
 
         .course {
-            background: #1e1e1a;
-            border: 1.5px solid #33332d;
-            border-radius: var(--border-radius);
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
             padding: 18px;
-            margin-bottom: 18px;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
         }
 
         .course:hover:not(.blocked) {
-            transform: translateY(-8px);
-            background: #282822;
-            border-color: var(--amber-glow);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-3px);
         }
 
-        /* CURSO APROBADO */
+        /* ESTADO APROBADO: Color Mostaza/Oro suave */
         .course.approved {
-            background: linear-gradient(145deg, #b35d1e, #7a3e12);
-            border: 1px solid var(--gold-bright);
-            box-shadow: 0 5px 15px rgba(179, 93, 30, 0.5);
+            background: rgba(197, 160, 89, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.1);
         }
 
-        .course.approved .name, .course.approved .code, .course.approved .cred {
-            color: #fff !important;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
+        .course.approved .name { color: var(--gold-light); }
+        .course.approved .code { color: #fff; }
 
         .course.blocked {
-            opacity: 0.15;
-            filter: grayscale(1) blur(0.5px);
-            cursor: not-allowed;
+            opacity: 0.2;
+            filter: grayscale(1);
         }
 
-        .code { font-size: 0.75em; font-weight: 700; color: var(--gold-primary); display: block; margin-bottom: 4px; }
-        .name { font-size: 0.9em; font-weight: 700; line-height: 1.3; color: var(--cream-text); }
-        .cred { font-size: 0.7em; color: #8a8a7d; margin-top: 10px; display: block; font-weight: 600; text-transform: uppercase; }
-
-        /* Scrollbar Otoñal */
-        ::-webkit-scrollbar { height: 12px; }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(var(--gold-primary), var(--terracotta)); 
-            border-radius: 10px;
-            border: 3px solid var(--bg-notion);
+        .code {
+            font-size: 0.7em;
+            color: var(--gold);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
         }
+
+        .name {
+            font-size: 0.85em;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .cred {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.65em;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Emojis de hojas en lugar de café */
+        .cred::before {
+            content: "🍂 ";
+        }
+
+        ::-webkit-scrollbar { height: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <h1>Malla Curricular 𐙚 🍁</h1>
-    <div id="credit-counter">🍂 Créditos Aprobados: 61</div>
+    <h1>Malla Curricular</h1>
+    <div id="credit-counter">PROGRESO: 61 CRÉDITOS</div>
 
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
+        // Los mismos datos de la malla curricular que ya teníamos
         const coursesData = {
             "Ciclo 1": [
                 { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, prereq: [] },
@@ -231,7 +234,7 @@
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_gold_autumn')) || {
+        let approved = JSON.parse(localStorage.getItem('malla_minimalist')) || {
             "BD101":true, "BF101":true, "BMA01":true, "BMA03":true, "BQU01":true, "BRC01":true,
             "BD102":true, "BF102":true, "BMA02":true, "BMA04":true, "BQU02":true,
             "BEF01":true, "BEG01":true, "BIC01":true, "BMA05":true, "QU216":true
@@ -264,13 +267,13 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred">🍃 ${c.credits} CRÉDITOS</span>
+                        <span class="cred">${c.credits} CRÉDITOS</span>
                     `;
 
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
                         else if (!isBlk) approved[c.id] = true;
-                        localStorage.setItem('malla_gold_autumn', JSON.stringify(approved));
+                        localStorage.setItem('malla_minimalist', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -278,7 +281,7 @@
                 });
                 container.appendChild(col);
             }
-            document.getElementById('credit-counter').innerText = `🍂 Créditos Aprobados: ${total}`;
+            document.getElementById('credit-counter').innerText = `PROGRESO: ${total} CRÉDITOS`;
         }
         render();
     </script>
