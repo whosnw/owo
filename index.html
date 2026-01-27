@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malla IQ - Supreme Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
-            /* Degradados de abajo hacia arriba (Oscuro a Claro) */
             --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
             --gr-contador: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 55%, #aa771c 100%);
             --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-            /* Dorado Metálico para el Título */
             --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
             --gold: #F8EC89;
         }
@@ -27,7 +25,6 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* TÍTULO DORADO CON BRILLO EXTREMO */
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; font-size: 3.2em; letter-spacing: 12px;
@@ -45,71 +42,83 @@
             to { background-position: 200% center; }
         }
 
-        /* --- MODIFICACIÓN DE LA BARRA DE PROGRESO TOTAL --- */
+        /* --- MODIFICACIÓN DE LA BARRA DE PROGRESO TOTAL (LUCIÉRNAGAS Y BORDES DORADOS) --- */
         .counter-wrapper {
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
             margin-bottom: 40px;
-            /* Líneas arriba y abajo doradas */
-            border-top: 2px solid #bf953f;
-            border-bottom: 2px solid #bf953f;
-            box-shadow: 0 0 15px rgba(191, 149, 63, 0.4);
-            overflow: visible;
+            /* Líneas arriba y abajo con degradado dorado y brillo */
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
+            filter: drop-shadow(0 0 10px rgba(191, 149, 63, 0.6));
+            overflow: hidden; /* Mantiene las luciérnagas dentro del área de la barra */
         }
 
         #credit-counter {
-            background: #111; 
-            padding: 12px 40px;
-            border-radius: 12px;
+            background: rgba(10, 10, 10, 0.9); 
+            padding: 15px 50px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             position: relative;
         }
 
-        /* Luciérnagas animadas */
-        .counter-wrapper::before, .counter-wrapper::after {
-            content: '✨';
+        /* Contenedor de múltiples luciérnagas */
+        .counter-wrapper::before {
+            content: '';
             position: absolute;
-            font-size: 10px;
-            z-index: 10;
-            animation: luciernagas 4s infinite ease-in-out;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Varias luciérnagas usando box-shadow múltiple */
+            box-shadow: 
+                10px 10px 4px #fff, 50px 30px 4px #fcf6ba, 
+                120px 15px 4px #fff, 200px 25px 4px #fcf6ba,
+                280px 10px 4px #fff, 350px 35px 4px #fcf6ba;
+            border-radius: 50%;
+            width: 4px; height: 4px;
             opacity: 0;
-        }
-        .counter-wrapper::after { animation-delay: 2s; right: 0; }
-
-        @keyframes luciernagas {
-            0% { transform: translate(0, 0); opacity: 0; }
-            50% { transform: translate(50px, -15px); opacity: 1; filter: blur(1px); }
-            100% { transform: translate(100px, 0); opacity: 0; }
+            animation: muchasLuciernagas 6s infinite linear;
         }
 
-        #credit-counter span:first-child {
-            font-family: 'Cinzel', serif;
+        @keyframes muchasLuciernagas {
+            0% { transform: translateX(-100px) translateY(0); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(500px) translateY(-10px); opacity: 0; }
+        }
+
+        #credit-counter span:nth-child(2) {
+            font-family: 'Orbitron', sans-serif; /* Nueva fuente para PROGRESO TOTAL */
             color: #fcf6ba;
             font-weight: 900;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(252, 246, 186, 0.5);
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px rgba(252, 246, 186, 0.6);
         }
 
-        /* --- MODIFICACIÓN DEL NÚMERO (BLANCO Y LATIDO) --- */
+        /* --- MODIFICACIÓN DEL NÚMERO (BLANCO, LATIDO Y FUENTE) --- */
         #total-credits {
-            font-size: 1.8em;
-            color: #ffffff !important; /* Blanco */
+            font-family: 'Orbitron', sans-serif; /* Fuente tecnológica/moderna */
+            font-size: 2.5em;
+            color: #ffffff !important;
             -webkit-text-fill-color: #ffffff !important;
             font-weight: 900;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
             display: inline-block;
-            animation: latidoBrillante 2s infinite ease-in-out;
+            animation: latidoBlancoPuro 1.5s infinite ease-in-out;
         }
 
-        @keyframes latidoBrillante {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px #fff); }
-            50% { transform: scale(1.3); filter: drop-shadow(0 0 20px #fff) brightness(1.5); }
+        @keyframes latidoBlancoPuro {
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 0 5px #fff); 
+            }
+            50% { 
+                transform: scale(1.25); 
+                filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px rgba(255,255,255,0.5)); 
+            }
         }
         /* ------------------------------- */
 
-        /* CICLOS CON ILUMINACIÓN TOTAL (CUADRO Y LETRAS) */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 4px;
