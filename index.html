@@ -7,10 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #121212;
-            --gr-verde: linear-gradient(135deg, #5B6734 0%, #9FB45E 100%);
-            --gr-naranja: linear-gradient(135deg, #863E21 0%, #E66F40 100%);
-            --gr-mostaza: linear-gradient(135deg, #856A40 0%, #E5B774 100%);
+            --bg-dark: #0a0a0a;
+            /* Degradados de abajo hacia arriba (Oscuro a Claro) */
+            --gr-verde: linear-gradient(0deg, #4a542a 0%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #863E21 0%, #E66F40 100%);
+            /* Degradado basado en la imagen del contador */
+            --gr-contador: linear-gradient(0deg, #9c7a31 0%, #f1d382 100%);
+            --gr-mostaza: linear-gradient(0deg, #856A40 0%, #E5B774 100%);
             --gr-titulo: linear-gradient(180deg, #FFFFFF 0%, #F8EC89 50%, #D9B95E 100%);
             --gold: #F8EC89;
         }
@@ -18,125 +21,124 @@
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
             color: #fff; margin: 0; padding: 10px;
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* TÍTULO CON DEGRADADO E ILUMINACIÓN */
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; font-size: 2.5em; letter-spacing: 12px;
             background: var(--gr-titulo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.5));
+            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.3));
             margin: 25px 0; text-transform: uppercase;
         }
 
-        /* CONTADOR */
+        /* CONTADOR ESTILO SEGUNDA IMAGEN */
         .counter-wrapper {
-            padding: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            background-size: 200% 100%;
-            animation: move-border 3s linear infinite;
+            padding: 3px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(241, 211, 130, 0.2);
         }
 
         #credit-counter {
-            font-family: 'Cinzel', serif;
-            background: #000;
-            padding: 8px 30px;
+            font-family: 'Quicksand', sans-serif;
+            background: var(--gr-contador);
+            padding: 6px 35px;
             border-radius: 50px;
-            font-size: 1em; color: var(--gold);
+            border: 2px solid #fff;
+            font-size: 1.1em; color: #fff;
             display: flex; align-items: center;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        #total-credits {
-            font-size: 1.4em; color: #fff; margin-left: 12px;
-            text-shadow: 0 0 15px var(--gold);
-        }
+        #total-credits { font-size: 1.3em; margin-left: 10px; font-weight: 900; }
 
-        /* CICLOS: SIN BORDE, SÓLO LUZ */
+        /* CICLOS ESTILO BOTÓN (PRIMERA IMAGEN) */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 4px;
-            color: #fff; padding: 12px; border-radius: 8px;
-            font-weight: 900; text-transform: uppercase;
-            margin-bottom: 25px; text-align: center; font-size: 1.1em;
-            border: none; /* Quitamos el borde blanco */
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            color: #fff; 
+            padding: 15px 40px; 
+            border-radius: 12px;
+            font-weight: 900; 
+            text-transform: uppercase;
+            margin-bottom: 30px; 
+            text-align: center; 
+            font-size: 1.2em;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Brillo interior suave */
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.2);
         }
 
         .cycle-column:nth-child(odd) .cycle-header { 
             background: var(--gr-verde); 
-            box-shadow: 0 10px 30px rgba(159, 180, 94, 0.4); 
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(159, 180, 94, 0.5); 
         }
         .cycle-column:nth-child(even) .cycle-header { 
             background: var(--gr-naranja); 
-            box-shadow: 0 10px 30px rgba(230, 111, 64, 0.4); 
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(230, 111, 64, 0.5); 
         }
 
-        /* CURSOS COMPACTOS CON LUZ DINÁMICA */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 30px; width: 95vw; padding: 20px; }
-        .cycle-column { min-width: 270px; }
+        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 20px; }
+        .cycle-column { min-width: 280px; }
 
+        /* CURSOS INTERACTIVOS */
         .course {
             background: #1a1a1a;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Efecto al pasar el cursor (Hover) */
+        /* Hover general */
         .course:hover {
-            transform: scale(1.05) translateY(-5px);
-            background: #222;
-            box-shadow: 0 0 25px rgba(248, 236, 137, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            background: #252525;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        /* Cursos aprobados: luz tenue */
+        /* ESTADO: CLICKEADO (APPROVED) */
         .course.approved {
             background: var(--gr-mostaza);
-            box-shadow: 0 0 15px rgba(229, 183, 116, 0.3); /* Luz tenue */
+            border: 1px solid rgba(255,255,255,0.3);
+            /* Brillo tenue por defecto al estar seleccionado */
+            box-shadow: 0 0 15px rgba(229, 183, 116, 0.4);
         }
 
-        /* Aprobado + Hover: Más luz */
+        /* ESTADO: CLICKEADO + HOVER (MÁS GRANDE Y BRILLANTE) */
         .course.approved:hover {
-            box-shadow: 0 0 30px rgba(248, 236, 137, 0.7), inset 0 0 10px rgba(255,255,255,0.4);
+            transform: scale(1.1) translateY(-8px); /* Se agranda más */
+            box-shadow: 0 0 35px rgba(248, 236, 137, 0.8), inset 0 0 15px rgba(255,255,255,0.5);
+            filter: brightness(1.2);
         }
 
-        .code { 
-            font-size: 0.75em; font-weight: 900; color: var(--gold); 
-            display: block; margin-bottom: 4px; letter-spacing: 1px;
-        }
-        .name { 
-            font-size: 0.9em; font-weight: 700; color: #fff; 
-            text-transform: uppercase; line-height: 1.2;
-        }
+        .code { font-size: 0.8em; font-weight: 900; color: var(--gold); display: block; margin-bottom: 5px; }
+        .course.approved .code { color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        
+        .name { font-size: 0.95em; font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.3; }
+        
         .cred { 
-            font-size: 0.75em; color: #777; margin-top: 10px; 
-            display: flex; align-items: center; font-weight: 800;
+            font-size: 0.8em; color: #888; margin-top: 12px; 
+            display: flex; align-items: center; font-weight: 700;
         }
+        .course.approved .cred { color: rgba(255,255,255,0.9); }
 
-        /* EMOJI SOMBRA CORREGIDA */
-        .emoji {
-            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.4));
-            margin-right: 5px;
-        }
+        .emoji { margin-right: 8px; filter: drop-shadow(0 0 2px rgba(0,0,0,0.5)); }
 
-        .course.approved .cred { color: rgba(255,255,255,0.8); }
-
-        @keyframes move-border {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
+        /* Scrollbar estética */
+        .curriculum-container::-webkit-scrollbar { height: 8px; }
+        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -145,7 +147,7 @@
     
     <div class="counter-wrapper">
         <div id="credit-counter">
-            <span class="emoji">🍂</span> Créditos Logrados: <span id="total-credits">0</span>
+            #créditos Llevados: <span id="total-credits">0</span>
         </div>
     </div>
 
@@ -195,7 +197,7 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CRÉDITOS</span>
+                        <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
                     `;
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
