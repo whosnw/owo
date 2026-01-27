@@ -3,167 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Supreme Edition</title>
+    <title>Malla IQ - Compact Gold</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
-            /* Degradados de abajo hacia arriba (Oscuro a Claro) */
-            --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
-            --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
+            --gr-verde: linear-gradient(0deg, #2d3516 0%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #522310 0%, #E66F40 100%);
             --gr-contador: linear-gradient(0deg, #9c7a31 0%, #f1d382 100%);
-            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-            /* Dorado Metálico para el Título */
-            --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
-            --gold: #F8EC89;
+            --gr-mostaza: linear-gradient(0deg, #5c4829 0%, #E5B774 100%);
+            /* Dorado sólido y brillante para el texto */
+            --gold-text: #FFD700;
+            --gold-glow: #fcf6ba;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #fff; margin: 0; padding: 10px;
+            background-image: radial-gradient(rgba(255, 215, 0, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #fff; margin: 0; padding: 5px;
             display: flex; flex-direction: column; align-items: center;
+            transform: scale(0.95); /* Pequeño ajuste global */
         }
 
-        /* TÍTULO DORADO CON BRILLO EXTREMO */
+        /* TÍTULO DORADO COMPACTO */
         h1 { 
             font-family: 'Cinzel', serif;
-            font-weight: 900; font-size: 3.2em; letter-spacing: 12px;
-            background: var(--gr-oro);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 5s linear infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 191, 0, 0.5));
-            margin: 35px 0; text-transform: uppercase;
+            font-weight: 900; font-size: 2.2em; letter-spacing: 6px;
+            color: var(--gold-text);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 2px 2px 2px #000;
+            margin: 15px 0; text-transform: uppercase;
             text-align: center;
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-
-        /* CONTADOR ESTILO SEGUNDA IMAGEN */
+        /* CONTADOR PEQUEÑO */
         .counter-wrapper {
-            padding: 2px;
+            padding: 1.5px;
             background: #fff;
-            border-radius: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 0 25px rgba(241, 211, 130, 0.4);
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(241, 211, 130, 0.3);
         }
 
         #credit-counter {
             background: var(--gr-contador);
-            padding: 10px 35px;
-            border-radius: 50px;
-            border: 1px solid #000;
-            font-size: 1.1em; color: #fff;
-            display: flex; align-items: center;
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-size: 0.9em; color: #fff;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* CICLOS CON ILUMINACIÓN TOTAL (CUADRO Y LETRAS) */
+        /* CICLOS ILUMINADOS Y MÁS PEQUEÑOS */
         .cycle-header {
             font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            color: #fff; 
-            padding: 16px 25px; 
-            border-radius: 14px;
+            letter-spacing: 2px;
+            padding: 10px 15px; 
+            border-radius: 10px;
             font-weight: 900; 
-            text-transform: uppercase;
-            margin-bottom: 30px; 
-            text-align: center; 
-            font-size: 1.3em;
-            border: 1.5px solid rgba(255, 255, 255, 0.7);
-            position: relative;
-            /* Iluminación de las letras del ciclo */
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+            margin-bottom: 20px; 
+            font-size: 1em;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            text-shadow: 0 0 8px rgba(255,255,255,0.7), 1px 1px 2px #000;
         }
 
-        /* Ciclos Impares (Verde) */
         .cycle-column:nth-child(odd) .cycle-header { 
             background: var(--gr-verde); 
-            box-shadow: 0 0 30px rgba(159, 180, 94, 0.8), 
-                        inset 0 0 20px rgba(255,255,255,0.3);
-            text-shadow: 0 0 12px rgba(159, 180, 94, 1), 0 0 5px #fff;
+            box-shadow: 0 0 20px rgba(159, 180, 94, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
         }
 
-        /* Ciclos Pares (Naranja) */
         .cycle-column:nth-child(even) .cycle-header { 
             background: var(--gr-naranja); 
-            box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), 
-                        inset 0 0 20px rgba(255,255,255,0.3);
-            text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
+            box-shadow: 0 0 20px rgba(230, 111, 64, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
         }
 
-        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
-        .cycle-column { min-width: 280px; }
+        .curriculum-container { display: flex; overflow-x: auto; gap: 20px; width: 98vw; padding: 10px; }
+        .cycle-column { min-width: 230px; }
 
-        /* CURSOS */
+        /* CURSOS COMPACTOS */
         .course {
-            background: #121212;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: #111;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .course:hover {
-            transform: translateY(-5px);
-            background: #1a1a1a;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.8);
-        }
-
-        /* CURSO CLICKEADO: LUZ TENUE */
-        .course.approved {
-            background: var(--gr-mostaza);
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
-        }
-
-        /* CURSO CLICKEADO + HOVER: GRANDE Y BRILLANTE */
-        .course.approved:hover {
-            transform: scale(1.1) translateY(-10px);
-            box-shadow: 0 0 45px rgba(248, 236, 137, 1), inset 0 0 15px rgba(255,255,255,0.6);
-            filter: brightness(1.2);
-        }
-
-        /* TEXTOS CON SOMBRAS MARCADAS */
+        /* SOMBRAS EN TEXTOS (Binomio, Código, Créditos) */
         .code { 
-            font-size: 0.85em; font-weight: 900; color: var(--gold); display: block; 
-            margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9);
+            font-size: 0.75em; font-weight: 900; color: var(--gold-text); 
+            display: block; margin-bottom: 3px;
+            text-shadow: 2px 2px 3px #000; /* Sombra fuerte solicitada */
         }
         .name { 
-            font-size: 1em; font-weight: 700; color: #fff; 
-            text-transform: uppercase; line-height: 1.3;
-            text-shadow: 2px 2px 4px rgba(0,0,0,1);
+            font-size: 0.85em; font-weight: 700; color: #fff; 
+            text-transform: uppercase; line-height: 1.2;
+            text-shadow: 2px 2px 3px #000; /* Sombra fuerte solicitada */
         }
         .cred { 
-            font-size: 0.85em; color: #ccc; margin-top: 15px; 
+            font-size: 0.75em; color: #bbb; margin-top: 8px; 
             display: flex; align-items: center; font-weight: 700;
-            text-shadow: 2px 2px 3px rgba(0,0,0,1);
+            text-shadow: 1px 1px 2px #000; /* Sombra fuerte solicitada */
         }
 
-        .course.approved .name, .course.approved .cred, .course.approved .code {
-            color: #fff;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-        }
-
-        /* EMOJI CON SOMBRA FUERTE */
+        /* EMOJI CON SOMBRA */
         .emoji { 
-            margin-right: 10px; 
-            filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); 
+            margin-right: 6px; 
+            filter: drop-shadow(2px 2px 2px #000); 
+        }
+
+        /* ESTADO APROBADO */
+        .course.approved {
+            background: var(--gr-mostaza);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 0 15px rgba(229, 183, 116, 0.3);
+        }
+
+        .course.approved:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--gold-text);
         }
 
         /* Scrollbar */
-        .curriculum-container::-webkit-scrollbar { height: 10px; }
-        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; border: 2px solid var(--bg-dark); }
+        .curriculum-container::-webkit-scrollbar { height: 6px; }
+        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -172,7 +138,7 @@
     
     <div class="counter-wrapper">
         <div id="credit-counter">
-            <span class="emoji">🍂</span> #créditos Llevados: <span id="total-credits">0</span>
+            <span class="emoji">🍂</span> Créditos: <span id="total-credits">0</span>
         </div>
     </div>
 
@@ -222,7 +188,7 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CRÉDITOS</span>
+                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CR.</span>
                     `;
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
