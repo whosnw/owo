@@ -3,141 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Supreme Compact Glow</title>
+    <title>Malla IQ - Supreme Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #121212;
-            --gr-verde: linear-gradient(180deg, #9FB45E 0%, #5B6734 100%);
-            --gr-naranja: linear-gradient(180deg, #E66F40 0%, #863E21 100%);
+            --bg-dark: #191919;
+            --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
+            --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
+            --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
             --gold: #F8EC89;
-            --glow-white: rgba(255, 255, 255, 0.6);
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
             background-size: 30px 30px;
-            color: #fff; margin: 0; padding: 10px;
+            color: #fff; margin: 0; padding: 15px;
             display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden;
         }
 
+        /* TÍTULO RESTAURADO (BRILLO FUERTE) */
         h1 { 
             font-family: 'Cinzel', serif;
-            font-weight: 900; font-size: 2.2em; letter-spacing: 8px;
+            font-weight: 900; font-size: 2.5em; letter-spacing: 10px;
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(248, 236, 137, 0.3));
-            margin: 20px 0; text-transform: uppercase;
+            filter: drop-shadow(0 0 15px rgba(248, 236, 137, 0.6));
+            margin: 30px 0; text-transform: uppercase;
+            text-align: center;
         }
 
-        /* --- CONTADOR COMPACTO --- */
+        /* CONTADOR */
         .counter-wrapper {
             position: relative;
-            padding: 2px;
+            padding: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             background-size: 200% 100%;
             animation: move-border 3s linear infinite;
-            border-radius: 50px;
-            margin-bottom: 40px;
+            border-radius: 8px;
+            margin-bottom: 50px;
         }
 
         #credit-counter {
             font-family: 'Cinzel', serif;
             background: #000;
-            padding: 10px 40px;
-            border-radius: 50px;
-            font-size: 1em;
+            padding: 15px 40px;
+            border-radius: 6px;
+            font-weight: 700; font-size: 1.1em;
             color: var(--gold);
             display: flex; align-items: center;
         }
 
         #total-credits {
-            font-size: 1.4em; color: #fff; margin-left: 15px;
-            text-shadow: 0 0 10px var(--gold);
+            font-size: 1.6em; color: #fff; margin-left: 15px;
+            text-shadow: 0 0 15px #fff, 0 0 30px var(--gold);
+            display: inline-block;
+            animation: breathe-zoom 2.5s infinite ease-in-out;
         }
 
-        /* --- CICLOS CON ILUMINACIÓN EXTRA --- */
+        /* CICLOS: MÁS ILUMINACIÓN */
         .cycle-header {
             font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            color: #fff; 
-            padding: 15px; 
-            border-radius: 8px;
-            font-weight: 900; 
-            text-transform: uppercase;
-            margin-bottom: 30px; 
-            text-align: center; 
-            font-size: 1.1em;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            /* Iluminación tipo Neón */
-            text-shadow: 0 0 10px #fff, 0 0 20px rgba(255,255,255,0.5);
-            transition: 0.3s;
+            letter-spacing: 5px;
+            color: #fff; padding: 18px; border-radius: 10px;
+            font-weight: 900; text-transform: uppercase;
+            margin-bottom: 40px; text-align: center; font-size: 1.3em;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            /* Brillo neón extra */
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            filter: brightness(1.2);
         }
 
         .cycle-column:nth-child(odd) .cycle-header { 
             background: var(--gr-verde); 
-            box-shadow: 0 0 25px rgba(159, 180, 94, 0.7), inset 0 0 15px rgba(255,255,255,0.4); 
+            box-shadow: 0 0 40px rgba(159, 180, 94, 0.8), inset 0 0 20px rgba(255,255,255,0.3); 
         }
         .cycle-column:nth-child(even) .cycle-header { 
             background: var(--gr-naranja); 
-            box-shadow: 0 0 25px rgba(230, 111, 64, 0.7), inset 0 0 15px rgba(255,255,255,0.4); 
+            box-shadow: 0 0 40px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3); 
         }
 
-        /* --- CURSOS MÁS PEQUEÑOS --- */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 25px; width: 98vw; padding: 20px; }
-        .cycle-column { min-width: 280px; }
+        /* CURSOS: EFECTOS ORIGINALES RESTAURADOS */
+        .curriculum-container { display: flex; overflow-x: auto; gap: 40px; width: 95vw; padding: 30px; }
+        .cycle-column { min-width: 320px; }
 
         .course {
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 15px;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
         }
 
         .course:hover {
-            transform: translateY(-5px);
-            background: #252525;
+            transform: scale(1.08) translateY(-8px);
+            background: #1d1d1d;
             border-color: var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 15px rgba(248, 236, 137, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(248, 236, 137, 0.3);
         }
 
         .course.approved {
-            background: linear-gradient(145deg, #856A40, #5a482b);
-            border: 1px solid var(--gold);
+            background: var(--gr-mostaza);
+            border: 2px solid rgba(255,255,255,0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.3);
         }
 
         .code { 
-            font-size: 0.75em; font-weight: 900; color: var(--gold); 
-            display: block; margin-bottom: 5px; opacity: 0.8;
+            font-size: 0.85em; font-weight: 900; color: var(--gold); 
+            display: block; margin-bottom: 8px; letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         .name { 
-            font-size: 0.95em; font-weight: 700; color: #eee; 
-            text-transform: uppercase; line-height: 1.2;
+            font-size: 1.1em; font-weight: 700; color: #fff; 
+            text-transform: uppercase;
+            text-shadow: 2px 2px 6px rgba(0,0,0,1);
         }
         .cred { 
-            font-size: 0.75em; color: #888; margin-top: 12px; 
-            display: flex; align-items: center; font-weight: 700;
+            font-size: 0.8em; color: #777; margin-top: 15px; 
+            display: flex; align-items: center; font-weight: 800;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* --- AJUSTE SOMBRA EMOJI --- */
+        /* SOMBRA DEL EMOJI SUAVIZADA */
         .emoji {
-            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5)); /* Sombra reducida */
-            margin-right: 6px;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.6));
+            margin-right: 8px;
             font-size: 1.1em;
         }
 
         .course.approved .cred { color: #fff; }
-        .course.approved .name { color: #fff; }
 
         @keyframes move-border {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
+        }
+
+        @keyframes breathe-zoom {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.15); filter: brightness(1.3) drop-shadow(0 0 15px var(--gold)); }
         }
     </style>
 </head>
@@ -147,7 +157,7 @@
     
     <div class="counter-wrapper">
         <div id="credit-counter">
-            <span class="emoji">🍂</span> CRÉDITOS LOGRADOS: <span id="total-credits">0</span>
+            <span class="emoji">🍂</span> Créditos Logrados: <span id="total-credits">0</span>
         </div>
     </div>
 
