@@ -7,14 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #070707;
-            /* Degradados de abajo hacia arriba */
+            --bg-dark: #050505;
+            /* Degradados de abajo hacia arriba (Oscuro a Claro) */
             --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
             --gr-contador: linear-gradient(0deg, #9c7a31 0%, #f1d382 100%);
             --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-            /* Dorado Premium para el título */
-            --gr-oro-brillante: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            /* Dorado Metálico para el Título */
+            --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
             --gold: #F8EC89;
         }
 
@@ -27,17 +27,18 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* TÍTULO CON BRILLO METÁLICO ANIMADO */
+        /* TÍTULO DORADO CON BRILLO EXTREMO */
         h1 { 
             font-family: 'Cinzel', serif;
-            font-weight: 900; font-size: 3em; letter-spacing: 10px;
-            background: var(--gr-oro-brillante);
+            font-weight: 900; font-size: 3.2em; letter-spacing: 12px;
+            background: var(--gr-oro);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-            filter: drop-shadow(0 0 15px rgba(185, 147, 54, 0.6));
-            margin: 30px 0; text-transform: uppercase;
+            animation: shine 5s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 191, 0, 0.5));
+            margin: 35px 0; text-transform: uppercase;
+            text-align: center;
         }
 
         @keyframes shine {
@@ -47,114 +48,122 @@
         /* CONTADOR ESTILO SEGUNDA IMAGEN */
         .counter-wrapper {
             padding: 2px;
-            background: rgba(255, 255, 255, 0.2);
+            background: #fff;
             border-radius: 50px;
-            margin-bottom: 35px;
-            box-shadow: 0 0 20px rgba(241, 211, 130, 0.3);
+            margin-bottom: 40px;
+            box-shadow: 0 0 25px rgba(241, 211, 130, 0.4);
         }
 
         #credit-counter {
             background: var(--gr-contador);
-            padding: 8px 30px;
+            padding: 10px 35px;
             border-radius: 50px;
-            border: 2px solid #fff;
+            border: 1px solid #000;
             font-size: 1.1em; color: #fff;
             display: flex; align-items: center;
             font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
-        /* CICLOS CON ILUMINACIÓN (ESTILO IMAGEN 1) */
+        /* CICLOS CON ILUMINACIÓN TOTAL (CUADRO Y LETRAS) */
         .cycle-header {
             font-family: 'Cinzel', serif;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: #fff; 
-            padding: 14px 20px; 
-            border-radius: 12px;
+            padding: 16px 25px; 
+            border-radius: 14px;
             font-weight: 900; 
             text-transform: uppercase;
             margin-bottom: 30px; 
             text-align: center; 
-            font-size: 1.1em;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            text-shadow: 0 0 8px rgba(255,255,255,0.6);
+            font-size: 1.3em;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            /* Iluminación de las letras del ciclo */
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
         }
 
-        /* Iluminación verde */
+        /* Ciclos Impares (Verde) */
         .cycle-column:nth-child(odd) .cycle-header { 
             background: var(--gr-verde); 
-            box-shadow: 0 0 20px rgba(159, 180, 94, 0.7), inset 0 0 15px rgba(255,255,255,0.3); 
-        }
-        /* Iluminación naranja */
-        .cycle-column:nth-child(even) .cycle-header { 
-            background: var(--gr-naranja); 
-            box-shadow: 0 0 20px rgba(230, 111, 64, 0.7), inset 0 0 15px rgba(255,255,255,0.3); 
+            box-shadow: 0 0 30px rgba(159, 180, 94, 0.8), 
+                        inset 0 0 20px rgba(255,255,255,0.3);
+            text-shadow: 0 0 12px rgba(159, 180, 94, 1), 0 0 5px #fff;
         }
 
-        .curriculum-container { display: flex; overflow-x: auto; gap: 30px; width: 95vw; padding: 20px; }
-        .cycle-column { min-width: 270px; }
+        /* Ciclos Pares (Naranja) */
+        .cycle-column:nth-child(even) .cycle-header { 
+            background: var(--gr-naranja); 
+            box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), 
+                        inset 0 0 20px rgba(255,255,255,0.3);
+            text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
+        }
+
+        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
+        .cycle-column { min-width: 280px; }
 
         /* CURSOS */
         .course {
-            background: #151515;
+            background: #121212;
             border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         .course:hover {
             transform: translateY(-5px);
             background: #1a1a1a;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.8);
         }
 
         /* CURSO CLICKEADO: LUZ TENUE */
         .course.approved {
             background: var(--gr-mostaza);
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 0 15px rgba(229, 183, 116, 0.4);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
         }
 
-        /* CURSO CLICKEADO + HOVER: GRANDE Y MUCHA LUZ */
+        /* CURSO CLICKEADO + HOVER: GRANDE Y BRILLANTE */
         .course.approved:hover {
             transform: scale(1.1) translateY(-10px);
-            box-shadow: 0 0 40px rgba(248, 236, 137, 0.9), inset 0 0 15px rgba(255,255,255,0.6);
+            box-shadow: 0 0 45px rgba(248, 236, 137, 1), inset 0 0 15px rgba(255,255,255,0.6);
             filter: brightness(1.2);
         }
 
-        /* SOMBRAS EN TEXTOS DE LOS CURSOS */
+        /* TEXTOS CON SOMBRAS MARCADAS */
         .code { 
-            font-size: 0.8em; font-weight: 900; color: var(--gold); display: block; 
-            margin-bottom: 5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-size: 0.85em; font-weight: 900; color: var(--gold); display: block; 
+            margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9);
         }
         .name { 
-            font-size: 0.95em; font-weight: 700; color: #fff; 
+            font-size: 1em; font-weight: 700; color: #fff; 
             text-transform: uppercase; line-height: 1.3;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 4px rgba(0,0,0,1);
         }
         .cred { 
-            font-size: 0.8em; color: #aaa; margin-top: 12px; 
+            font-size: 0.85em; color: #ccc; margin-top: 15px; 
             display: flex; align-items: center; font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 3px rgba(0,0,0,1);
         }
 
         .course.approved .name, .course.approved .cred, .course.approved .code {
             color: #fff;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
         }
 
-        /* EMOJI CON SOMBRA */
+        /* EMOJI CON SOMBRA FUERTE */
         .emoji { 
-            margin-right: 8px; 
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.7)); 
+            margin-right: 10px; 
+            filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); 
         }
 
         /* Scrollbar */
-        .curriculum-container::-webkit-scrollbar { height: 8px; }
-        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; }
+        .curriculum-container::-webkit-scrollbar { height: 10px; }
+        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; border: 2px solid var(--bg-dark); }
     </style>
 </head>
 <body>
