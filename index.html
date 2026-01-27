@@ -1,236 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malla IQ - Supreme Edition</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla IQ - Supreme Edition</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES Y BASE --- */
+        :root {
+            --bg-dark: #050505;
+            --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
+            --gr-contador: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 55%, #aa771c 100%);
+            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+            --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
+            --gold: #F8EC89;
+        }
 
-<style>
-:root {
-    --bg-dark: #050505;
-    --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
-    --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
-    --gr-contador: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 55%, #aa771c 100%);
-    --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-    --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
-    --gold: #F8EC89;
-}
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: #fff; 
+            margin: 0; 
+            padding: 10px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
 
-body {
-    font-family: 'Quicksand', sans-serif;
-    background-color: var(--bg-dark);
-    background-image: radial-gradient(rgba(248,236,137,0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
-    color: #fff;
-    margin: 0;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        /* --- ENCABEZADO --- */
+        h1 { 
+            font-family: 'Cinzel', serif;
+            font-weight: 900; 
+            font-size: 3.2em; 
+            letter-spacing: 12px;
+            background: var(--gr-oro);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 191, 0, 0.5));
+            margin: 35px 0; 
+            text-transform: uppercase;
+            text-align: center;
+        }
 
-h1 {
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
-    font-size: 3.2em;
-    letter-spacing: 12px;
-    background: var(--gr-oro);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 5s linear infinite;
-    margin: 35px 0;
-    text-align: center;
-}
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
 
-@keyframes shine {
-    to { background-position: 200% center; }
-}
+        /* --- CONTADOR DE CRÉDITOS --- */
+        .counter-wrapper {
+            position: relative;
+            padding: 5px 0;
+            margin-bottom: 40px;
+            border-top: 2px solid transparent;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
+            box-shadow: 0 0 25px rgba(191, 149, 63, 0.3); 
+            overflow: hidden;
+        }
 
-/* ===== PROGRESO TOTAL (TU CÓDIGO) ===== */
-.counter-wrapper {
-    position: relative;
-    padding: 5px 0;
-    margin-bottom: 40px;
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-    border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
-    box-shadow: 0 0 25px rgba(191,149,63,0.3);
-    overflow: hidden;
-}
+        #credit-counter {
+            background: var(--bg-dark);
+            padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
 
-/* 🔥 EFECTO NUEVO: RAYOS DE LUZ */
-.counter-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: -60%;
-    background: conic-gradient(
-        rgba(255,255,255,0),
-        rgba(255,223,120,0.35),
-        rgba(255,255,255,0),
-        rgba(255,223,120,0.6),
-        rgba(255,255,255,0)
-    );
-    animation: rayosProgreso 6s linear infinite;
-    filter: blur(14px);
-    z-index: 0;
-}
+        .counter-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            background-image: 
+                radial-gradient(circle, #fff 1px, transparent 1px),
+                radial-gradient(circle, #fcf6ba 1px, transparent 1px),
+                radial-gradient(circle, #fff 1.5px, transparent 1.5px);
+            background-size: 80px 40px, 110px 60px, 150px 30px;
+            opacity: 0.7;
+            animation: moverLuciernagas 8s infinite linear;
+        }
 
-@keyframes rayosProgreso {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+        @keyframes moverLuciernagas {
+            from { background-position: 0 0, 0 0, 0 0; }
+            to { background-position: 400px 20px, -300px 40px, 200px -10px; }
+        }
 
-#credit-counter {
-    background: var(--bg-dark);
-    padding: 15px 50px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-    z-index: 2;
-}
+        #credit-counter span:nth-child(2) {
+            font-family: 'Cinzel', serif;
+            color: #fcf6ba;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
 
-#credit-counter span:nth-child(2) {
-    font-family: 'Cinzel', serif;
-    color: #fcf6ba;
-    font-weight: 900;
-    letter-spacing: 3px;
-}
+        #total-credits {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5em;
+            color: #ffffff;
+            font-weight: 900;
+            display: inline-block;
+            animation: latidoSuave 3s infinite ease-in-out;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
 
-#total-credits {
-    font-family: 'Cinzel', serif;
-    font-size: 2.5em;
-    font-weight: 900;
-    animation: latidoSuave 3s infinite ease-in-out;
-}
+        @keyframes latidoSuave {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
 
-@keyframes latidoSuave {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-}
+        /* --- CONTENEDOR DE CURSOS --- */
+        .curriculum-container { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 35px; 
+            width: 95vw; 
+            padding: 25px; 
+        }
 
-/* ✨ EFECTO NUEVO: DESTELLOS */
-.spark {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: radial-gradient(circle, #fff, transparent);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: sparkMove linear infinite;
-    z-index: 1;
-}
+        .cycle-column { min-width: 280px; }
 
-@keyframes sparkMove {
-    from { transform: translate(0,0) scale(0.5); opacity: 1; }
-    to { transform: translate(var(--x),var(--y)) scale(1.6); opacity: 0; }
-}
+        .cycle-header {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            color: #fff; 
+            padding: 16px 25px; 
+            border-radius: 14px;
+            font-weight: 900; 
+            text-transform: uppercase;
+            margin-bottom: 30px; 
+            text-align: center; 
+            font-size: 1.3em;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+        }
 
-/* ===== RESTO DE TU CSS SIN TOCAR ===== */
-.curriculum-container { display:flex; overflow-x:auto; gap:35px; width:95vw; padding:25px; }
-.cycle-column { min-width:280px; }
-.course { background:#121212; border-radius:12px; padding:20px; margin-bottom:20px; cursor:pointer; }
-.course.approved { background:var(--gr-mostaza); }
-.emoji { margin-right:10px; }
+        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
+        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
-</style>
+        /* --- TARJETAS DE CURSO --- */
+        .course {
+            background: #121212;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .course:hover { transform: translateY(-5px); background: #1a1a1a; }
+
+        .course.approved {
+            background: var(--gr-mostaza);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .course.approved:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .code { font-size: 0.85em; font-weight: 900; color: var(--gold); display: block; }
+        .name { font-size: 1em; font-weight: 700; color: #fff; text-transform: uppercase; }
+        .cred { font-size: 0.85em; color: #ccc; margin-top: 10px; display: block; font-weight: 700; }
+
+        .emoji { margin-right: 8px; }
+
+        /* Scrollbar */
+        .curriculum-container::-webkit-scrollbar { height: 8px; }
+        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; }
+    </style>
 </head>
-
 <body>
 
-<h1>Avance Curricular</h1>
-
-<div class="counter-wrapper">
-    <div id="credit-counter">
-        <span class="emoji">🍂</span>
-        <span>PROGRESO TOTAL:</span>
-        <div id="total-credits">0</div>
+    <h1>Avance Curricular</h1>
+    
+    <div class="counter-wrapper">
+        <div id="credit-counter">
+            <span class="emoji">🍂</span>
+            <span>PROGRESO TOTAL:</span>
+            <div id="total-credits">0</div>
+        </div>
     </div>
-</div>
 
-<div class="curriculum-container" id="curriculum"></div>
+    <div class="curriculum-container" id="curriculum"></div>
 
-<script>
-const coursesData = {
-    "Ciclo 1": [
-        { id:"BD101", name:"DIBUJO EN INGENIERÍA I", credits:2 },
-        { id:"BF101", name:"FÍSICA I", credits:5 },
-        { id:"BMA01", name:"CÁLCULO DIFERENCIAL", credits:5 },
-        { id:"BMA03", name:"ÁLGEBRA LINEAL", credits:4 },
-        { id:"BQU01", name:"QUÍMICA I", credits:5 }
-    ],
-    "Ciclo 2": [
-        { id:"BD102", name:"DIBUJO EN INGENIERÍA II", credits:3 },
-        { id:"BF102", name:"FÍSICA II", credits:5 },
-        { id:"BMA02", name:"CÁLCULO INTEGRAL", credits:5 },
-        { id:"BMA04", name:"MATEMÁTICAS BÁSICAS", credits:4 },
-        { id:"BQU02", name:"QUÍMICA II", credits:5 }
-    ],
-    "Ciclo 3": [
-        { id:"BEF01", name:"ÉTICA Y FILOSOFÍA POLÍTICA", credits:2 },
-        { id:"BEG01", name:"ECONOMÍA GENERAL", credits:3 },
-        { id:"BF103", name:"FÍSICA III", credits:5 },
-        { id:"BMA05", name:"MATEMÁTICAS SUPERIOR I", credits:4 },
-        { id:"QU216", name:"QUÍMICA INORGÁNICA", credits:5 }
-    ]
-};
+    <script>
+        const coursesData = {
+            "Ciclo 1": [
+                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2 },
+                { id: "BF101", name: "FÍSICA I", credits: 5 },
+                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5 },
+                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4 },
+                { id: "BQU01", name: "QUÍMICA I", credits: 5 }
+            ],
+            "Ciclo 2": [
+                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3 },
+                { id: "BF102", name: "FÍSICA II", credits: 5 },
+                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
+                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
+                { id: "BQU02", name: "QUÍMICA II", credits: 5 }
+            ],
+            "Ciclo 3": [
+                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
+                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
+                { id: "BF103", name: "FÍSICA III", credits: 5 },
+                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
+                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
+            ]
+        };
 
-let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
+        // Cargar estado de aprobación desde LocalStorage
+        let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
-function render(){
-    const container = document.getElementById('curriculum');
-    container.innerHTML = '';
-    let total = 0;
+        function render() {
+            const container = document.getElementById('curriculum');
+            container.innerHTML = '';
+            let totalCredits = 0;
 
-    for(let cycle in coursesData){
-        const col = document.createElement('div');
-        col.className = 'cycle-column';
-        col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+            Object.keys(coursesData).forEach(cycle => {
+                const col = document.createElement('div');
+                col.className = 'cycle-column';
+                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-        coursesData[cycle].forEach(c=>{
-            const isApp = approved[c.id];
-            const div = document.createElement('div');
-            div.className = `course ${isApp ? 'approved':''}`;
-            div.innerHTML = `
-                <span class="code">${c.id}</span>
-                <span class="name">${c.name}</span>
-                <span class="cred"><span class="emoji">🍂</span>${c.credits} CRÉDITOS</span>
-            `;
-            div.onclick = ()=>{
-                if(isApp) delete approved[c.id];
-                else approved[c.id] = true;
-                localStorage.setItem('malla_iq_final', JSON.stringify(approved));
-                render();
-            };
-            if(isApp) total += c.credits;
-            col.appendChild(div);
-        });
-        container.appendChild(col);
-    }
-    document.getElementById('total-credits').innerText = total;
-}
-render();
+                coursesData[cycle].forEach(course => {
+                    const isApproved = approved[course.id];
+                    if (isApproved) totalCredits += course.credits;
 
-/* ✨ JS NUEVO: DESTELLOS RANDOM */
-const wrapper = document.querySelector('.counter-wrapper');
+                    const card = document.createElement('div');
+                    card.className = `course ${isApproved ? 'approved' : ''}`;
+                    card.innerHTML = `
+                        <span class="code">${course.id}</span>
+                        <span class="name">${course.name}</span>
+                        <span class="cred"><span class="emoji">🍂</span> ${course.credits} CRÉDITOS</span>
+                    `;
 
-function crearSpark(){
-    const s = document.createElement('div');
-    s.className = 'spark';
-    const ang = Math.random()*Math.PI*2;
-    const dist = 150 + Math.random()*200;
-    s.style.setProperty('--x', `${Math.cos(ang)*dist}px`);
-    s.style.setProperty('--y', `${Math.sin(ang)*dist}px`);
-    s.style.left = '50%';
-    s.style.top = '50%';
-    s.style.animationDuration = `${2+Math.random()*2}s`;
-    wrapper.appendChild(s);
-    setTimeout(()=>s.remove(),4000);
-}
-setInterval(crearSpark,180);
-</script>
+                    card.onclick = () => toggleCourse(course.id);
+                    col.appendChild(card);
+                });
+                container.appendChild(col);
+            });
 
+            document.getElementById('total-credits').innerText = totalCredits;
+        }
+
+        function toggleCourse(courseId) {
+            if (approved[courseId]) {
+                delete approved[courseId];
+            } else {
+                approved[courseId] = true;
+            }
+            localStorage.setItem('malla_iq_final', JSON.stringify(approved));
+            render();
+        }
+
+        // Inicializar
+        render();
+    </script>
 </body>
 </html>
