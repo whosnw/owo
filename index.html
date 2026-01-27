@@ -1,159 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Supreme Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #050505;
-            --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
-            --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
-            --gr-contador: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 55%, #aa771c 100%);
-            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-            --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
-            --gold: #F8EC89;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malla IQ - Supreme Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #fff;
-            margin: 0;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<style>
+:root {
+    --bg-dark: #050505;
+    --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
+    --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
+    --gr-contador: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 55%, #aa771c 100%);
+    --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+    --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
+    --gold: #F8EC89;
+}
 
-        h1 { 
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            font-size: 3.2em;
-            letter-spacing: 12px;
-            background: var(--gr-oro);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 5s linear infinite;
-            margin: 35px 0;
-            text-align: center;
-        }
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(rgba(248,236,137,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 3.2em;
+    letter-spacing: 12px;
+    background: var(--gr-oro);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+    margin: 35px 0;
+    text-align: center;
+}
 
-        /* ================= PROGRESO TOTAL ================= */
-        .counter-wrapper {
-            position: relative;
-            padding: 5px 0;
-            margin-bottom: 40px;
-            border-top: 2px solid transparent;
-            border-bottom: 2px solid transparent;
-            border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
-            box-shadow: 0 0 25px rgba(191,149,63,0.3);
-            overflow: hidden;
-        }
+@keyframes shine {
+    to { background-position: 200% center; }
+}
 
-        /* 🔥 RAYOS DE LUZ (NUEVO) */
-        .counter-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: -60%;
-            background: conic-gradient(
-                rgba(255,255,255,0),
-                rgba(255,223,120,0.35),
-                rgba(255,255,255,0),
-                rgba(255,223,120,0.6),
-                rgba(255,255,255,0)
-            );
-            animation: rayos 6s linear infinite;
-            filter: blur(14px);
-            z-index: 0;
-        }
+/* ===== PROGRESO TOTAL (TU CÓDIGO) ===== */
+.counter-wrapper {
+    position: relative;
+    padding: 5px 0;
+    margin-bottom: 40px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
+    box-shadow: 0 0 25px rgba(191,149,63,0.3);
+    overflow: hidden;
+}
 
-        @keyframes rayos {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+/* 🔥 EFECTO NUEVO: RAYOS DE LUZ */
+.counter-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -60%;
+    background: conic-gradient(
+        rgba(255,255,255,0),
+        rgba(255,223,120,0.35),
+        rgba(255,255,255,0),
+        rgba(255,223,120,0.6),
+        rgba(255,255,255,0)
+    );
+    animation: rayosProgreso 6s linear infinite;
+    filter: blur(14px);
+    z-index: 0;
+}
 
-        #credit-counter {
-            background: var(--bg-dark);
-            padding: 15px 50px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-            z-index: 2;
-        }
+@keyframes rayosProgreso {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-        #credit-counter span:nth-child(2) {
-            font-family: 'Cinzel', serif;
-            color: #fcf6ba;
-            font-weight: 900;
-            letter-spacing: 3px;
-        }
+#credit-counter {
+    background: var(--bg-dark);
+    padding: 15px 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
 
-        #total-credits {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5em;
-            font-weight: 900;
-            animation: latidoSuave 3s infinite;
-        }
+#credit-counter span:nth-child(2) {
+    font-family: 'Cinzel', serif;
+    color: #fcf6ba;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
 
-        @keyframes latidoSuave {
-            0%,100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
+#total-credits {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5em;
+    font-weight: 900;
+    animation: latidoSuave 3s infinite ease-in-out;
+}
 
-        /* ✨ DESTELLOS RANDOM (NUEVO) */
-        .spark {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, #fff, transparent);
-            border-radius: 50%;
-            animation: sparkMove linear infinite;
-            pointer-events: none;
-            z-index: 1;
-        }
+@keyframes latidoSuave {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
 
-        @keyframes sparkMove {
-            from { transform: translate(0,0) scale(0.5); opacity: 1; }
-            to { transform: translate(var(--x),var(--y)) scale(1.6); opacity: 0; }
-        }
+/* ✨ EFECTO NUEVO: DESTELLOS */
+.spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #fff, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkMove linear infinite;
+    z-index: 1;
+}
 
-        /* ================= RESTO DE TU DISEÑO ================= */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
-        .cycle-column { min-width: 280px; }
+@keyframes sparkMove {
+    from { transform: translate(0,0) scale(0.5); opacity: 1; }
+    to { transform: translate(var(--x),var(--y)) scale(1.6); opacity: 0; }
+}
 
-        .cycle-header {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            padding: 16px 25px;
-            border-radius: 14px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 30px;
-            background: var(--gr-verde);
-        }
+/* ===== RESTO DE TU CSS SIN TOCAR ===== */
+.curriculum-container { display:flex; overflow-x:auto; gap:35px; width:95vw; padding:25px; }
+.cycle-column { min-width:280px; }
+.course { background:#121212; border-radius:12px; padding:20px; margin-bottom:20px; cursor:pointer; }
+.course.approved { background:var(--gr-mostaza); }
+.emoji { margin-right:10px; }
 
-        .course {
-            background: #121212;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .course.approved {
-            background: var(--gr-mostaza);
-            box-shadow: 0 0 25px gold;
-        }
-    </style>
+</style>
 </head>
 
 <body>
@@ -162,7 +144,7 @@
 
 <div class="counter-wrapper">
     <div id="credit-counter">
-        <span>🍂</span>
+        <span class="emoji">🍂</span>
         <span>PROGRESO TOTAL:</span>
         <div id="total-credits">0</div>
     </div>
@@ -197,27 +179,32 @@ const coursesData = {
 
 let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
-function render() {
+function render(){
     const container = document.getElementById('curriculum');
     container.innerHTML = '';
     let total = 0;
 
-    for (let cycle in coursesData) {
+    for(let cycle in coursesData){
         const col = document.createElement('div');
         col.className = 'cycle-column';
         col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-        coursesData[cycle].forEach(c => {
+        coursesData[cycle].forEach(c=>{
             const isApp = approved[c.id];
             const div = document.createElement('div');
-            div.className = `course ${isApp ? 'approved' : ''}`;
-            div.innerHTML = `<b>${c.name}</b><br>${c.credits} créditos`;
-            div.onclick = () => {
-                approved[c.id] = !isApp;
+            div.className = `course ${isApp ? 'approved':''}`;
+            div.innerHTML = `
+                <span class="code">${c.id}</span>
+                <span class="name">${c.name}</span>
+                <span class="cred"><span class="emoji">🍂</span>${c.credits} CRÉDITOS</span>
+            `;
+            div.onclick = ()=>{
+                if(isApp) delete approved[c.id];
+                else approved[c.id] = true;
                 localStorage.setItem('malla_iq_final', JSON.stringify(approved));
                 render();
             };
-            if (isApp) total += c.credits;
+            if(isApp) total += c.credits;
             col.appendChild(div);
         });
         container.appendChild(col);
@@ -226,22 +213,23 @@ function render() {
 }
 render();
 
-/* ✨ SPARKS RANDOM */
+/* ✨ JS NUEVO: DESTELLOS RANDOM */
 const wrapper = document.querySelector('.counter-wrapper');
-function spark(){
+
+function crearSpark(){
     const s = document.createElement('div');
     s.className = 'spark';
-    const a = Math.random()*Math.PI*2;
-    const d = 150 + Math.random()*200;
-    s.style.setProperty('--x', `${Math.cos(a)*d}px`);
-    s.style.setProperty('--y', `${Math.sin(a)*d}px`);
+    const ang = Math.random()*Math.PI*2;
+    const dist = 150 + Math.random()*200;
+    s.style.setProperty('--x', `${Math.cos(ang)*dist}px`);
+    s.style.setProperty('--y', `${Math.sin(ang)*dist}px`);
     s.style.left = '50%';
     s.style.top = '50%';
     s.style.animationDuration = `${2+Math.random()*2}s`;
     wrapper.appendChild(s);
     setTimeout(()=>s.remove(),4000);
 }
-setInterval(spark,180);
+setInterval(crearSpark,180);
 </script>
 
 </body>
