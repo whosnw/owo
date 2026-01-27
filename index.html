@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malla IQ - Supreme Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg-dark: #050505;
@@ -20,7 +19,7 @@
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248,236,137,0.03) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
             color: #fff;
             margin: 0;
@@ -30,7 +29,7 @@
             align-items: center;
         }
 
-        h1 {
+        h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900;
             font-size: 3.2em;
@@ -47,26 +46,26 @@
             to { background-position: 200% center; }
         }
 
-        /* ===== PROGRESO TOTAL ===== */
+        /* ================= PROGRESO TOTAL ================= */
         .counter-wrapper {
             position: relative;
+            padding: 5px 0;
             margin-bottom: 40px;
-            padding: 10px 0;
             border-top: 2px solid transparent;
             border-bottom: 2px solid transparent;
-            border-image: linear-gradient(90deg, transparent, gold, transparent) 1;
+            border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
+            box-shadow: 0 0 25px rgba(191,149,63,0.3);
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(255,215,100,0.4);
         }
 
-        /* RAYOS DE LUZ */
+        /* 🔥 RAYOS DE LUZ (NUEVO) */
         .counter-wrapper::after {
             content: '';
             position: absolute;
             inset: -60%;
             background: conic-gradient(
                 rgba(255,255,255,0),
-                rgba(255,223,120,0.4),
+                rgba(255,223,120,0.35),
                 rgba(255,255,255,0),
                 rgba(255,223,120,0.6),
                 rgba(255,255,255,0)
@@ -85,32 +84,32 @@
             background: var(--bg-dark);
             padding: 15px 50px;
             display: flex;
-            gap: 20px;
             align-items: center;
+            gap: 20px;
             position: relative;
             z-index: 2;
         }
 
         #credit-counter span:nth-child(2) {
             font-family: 'Cinzel', serif;
+            color: #fcf6ba;
             font-weight: 900;
             letter-spacing: 3px;
-            color: #fcf6ba;
         }
 
         #total-credits {
             font-family: 'Cinzel', serif;
             font-size: 2.5em;
             font-weight: 900;
-            animation: pulse 3s infinite;
+            animation: latidoSuave 3s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes latidoSuave {
             0%,100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.08); }
         }
 
-        /* DESTELLOS */
+        /* ✨ DESTELLOS RANDOM (NUEVO) */
         .spark {
             position: absolute;
             width: 4px;
@@ -119,30 +118,26 @@
             border-radius: 50%;
             animation: sparkMove linear infinite;
             pointer-events: none;
+            z-index: 1;
         }
 
         @keyframes sparkMove {
             from { transform: translate(0,0) scale(0.5); opacity: 1; }
-            to { transform: translate(var(--x),var(--y)) scale(1.8); opacity: 0; }
+            to { transform: translate(var(--x),var(--y)) scale(1.6); opacity: 0; }
         }
 
-        .curriculum-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 35px;
-            width: 95vw;
-            padding: 25px;
-        }
-
+        /* ================= RESTO DE TU DISEÑO ================= */
+        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
         .cycle-column { min-width: 280px; }
 
         .cycle-header {
             font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            padding: 16px 25px;
+            border-radius: 14px;
             font-weight: 900;
             text-align: center;
-            margin-bottom: 25px;
-            padding: 14px;
-            border-radius: 14px;
+            margin-bottom: 30px;
             background: var(--gr-verde);
         }
 
@@ -180,59 +175,51 @@ const coursesData = {
     "Ciclo 1": [
         { id:"BD101", name:"DIBUJO EN INGENIERÍA I", credits:2 },
         { id:"BF101", name:"FÍSICA I", credits:5 },
-        { id:"BMA01", name:"CÁLCULO DIFERENCIAL", credits:5 }
+        { id:"BMA01", name:"CÁLCULO DIFERENCIAL", credits:5 },
+        { id:"BMA03", name:"ÁLGEBRA LINEAL", credits:4 },
+        { id:"BQU01", name:"QUÍMICA I", credits:5 }
+    ],
+    "Ciclo 2": [
+        { id:"BD102", name:"DIBUJO EN INGENIERÍA II", credits:3 },
+        { id:"BF102", name:"FÍSICA II", credits:5 },
+        { id:"BMA02", name:"CÁLCULO INTEGRAL", credits:5 },
+        { id:"BMA04", name:"MATEMÁTICAS BÁSICAS", credits:4 },
+        { id:"BQU02", name:"QUÍMICA II", credits:5 }
+    ],
+    "Ciclo 3": [
+        { id:"BEF01", name:"ÉTICA Y FILOSOFÍA POLÍTICA", credits:2 },
+        { id:"BEG01", name:"ECONOMÍA GENERAL", credits:3 },
+        { id:"BF103", name:"FÍSICA III", credits:5 },
+        { id:"BMA05", name:"MATEMÁTICAS SUPERIOR I", credits:4 },
+        { id:"QU216", name:"QUÍMICA INORGÁNICA", credits:5 }
     ]
 };
 
-let approved = JSON.parse(localStorage.getItem("malla_iq_final")) || {};
+let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
-function render(){
-    const cont = document.getElementById("curriculum");
-    cont.innerHTML = "";
+function render() {
+    const container = document.getElementById('curriculum');
+    container.innerHTML = '';
     let total = 0;
 
-    for(let ciclo in coursesData){
-        const col = document.createElement("div");
-        col.className = "cycle-column";
-        col.innerHTML = `<div class="cycle-header">${ciclo}</div>`;
+    for (let cycle in coursesData) {
+        const col = document.createElement('div');
+        col.className = 'cycle-column';
+        col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-        coursesData[ciclo].forEach(c=>{
-            const div = document.createElement("div");
-            const ok = approved[c.id];
-            div.className = `course ${ok ? "approved":""}`;
+        coursesData[cycle].forEach(c => {
+            const isApp = approved[c.id];
+            const div = document.createElement('div');
+            div.className = `course ${isApp ? 'approved' : ''}`;
             div.innerHTML = `<b>${c.name}</b><br>${c.credits} créditos`;
-            div.onclick = ()=>{
-                approved[c.id] = !ok;
-                localStorage.setItem("malla_iq_final", JSON.stringify(approved));
+            div.onclick = () => {
+                approved[c.id] = !isApp;
+                localStorage.setItem('malla_iq_final', JSON.stringify(approved));
                 render();
             };
-            if(ok) total += c.credits;
+            if (isApp) total += c.credits;
             col.appendChild(div);
         });
-        cont.appendChild(col);
+        container.appendChild(col);
     }
-    document.getElementById("total-credits").innerText = total;
-}
-render();
-
-/* SPARKS RANDOM */
-const wrapper = document.querySelector(".counter-wrapper");
-
-function spark(){
-    const s = document.createElement("div");
-    s.className = "spark";
-    const a = Math.random()*Math.PI*2;
-    const d = 150+Math.random()*200;
-    s.style.setProperty("--x", `${Math.cos(a)*d}px`);
-    s.style.setProperty("--y", `${Math.sin(a)*d}px`);
-    s.style.left = "50%";
-    s.style.top = "50%";
-    s.style.animationDuration = `${2+Math.random()*2}s`;
-    wrapper.appendChild(s);
-    setTimeout(()=>s.remove(),4000);
-}
-setInterval(spark,160);
-</script>
-
-</body>
-</html>
+    document
