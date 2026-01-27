@@ -3,132 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Compact Gold</title>
+    <title>Malla IQ - Supreme Compact</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
-            --gr-verde: linear-gradient(0deg, #2d3516 0%, #9FB45E 100%);
-            --gr-naranja: linear-gradient(0deg, #522310 0%, #E66F40 100%);
+            --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
             --gr-contador: linear-gradient(0deg, #9c7a31 0%, #f1d382 100%);
-            --gr-mostaza: linear-gradient(0deg, #5c4829 0%, #E5B774 100%);
-            /* Dorado sólido y brillante para el texto */
-            --gold-text: #FFD700;
-            --gold-glow: #fcf6ba;
+            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+            --gr-oro: linear-gradient(90deg, #a67c00, #ffbf00, #ffdc73, #ffbf00, #a67c00);
+            --gold: #F8EC89;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(255, 215, 0, 0.02) 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
+            background-size: 25px 25px;
             color: #fff; margin: 0; padding: 5px;
             display: flex; flex-direction: column; align-items: center;
-            transform: scale(0.95); /* Pequeño ajuste global */
         }
 
-        /* TÍTULO DORADO COMPACTO */
+        /* TÍTULO DORADO ANIMADO - MÁS PEQUEÑO */
         h1 { 
             font-family: 'Cinzel', serif;
-            font-weight: 900; font-size: 2.2em; letter-spacing: 6px;
-            color: var(--gold-text);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 2px 2px 2px #000;
+            font-weight: 900; font-size: 2.2em; letter-spacing: 8px;
+            background: var(--gr-oro);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 191, 0, 0.4));
             margin: 15px 0; text-transform: uppercase;
-            text-align: center;
         }
 
-        /* CONTADOR PEQUEÑO */
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* CONTADOR COMPACTO */
         .counter-wrapper {
-            padding: 1.5px;
+            padding: 2px;
             background: #fff;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(241, 211, 130, 0.3);
+            border-radius: 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(241, 211, 130, 0.3);
         }
 
         #credit-counter {
             background: var(--gr-contador);
-            padding: 5px 20px;
-            border-radius: 30px;
+            padding: 6px 25px;
+            border-radius: 40px;
+            border: 1px solid #000;
             font-size: 0.9em; color: #fff;
+            display: flex; align-items: center;
             font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
         }
 
-        /* CICLOS ILUMINADOS Y MÁS PEQUEÑOS */
+        /* CICLOS ILUMINADOS - TAMAÑO REDUCIDO */
         .cycle-header {
             font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
-            padding: 10px 15px; 
-            border-radius: 10px;
+            letter-spacing: 3px;
+            padding: 12px 20px; 
+            border-radius: 12px;
             font-weight: 900; 
             margin-bottom: 20px; 
-            font-size: 1em;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            text-shadow: 0 0 8px rgba(255,255,255,0.7), 1px 1px 2px #000;
+            font-size: 1.1em;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 8px rgba(255,255,255,0.8), 2px 2px 4px #000;
         }
 
         .cycle-column:nth-child(odd) .cycle-header { 
             background: var(--gr-verde); 
-            box-shadow: 0 0 20px rgba(159, 180, 94, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: 0 0 25px rgba(159, 180, 94, 0.7), inset 0 0 15px rgba(255,255,255,0.3);
         }
 
         .cycle-column:nth-child(even) .cycle-header { 
             background: var(--gr-naranja); 
-            box-shadow: 0 0 20px rgba(230, 111, 64, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: 0 0 25px rgba(230, 111, 64, 0.7), inset 0 0 15px rgba(255,255,255,0.3);
         }
 
-        .curriculum-container { display: flex; overflow-x: auto; gap: 20px; width: 98vw; padding: 10px; }
-        .cycle-column { min-width: 230px; }
+        .curriculum-container { display: flex; overflow-x: auto; gap: 25px; width: 95vw; padding: 15px; }
+        .cycle-column { min-width: 240px; }
 
-        /* CURSOS COMPACTOS */
+        /* CURSOS MÁS COMPACTOS */
         .course {
-            background: #111;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
+            background: #121212;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
-        /* SOMBRAS EN TEXTOS (Binomio, Código, Créditos) */
+        /* SOMBRAS SOLICITADAS EN TODO EL TEXTO */
         .code { 
-            font-size: 0.75em; font-weight: 900; color: var(--gold-text); 
-            display: block; margin-bottom: 3px;
-            text-shadow: 2px 2px 3px #000; /* Sombra fuerte solicitada */
+            font-size: 0.75em; font-weight: 900; color: var(--gold); display: block; 
+            margin-bottom: 4px; text-shadow: 2px 2px 3px #000;
         }
         .name { 
             font-size: 0.85em; font-weight: 700; color: #fff; 
-            text-transform: uppercase; line-height: 1.2;
-            text-shadow: 2px 2px 3px #000; /* Sombra fuerte solicitada */
+            text-transform: uppercase; line-height: 1.3;
+            text-shadow: 2px 2px 4px #000;
         }
         .cred { 
-            font-size: 0.75em; color: #bbb; margin-top: 8px; 
+            font-size: 0.75em; color: #ccc; margin-top: 10px; 
             display: flex; align-items: center; font-weight: 700;
-            text-shadow: 1px 1px 2px #000; /* Sombra fuerte solicitada */
+            text-shadow: 2px 2px 3px #000;
         }
 
-        /* EMOJI CON SOMBRA */
+        /* EMOJI CON SOMBRA FUERTE */
         .emoji { 
-            margin-right: 6px; 
-            filter: drop-shadow(2px 2px 2px #000); 
+            margin-right: 8px; 
+            filter: drop-shadow(3px 3px 2px #000); 
         }
 
-        /* ESTADO APROBADO */
         .course.approved {
             background: var(--gr-mostaza);
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 0 15px rgba(229, 183, 116, 0.3);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 0 15px rgba(229, 183, 116, 0.4);
         }
 
         .course.approved:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px var(--gold-text);
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 0 35px rgba(248, 236, 137, 0.8), inset 0 0 10px rgba(255,255,255,0.5);
         }
 
         /* Scrollbar */
-        .curriculum-container::-webkit-scrollbar { height: 6px; }
+        .curriculum-container::-webkit-scrollbar { height: 8px; }
         .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; }
     </style>
 </head>
@@ -138,7 +141,7 @@
     
     <div class="counter-wrapper">
         <div id="credit-counter">
-            <span class="emoji">🍂</span> Créditos: <span id="total-credits">0</span>
+            <span class="emoji">🍂</span> #créditos Llevados: <span id="total-credits">0</span>
         </div>
     </div>
 
@@ -188,7 +191,7 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CR.</span>
+                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CRÉDITOS</span>
                     `;
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
