@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #191919; /* FONDO ACTUALIZADO */
+            --bg-dark: #191919; /* FONDO SOLICITADO */
             --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
             --gr-contador: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 55%, #aa771c 100%);
@@ -19,8 +19,6 @@
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
             color: #fff; margin: 0; padding: 10px;
             display: flex; flex-direction: column; align-items: center;
         }
@@ -29,7 +27,6 @@
             font-family: 'Cinzel', serif;
             font-weight: 900; font-size: 3.2em; letter-spacing: 12px;
             background: var(--gr-oro);
-            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shine 5s linear infinite;
@@ -42,30 +39,32 @@
             to { background-position: 200% center; }
         }
 
-        /* --- CUADRADO DE PROGRESO TOTAL: PEQUEÑO E ILUMINADO --- */
+        /* --- BARRA DE PROGRESO ORIGINAL REPARADA --- */
         .counter-wrapper {
             position: relative;
-            padding: 2px;
+            width: 100%; /* Vuelve a ser horizontal completa */
+            padding: 10px 0;
             margin-bottom: 40px;
-            border-radius: 8px;
-            /* Resplandor amarillo intenso */
-            box-shadow: 0 0 30px rgba(255, 191, 0, 0.4), inset 0 0 15px rgba(255, 191, 0, 0.2);
+            /* Resplandor amarillo intenso que pediste */
+            box-shadow: 0 0 40px rgba(255, 191, 0, 0.25);
+            border-top: 1px solid rgba(255, 191, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 191, 0, 0.3);
             overflow: hidden;
-            background: #ffbf00; /* Borde fino dorado */
+            background: var(--bg-dark);
         }
 
         #credit-counter {
-            background: var(--bg-dark); /* Color del fondo #191919 */
-            padding: 10px 35px; /* Más pequeño */
+            background: transparent;
+            padding: 10px 60px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            gap: 25px;
             position: relative;
-            z-index: 2;
-            border-radius: 6px;
+            z-index: 2; /* Texto por encima de luciérnagas */
         }
 
-        /* Luciérnagas: Varias, brillantes y por detrás */
+        /* Luciérnagas: Muchas, brillantes y por detrás del texto */
         .counter-wrapper::before {
             content: '';
             position: absolute;
@@ -74,41 +73,42 @@
             background-image: 
                 radial-gradient(circle, #fff 1.5px, transparent 1.5px),
                 radial-gradient(circle, #ffbf00 2px, transparent 2px),
-                radial-gradient(circle, #fff 1px, transparent 1px);
-            background-size: 60px 30px, 90px 50px, 120px 40px;
-            opacity: 0.9;
-            filter: blur(0.5px) drop-shadow(0 0 5px #ffbf00);
-            animation: lluviaBrillante 6s infinite linear;
+                radial-gradient(circle, #fff 1px, transparent 1px),
+                radial-gradient(circle, #fcf6ba 1.2px, transparent 1.2px);
+            background-size: 100px 40px, 150px 70px, 200px 50px, 80px 60px;
+            opacity: 1;
+            filter: drop-shadow(0 0 8px #ffbf00);
+            animation: lluviaLuciernagas 10s infinite linear;
         }
 
-        @keyframes lluviaBrillante {
-            from { background-position: 0 0, 0 0, 0 0; }
-            to { background-position: 500px 50px, -400px 100px, 300px -50px; }
+        @keyframes lluviaLuciernagas {
+            from { background-position: 0 0; }
+            to { background-position: 800px 0; }
         }
 
         #credit-counter span:nth-child(2) {
             font-family: 'Cinzel', serif;
             color: #fcf6ba;
-            font-weight: 900;
-            font-size: 0.9em;
-            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 4px;
             text-shadow: 0 0 10px rgba(0,0,0,1);
         }
 
-        /* Número más chico y con brillo suave */
+        /* Número más chico y con latido normal (no exagerado) */
         #total-credits {
             font-family: 'Cinzel', serif;
-            font-size: 1.8em; /* Más chico */
+            font-size: 2em; /* Tamaño reducido */
             color: #ffffff !important;
             font-weight: 900;
             display: inline-block;
-            text-shadow: 0 0 15px rgba(255,255,255,0.8);
-            animation: latidoMini 3s infinite ease-in-out;
+            text-shadow: 0 0 20px rgba(255,255,255,0.6);
+            animation: latidoSutil 3s infinite ease-in-out;
         }
 
-        @keyframes latidoMini {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
+        @keyframes latidoSutil {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.08); filter: brightness(1.2); }
         }
         /* -------------------------------------------------- */
 
@@ -131,13 +131,11 @@
         .cycle-column:nth-child(odd) .cycle-header { 
             background: var(--gr-verde); 
             box-shadow: 0 0 30px rgba(159, 180, 94, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
-            text-shadow: 0 0 12px rgba(159, 180, 94, 1), 0 0 5px #fff;
         }
 
         .cycle-column:nth-child(even) .cycle-header { 
             background: var(--gr-naranja); 
             box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
-            text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
         }
 
         .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
@@ -154,51 +152,19 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        .course:hover {
-            transform: translateY(-5px);
-            background: #1a1a1a;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.8);
-        }
-
         .course.approved {
             background: var(--gr-mostaza);
             border: 1px solid rgba(255,255,255,0.5);
             box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
         }
 
-        .course.approved:hover {
-            transform: scale(1.1) translateY(-10px);
-            box-shadow: 0 0 45px rgba(248, 236, 137, 1), inset 0 0 15px rgba(255,255,255,0.6);
-            filter: brightness(1.2);
-        }
-
-        .code { 
-            font-size: 0.85em; font-weight: 900; color: var(--gold); display: block; 
-            margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9);
-        }
-        .name { 
-            font-size: 1em; font-weight: 700; color: #fff; 
-            text-transform: uppercase; line-height: 1.3;
-            text-shadow: 2px 2px 4px rgba(0,0,0,1);
-        }
-        .cred { 
-            font-size: 0.85em; color: #ccc; margin-top: 15px; 
-            display: flex; align-items: center; font-weight: 700;
-            text-shadow: 2px 2px 3px rgba(0,0,0,1);
-        }
-
-        .course.approved .name, .course.approved .cred, .course.approved .code {
-            color: #fff;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-        }
-
-        .emoji { 
-            margin-right: 10px; 
-            filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); 
-        }
+        .code { font-size: 0.85em; font-weight: 900; color: var(--gold); display: block; margin-bottom: 6px; }
+        .name { font-size: 1em; font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.3; }
+        .cred { font-size: 0.85em; color: #ccc; margin-top: 15px; display: flex; align-items: center; font-weight: 700; }
+        .emoji { margin-right: 10px; }
 
         .curriculum-container::-webkit-scrollbar { height: 10px; }
-        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-contador); border-radius: 10px; border: 2px solid var(--bg-dark); }
+        .curriculum-container::-webkit-scrollbar-thumb { background: var(--gr-oro); border-radius: 10px; }
     </style>
 </head>
 <body>
