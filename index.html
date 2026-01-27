@@ -3,149 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla IQ - Supreme Interactive Glow</title>
+    <title>Malla IQ - Supreme Compact Glow</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #191919;
-            --gr-verde: linear-gradient(0deg, #5B6734 0%, #85964E 50%, #9FB45E 100%);
-            --gr-naranja: linear-gradient(0deg, #863E21 0%, #C15C34 50%, #E66F40 100%);
-            --gr-mostaza: linear-gradient(0deg, #856A40 0%, #C19A60 50%, #E5B774 100%);
-            --gr-amarillo: linear-gradient(0deg, #D9B95E 0%, #F6E281 50%, #F8EC89 100%);
+            --bg-dark: #121212;
+            --gr-verde: linear-gradient(180deg, #9FB45E 0%, #5B6734 100%);
+            --gr-naranja: linear-gradient(180deg, #E66F40 0%, #863E21 100%);
             --gold: #F8EC89;
+            --glow-white: rgba(255, 255, 255, 0.6);
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(248, 236, 137, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            color: #fff; margin: 0; padding: 20px;
+            background-image: radial-gradient(rgba(248, 236, 137, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: #fff; margin: 0; padding: 10px;
             display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden;
         }
 
         h1 { 
             font-family: 'Cinzel', serif;
-            font-weight: 900; font-size: 3.8em; letter-spacing: 12px;
+            font-weight: 900; font-size: 2.2em; letter-spacing: 8px;
             background: var(--gr-amarillo);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(248, 236, 137, 0.4));
-            margin: 40px 0; text-transform: uppercase;
+            filter: drop-shadow(0 0 10px rgba(248, 236, 137, 0.3));
+            margin: 20px 0; text-transform: uppercase;
         }
 
-        /* --- CONTADOR CON BORDE ANIMADO Y AURA --- */
+        /* --- CONTADOR COMPACTO --- */
         .counter-wrapper {
             position: relative;
-            padding: 4px; /* Espacio para el borde que se mueve */
+            padding: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             background-size: 200% 100%;
             animation: move-border 3s linear infinite;
-            border-radius: 8px;
-            margin-bottom: 90px;
-            box-shadow: 0 0 50px rgba(217, 185, 94, 0.2);
+            border-radius: 50px;
+            margin-bottom: 40px;
         }
 
         #credit-counter {
             font-family: 'Cinzel', serif;
             background: #000;
-            padding: 25px 70px;
-            border-radius: 6px;
-            font-weight: 700; font-size: 1.3em;
+            padding: 10px 40px;
+            border-radius: 50px;
+            font-size: 1em;
             color: var(--gold);
             display: flex; align-items: center;
-            box-shadow: inset 0 0 20px rgba(248, 236, 137, 0.2);
         }
 
         #total-credits {
-            font-size: 1.8em; color: #fff; margin-left: 20px;
-            text-shadow: 0 0 15px #fff, 0 0 30px var(--gold);
-            display: inline-block;
-            animation: breathe-zoom 2.5s infinite ease-in-out;
+            font-size: 1.4em; color: #fff; margin-left: 15px;
+            text-shadow: 0 0 10px var(--gold);
         }
 
-        /* --- CICLOS CON ILUMINACIÓN FIJA --- */
+        /* --- CICLOS CON ILUMINACIÓN EXTRA --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
-            letter-spacing: 6px;
-            color: #fff; padding: 25px; border-radius: 12px;
-            font-weight: 700; text-transform: uppercase;
-            margin-bottom: 60px; text-align: center; font-size: 1.5em;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8), inset 0 0 25px rgba(255,255,255,0.2);
-            filter: brightness(1.1);
+            letter-spacing: 4px;
+            color: #fff; 
+            padding: 15px; 
+            border-radius: 8px;
+            font-weight: 900; 
+            text-transform: uppercase;
+            margin-bottom: 30px; 
+            text-align: center; 
+            font-size: 1.1em;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            /* Iluminación tipo Neón */
+            text-shadow: 0 0 10px #fff, 0 0 20px rgba(255,255,255,0.5);
+            transition: 0.3s;
         }
 
-        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); box-shadow: 0 0 30px rgba(159, 180, 94, 0.5), 0 15px 40px #000; }
-        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); box-shadow: 0 0 30px rgba(230, 111, 64, 0.5), 0 15px 40px #000; }
+        .cycle-column:nth-child(odd) .cycle-header { 
+            background: var(--gr-verde); 
+            box-shadow: 0 0 25px rgba(159, 180, 94, 0.7), inset 0 0 15px rgba(255,255,255,0.4); 
+        }
+        .cycle-column:nth-child(even) .cycle-header { 
+            background: var(--gr-naranja); 
+            box-shadow: 0 0 25px rgba(230, 111, 64, 0.7), inset 0 0 15px rgba(255,255,255,0.4); 
+        }
 
-        /* --- CURSOS: INTERACTIVOS, GRANDES Y BRILLANTES --- */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 50px; width: 95vw; padding: 50px 30px; }
-        .cycle-column { min-width: 360px; }
+        /* --- CURSOS MÁS PEQUEÑOS --- */
+        .curriculum-container { display: flex; overflow-x: auto; gap: 25px; width: 98vw; padding: 20px; }
+        .cycle-column { min-width: 280px; }
 
         .course {
-            background: #111;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 35px;
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra base pronunciada */
+            transition: all 0.3s ease;
         }
 
-        /* EFECTO HOVER: SE AGRANDA E ILUMINA */
         .course:hover {
-            transform: scale(1.1) translateY(-10px);
-            background: #222;
+            transform: translateY(-5px);
+            background: #252525;
             border-color: var(--gold);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 30px rgba(248, 236, 137, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 15px rgba(248, 236, 137, 0.2);
         }
 
         .course.approved {
-            background: var(--gr-mostaza);
-            border: 2px solid rgba(255,255,255,0.5);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.3);
+            background: linear-gradient(145deg, #856A40, #5a482b);
+            border: 1px solid var(--gold);
         }
 
-        /* TEXTOS CON SOMBRAS PRONUNCIADAS */
         .code { 
-            font-size: 0.9em; font-weight: 900; color: var(--gold); 
-            display: block; margin-bottom: 12px; letter-spacing: 2px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* Sombra de texto */
+            font-size: 0.75em; font-weight: 900; color: var(--gold); 
+            display: block; margin-bottom: 5px; opacity: 0.8;
         }
         .name { 
-            font-size: 1.2em; font-weight: 700; color: #fff; 
-            text-transform: uppercase;
-            text-shadow: 3px 3px 8px rgba(0,0,0,1); /* Sombra de texto más fuerte */
+            font-size: 0.95em; font-weight: 700; color: #eee; 
+            text-transform: uppercase; line-height: 1.2;
         }
         .cred { 
-            font-size: 0.85em; color: #777; margin-top: 20px; 
-            display: flex; align-items: center; font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-size: 0.75em; color: #888; margin-top: 12px; 
+            display: flex; align-items: center; font-weight: 700;
         }
 
-        /* Emoji con sombra */
+        /* --- AJUSTE SOMBRA EMOJI --- */
         .emoji {
-            filter: drop-shadow(2px 2px 3px rgba(0,0,0,1));
-            margin-right: 8px;
-            font-size: 1.2em;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5)); /* Sombra reducida */
+            margin-right: 6px;
+            font-size: 1.1em;
         }
 
         .course.approved .cred { color: #fff; }
+        .course.approved .name { color: #fff; }
 
-        /* ANIMACIONES */
         @keyframes move-border {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-
-        @keyframes breathe-zoom {
-            0%, 100% { transform: scale(1); filter: brightness(1); }
-            50% { transform: scale(1.25); filter: brightness(1.4) drop-shadow(0 0 20px var(--gold)); }
-        }
-
     </style>
 </head>
 <body>
@@ -154,7 +147,7 @@
     
     <div class="counter-wrapper">
         <div id="credit-counter">
-            <span class="emoji">🍂</span> Créditos Logrados: <span id="total-credits">0</span>
+            <span class="emoji">🍂</span> CRÉDITOS LOGRADOS: <span id="total-credits">0</span>
         </div>
     </div>
 
