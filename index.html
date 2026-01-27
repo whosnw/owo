@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malla IQ - Supreme Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
@@ -42,82 +42,81 @@
             to { background-position: 200% center; }
         }
 
-        /* --- MODIFICACIÓN DE LA BARRA DE PROGRESO TOTAL (LUCIÉRNAGAS Y BORDES DORADOS) --- */
+        /* --- MODIFICACIÓN: PROGRESO TOTAL CON FUENTE CINZEL Y MUCHAS LUCIÉRNAGAS DETRÁS --- */
         .counter-wrapper {
             position: relative;
-            padding: 8px 0;
+            padding: 10px 0;
             margin-bottom: 40px;
-            /* Líneas arriba y abajo con degradado dorado y brillo */
+            /* Líneas doradas con brillo */
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
-            border-image: linear-gradient(90deg, transparent, #bf953f, #fcf6ba, #bf953f, transparent) 1;
-            filter: drop-shadow(0 0 10px rgba(191, 149, 63, 0.6));
-            overflow: hidden; /* Mantiene las luciérnagas dentro del área de la barra */
+            border-image: linear-gradient(90deg, transparent, #ffbf00, #fcf6ba, #ffbf00, transparent) 1;
+            filter: drop-shadow(0 0 15px rgba(255, 191, 0, 0.4));
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         #credit-counter {
-            background: rgba(10, 10, 10, 0.9); 
-            padding: 15px 50px;
-            border-radius: 4px;
+            background: transparent; 
+            padding: 15px 60px;
             display: flex;
             align-items: center;
             gap: 20px;
             position: relative;
+            z-index: 2; /* Texto por encima */
         }
 
-        /* Contenedor de múltiples luciérnagas */
+        /* Luciérnagas abundantes en el fondo */
         .counter-wrapper::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Varias luciérnagas usando box-shadow múltiple */
+            z-index: 1; /* Detrás del texto */
             box-shadow: 
-                10px 10px 4px #fff, 50px 30px 4px #fcf6ba, 
-                120px 15px 4px #fff, 200px 25px 4px #fcf6ba,
-                280px 10px 4px #fff, 350px 35px 4px #fcf6ba;
+                20px 10px 3px #fff, 80px 40px 3px #ffbf00, 
+                150px 20px 4px #fff, 230px 45px 3px #ffbf00,
+                310px 15px 3px #fff, 400px 35px 4px #ffbf00,
+                500px 10px 3px #fff, 580px 40px 3px #ffbf00,
+                650px 25px 4px #fff, 750px 15px 3px #ffbf00;
+            width: 3px; height: 3px;
             border-radius: 50%;
-            width: 4px; height: 4px;
-            opacity: 0;
-            animation: muchasLuciernagas 6s infinite linear;
+            opacity: 0.6;
+            animation: lluviaLuciernagas 5s infinite linear;
         }
 
-        @keyframes muchasLuciernagas {
-            0% { transform: translateX(-100px) translateY(0); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateX(500px) translateY(-10px); opacity: 0; }
+        @keyframes lluviaLuciernagas {
+            0% { transform: translateX(-200px) translateY(0); opacity: 0; }
+            30% { opacity: 0.8; }
+            70% { opacity: 0.8; }
+            100% { transform: translateX(800px) translateY(-5px); opacity: 0; }
         }
 
+        /* Texto: Misma fuente que Avance Curricular */
         #credit-counter span:nth-child(2) {
-            font-family: 'Orbitron', sans-serif; /* Nueva fuente para PROGRESO TOTAL */
+            font-family: 'Cinzel', serif;
             color: #fcf6ba;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-shadow: 0 0 8px rgba(252, 246, 186, 0.6);
+            font-weight: 700;
+            font-size: 1.2em;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px rgba(0,0,0,1);
         }
 
-        /* --- MODIFICACIÓN DEL NÚMERO (BLANCO, LATIDO Y FUENTE) --- */
+        /* Número: Misma fuente que Avance Curricular */
         #total-credits {
-            font-family: 'Orbitron', sans-serif; /* Fuente tecnológica/moderna */
-            font-size: 2.5em;
+            font-family: 'Cinzel', serif;
+            font-size: 2.8em;
             color: #ffffff !important;
-            -webkit-text-fill-color: #ffffff !important;
             font-weight: 900;
             display: inline-block;
-            animation: latidoBlancoPuro 1.5s infinite ease-in-out;
+            text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.3);
+            animation: latidoCinzel 2s infinite ease-in-out;
         }
 
-        @keyframes latidoBlancoPuro {
-            0%, 100% { 
-                transform: scale(1); 
-                filter: drop-shadow(0 0 5px #fff); 
-            }
-            50% { 
-                transform: scale(1.25); 
-                filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px rgba(255,255,255,0.5)); 
-            }
+        @keyframes latidoCinzel {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.15); filter: brightness(1.3) drop-shadow(0 0 20px #fff); }
         }
-        /* ------------------------------- */
+        /* -------------------------------------------------------------------------- */
 
         .cycle-header {
             font-family: 'Cinzel', serif;
