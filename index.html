@@ -23,35 +23,36 @@
             );
         }
 
-/* --- ESTILO DE BARRAS DORADAS SUPREME --- */
-        ::-webkit-scrollbar {
-            width: 14px;  /* Grosor barra vertical */
-            height: 14px; /* Grosor barra horizontal */
-        }
+/* --- BARRAS SUPREME: BRILLO EQUILIBRADO --- */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
 
-        ::-webkit-scrollbar-track {
-            background: transparent; 
-        }
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.4); 
+}
 
-        ::-webkit-scrollbar-thumb {
-            background: #BF953F;
-            border-radius: 10px;
-            /* Resplandor base para ambas barras */
-            box-shadow: inset 0 0 8px #fcf6ba;
-        }
+::-webkit-scrollbar-thumb {
+    background: #BF953F;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-clip: padding-box;
+}
 
-        /* Iluminación para la barra VERTICAL (brillo hacia la izquierda) */
-        ::-webkit-scrollbar-thumb:vertical {
-            border-left: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: -5px 0 15px #BF953F, -2px 0 20px #aa771c;
-        }
+/* Brillo Vertical: Proyecta sombra hacia la izquierda (-12px) */
+::-webkit-scrollbar-thumb:vertical {
+    box-shadow: -6px 0 15px 2px rgba(191, 149, 63, 0.9), 
+                inset 0 0 8px #fcf6ba;
+    border-left: 1px solid white;
+}
 
-        /* Iluminación para la barra HORIZONTAL (brillo hacia arriba) */
-        ::-webkit-scrollbar-thumb:horizontal {
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 -5px 15px #BF953F, 0 -2px 20px #aa771c;
-        }
-
+/* Brillo Horizontal: Proyecta sombra hacia arriba (-6px) */
+::-webkit-scrollbar-thumb:horizontal {
+    box-shadow: 0 -6px 15px 2px rgba(191, 149, 63, 0.9), 
+                inset 0 0 8px #fcf6ba;
+    border-top: 1px solid white;
+}
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
@@ -331,7 +332,7 @@
 
         let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
-        function render() {
+function render() {
             const container = document.getElementById('curriculum');
             container.innerHTML = '';
             let total = 0;
@@ -343,24 +344,44 @@
 
                 coursesData[cycle].forEach(c => {
                     const isApp = approved[c.id];
+                    
+                    // Lógica de validación: ¿Están todos sus prerrequisitos aprobados?
+                    const canUnlock = c.r.every(reqId => approved[reqId]);
+
                     const div = document.createElement('div');
+                    // Si no está aprobado y no puede desbloquearse, le bajamos la opacidad
                     div.className = `course ${isApp ? 'approved' : ''}`;
+                    if (!isApp && !canUnlock) div.style.opacity = "0.4";
+
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.n}</span>
                         <span class="cred"><span class="emoji">🍂</span> ${c.c} CRÉDITOS</span>
                     `;
+
                     div.onclick = () => {
-                        if (isApp) delete approved[c.id];
-                        else approved[c.id] = true;
+                        if (isApp) {
+                            // Si ya está aprobado, al hacer clic lo desmarcamos
+                            delete approved[c.id];
+                        } else {
+                            // SI NO ESTÁ APROBADO, VERIFICAMOS REQUISITOS
+                            const missing = c.r.filter(reqId => !approved[reqId]);
+                            if (missing.length > 0) {
+                                alert(`BLOQUEADO: Necesitas aprobar primero: ${missing.join(", ")}`);
+                                return; // Detiene la ejecución, no lo marca
+                            }
+                            approved[c.id] = true;
+                        }
                         localStorage.setItem('malla_iq_final', JSON.stringify(approved));
                         render();
                     };
+
                     col.appendChild(div);
-                    if (isApp) total += c.credits;
+                    if (isApp) total += c.c;
                 });
                 container.appendChild(col);
             }
+            // Actualización del contador de créditos
             document.getElementById('total-credits').innerText = total;
         }
 
