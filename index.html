@@ -12,7 +12,7 @@
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
             --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
             
-            /* Dorado refinado: de bronce profundo a oro champán, sin amarillos puros */
+            /* Dorado refinado */
             --gr-oro: linear-gradient(
                 to right, 
                 #8a6628 0%, 
@@ -26,6 +26,30 @@
             --gold-bright: #e2c17c;
         }
 
+        /* --- LAS LÍNEAS DORADAS CON DESTELLOS (SCROLLBARS) --- */
+        /* Esto aplica a la línea de arriba a abajo (vertical) y de izquierda a derecha (horizontal) */
+        ::-webkit-scrollbar {
+            width: 12px;  /* Ancho de la línea vertical */
+            height: 12px; /* Alto de la línea horizontal */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(25, 25, 25, 0.5); /* Fondo de la guía */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gr-oro);
+            border-radius: 10px;
+            /* El destello/brillo de la línea */
+            box-shadow: 0 0 15px var(--gold-glow), inset 0 0 5px white;
+            border: 2px solid var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 25px var(--gold-bright);
+        }
+
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
@@ -35,7 +59,7 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- TITULO AVANCE CURRICULAR: AJUSTE A DORADO PRESTIGIO --- */
+        /* --- TITULO AVANCE CURRICULAR --- */
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; 
@@ -45,7 +69,6 @@
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Animación con resplandor dorado quemado */
             animation: shineGold 4s linear infinite, glowGold 2s ease-in-out infinite;
             margin: 40px 0; 
             text-transform: uppercase;
@@ -66,7 +89,7 @@
             }
         }
 
-        /* --- SECCIÓN CONTADOR: FONDO SOLICITADO #191919 --- */
+        /* --- SECCIÓN CONTADOR --- */
         .counter-wrapper {
           position: relative;
           padding: 6px 0;
@@ -94,7 +117,7 @@
         }
 
         #credit-counter {
-          background: #191919; /* Fondo solicitado */
+          background: #191919;
           padding: 18px 55px;
           display: flex;
           align-items: center;
@@ -125,7 +148,7 @@
           50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #e2c17c); }
         }
 
-        /* --- RESTO DEL CÓDIGO SIN CAMBIOS --- */
+        /* --- MALLA --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 4px;
@@ -194,9 +217,6 @@
 
         .emoji { margin-right: 10px; filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); }
 
-        .curriculum-container::-webkit-scrollbar { height: 10px; }
-        .curriculum-container::-webkit-scrollbar-thumb { background: #bf953f; border-radius: 10px; border: 2px solid var(--bg-dark); }
-        
         .spark {
           position: absolute;
           width: 4px; height: 4px;
