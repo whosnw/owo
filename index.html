@@ -190,24 +190,29 @@ h1 {
         }
 
 .curriculum-container { 
-    display: flex; 
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    gap: 20px; /* Reducimos el espacio entre columnas */
-    width: max-content;
-    padding: 20px; 
     display: grid;
-    grid-template-columns: repeat(10, 250px); /* Columnas más delgadas (de 300 a 250) */
+    /* Bajamos a 140px para asegurar que quepan los 10 ciclos */
+    grid-template-columns: repeat(10, 140px); 
+    align-items: flex-start;
+    gap: 8px; 
+    width: max-content;
+    padding: 10px; 
 }
 
-/* Esta regla hará que los bloques de electivos salten a una nueva fila y ocupen todo el ancho */
+/* Esta regla hará que los bloques de electivos salten a una nueva fila */
 .cycle-column.is-electivo {
     grid-column: 1 / -1; 
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
 }
-        .cycle-column { min-width: 230px; }
 
+/* IMPORTANTE: El min-width debe ser igual al del grid (140px) */
+.cycle-column { min-width: 140px; }
+
+/* Reducimos el tamaño de letra para que los nombres no se corten */
+.name { font-size: 0.75em !important; }
+.code { font-size: 0.7em !important; }
+.cycle-header { font-size: 0.85em !important; padding: 10px 5px !important; letter-spacing: 1px !important; }
         .course {
             background: #121212;
             border-radius: 12px;
