@@ -189,12 +189,20 @@ body {
 
 .curriculum-container { 
     display: flex; 
-    flex-wrap: wrap; /* Permite que los electivos bajen */
+    flex-wrap: nowrap; /* Mantiene los ciclos 1-10 en una sola fila */
     align-items: flex-start;
     gap: 35px; 
-    width: 100%; 
+    width: max-content; /* Permite que crezca a lo largo */
     padding: 25px; 
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(10, 300px); /* Crea las 10 columnas fijas */
+}
+
+/* Esta regla hará que los bloques de electivos salten a una nueva fila y ocupen todo el ancho */
+.cycle-column.is-electivo {
+    grid-column: 1 / -1; 
+    width: 100%;
+    margin-top: 50px;
 }
         .cycle-column { min-width: 280px; }
 
@@ -416,42 +424,40 @@ function render() {
             let total = 0;
 
 for (let cycle in coursesData) {
-                const col = document.createElement('div');
-                col.className = 'cycle-column';
-                
-                // DETECCIÓN DE BLOQUES
-                const isElectivo = cycle.toLowerCase().includes("electivo");
+            const col = document.createElement('div');
+            col.className = 'cycle-column';
+            
+            const isElectivo = cycle.toLowerCase().includes("electivo");
 
-                if (isElectivo) {
-                    // FUERZA EL SALTO DE LÍNEA: Ocupa el 100% del ancho abajo
-                    col.style.flex = "1 1 100%"; 
-                    col.style.marginTop = "60px";
-                } else {
-                    // MANTIENE LA FILA ORIGINAL: No se estira, se queda uno al lado del otro
-                    col.style.flex = "0 0 auto"; 
-                }
-
-                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
-
-                const coursesWrapper = document.createElement('div');
-                
-                if (isElectivo) {
-                    // CONFIGURACIÓN DE 10 COLUMNAS PARA ELECTIVOS
-                    coursesWrapper.style.display = "grid";
-                    // Intentará meter 10 columnas si el espacio lo permite
-                    coursesWrapper.style.gridTemplateColumns = "repeat(auto-fill, minmax(250px, 1fr))";
-                    coursesWrapper.style.gap = "20px";
-                }
-
-                coursesData[cycle].forEach(c => {
-                    const div = createCourseElement(c);
-                    coursesWrapper.appendChild(div);
-                    if (approved[c.id]) total += c.c;
-                });
-
-                col.appendChild(coursesWrapper);
-                container.appendChild(col);
+            if (isElectivo) {
+                // Aplicamos la clase que definimos en el CSS para que baje
+                col.classList.add('is-electivo');
             }
+
+            col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+
+            const coursesWrapper = document.createElement('div');
+            
+            if (isElectivo) {
+                // Forzamos 10 columnas para los electivos
+                coursesWrapper.style.display = "grid";
+                coursesWrapper.style.gridTemplateColumns = "repeat(10, 1fr)";
+                coursesWrapper.style.gap = "15px";
+                coursesWrapper.style.width = "100%";
+            }
+
+            coursesData[cycle].forEach(c => {
+                const div = createCourseElement(c);
+                if (isElectivo) {
+                    div.style.minWidth = "auto";
+                }
+                coursesWrapper.appendChild(div);
+                if (approved[c.id]) total += c.c;
+            });
+
+            col.appendChild(coursesWrapper);
+            container.appendChild(col);
+        }
             // Actualización del contador de créditos
             document.getElementById('total-credits').innerText = total;
         }
