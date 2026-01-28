@@ -22,37 +22,38 @@
                 #aa771c 100%
             );
         }
-
-/* --- BARRAS SUPREME: BRILLO EQUILIBRADO --- */
+/* --- CORRECCIÓN DEFINITIVA DE ILUMINACIÓN --- */
 ::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
+    width: 16px; /* Un poco más ancha para que el brillo respire */
+    height: 16px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.4); 
+    background: rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
     background: #BF953F;
     border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    /* Este borde blanco semitransparente es el que da el efecto de luz */
+    border: 3px solid rgba(255, 255, 255, 0.1);
     background-clip: padding-box;
 }
 
-/* Brillo Vertical: Proyecta sombra hacia la izquierda (-12px) */
+/* BARRA VERTICAL: Forzamos la sombra hacia la izquierda con un valor negativo grande */
 ::-webkit-scrollbar-thumb:vertical {
-    box-shadow: -6px 0 15px 2px rgba(191, 149, 63, 0.9), 
-                inset 0 0 8px #fcf6ba;
-    border-left: 1px solid white;
+    box-shadow: -8px 0 20px 2px #BF953F, 
+                inset 0 0 10px #fcf6ba;
+    border-left: 2px solid #fcf6ba; /* Hilo de luz sólido */
 }
 
-/* Brillo Horizontal: Proyecta sombra hacia arriba (-6px) */
+/* BARRA HORIZONTAL: Sombra hacia arriba */
 ::-webkit-scrollbar-thumb:horizontal {
-    box-shadow: 0 -6px 15px 2px rgba(191, 149, 63, 0.9), 
-                inset 0 0 8px #fcf6ba;
-    border-top: 1px solid white;
+    box-shadow: 0 -8px 20px 2px #BF953F, 
+                inset 0 0 10px #fcf6ba;
+    border-top: 2px solid #fcf6ba; /* Hilo de luz sólido */
 }
+
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
