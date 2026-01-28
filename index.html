@@ -342,132 +342,119 @@ body {
                 { id: "XP100", n: "PRACTICAS PRE-PROFESIONALES I", c: 1, r: [] },
                 { id: "XP200", n: "PRACTICAS PRE-PROFESIONALES II", c: 2, r: [] }
             ],
-            // --- ELECTIVOS (Aparecerán abajo) ---
-        "Cursos Electivos": [
-            { id: "PI1147", n: "TRANSFERENCIA DE MASA II", c: 3, r: ["PI144"] },
-            { id: "PI1226", n: "CINETICA Y DISEÑO DE REACTORES II", c: 3, r: ["PI225"] },
-            { id: "PI1322", n: "ELECTROQUIMICA INDUSTRIAL", c: 3, r: ["QU428"] },
-            { id: "PI1345", n: "ACEITES Y GRASAS", c: 2, r: ["PI318"] },
-            { id: "PI1356", n: "TRATAMIENTO DE AGUA INDUSTRIAL", c: 3, r: ["PI318", "QU518"] },
-            { id: "PI1366", n: "POLIMEROS II", c: 3, r: ["PI365"] },
-            { id: "PI1376", n: "DISEÑO, SELEC. Y MANT. EQUIPOS", c: 3, r: ["PI135", "PI144"] },
-            { id: "PI1381", n: "CONSERVACION DE ENERGIA", c: 3, r: ["PI143", "PI216"] },
-            { id: "PI1475", n: "REFINACION PETROLEO Y GAS", c: 4, r: ["PI143", "PI144"] },
-            { id: "PI1515", n: "CORROSION I", c: 3, r: ["PI514"] },
-            { id: "PI1535", n: "QUIMICA DE LOS ALIMENTOS", c: 3, r: ["PI520"] },
-            { id: "PI1721", n: "BIOQUIMICA Y MICROBIOLOGIA", c: 3, r: ["QU328", "QU518"] },
-            { id: "PI1722", n: "PROCESOS BIOQUIMICOS", c: 3, r: ["PI1721"] },
-            { id: "PI1823", n: "COMBUSTION Y COMBUSTIBLES", c: 3, r: ["PI225"] },
-            { id: "PI1824", n: "GAS NATURAL Y CONDENSADOS", c: 4, r: ["PI142", "PI217"] },
-            { id: "PI1826", n: "TRATAMIENTO EFLUENTES IND.", c: 3, r: ["PI146"] },
-            { id: "PI1828", n: "TRATAMIENTO RESIDUOS SOLIDOS", c: 3, r: ["PI146"] },
-            { id: "PI1913", n: "CONTROL ESTADISTICO PROCESOS", c: 3, r: ["MA613", "PI911"] }
-        ],
-        "Electivos Complement.": [
-            { id: "PA425", n: "DISEÑO Y EVALUACION PROYECTOS", c: 4, r: ["PI510"] },
-            { id: "PA515", n: "MERCADOTECNIA", c: 2, r: ["EP308"] },
-            { id: "PI1830", n: "ACEITES Y LUBRICANTES", c: 4, r: ["PI318"] },
-            { id: "PI1914", n: "INTROD. GESTION AMBIENTAL", c: 3, r: ["PI318"] },
-            { id: "QU565", n: "ANALISIS QUIMICO INSTRUMENTAL 1", c: 5, r: ["QU518"] }
-        ]
-    };
+"Cursos Electivos": [
+                { id: "PI1147", n: "TRANSFERENCIA DE MASA II", c: 3, r: ["PI144"] },
+                { id: "PI1226", n: "CINETICA Y DISEÑO REACTORES II", c: 3, r: ["PI225"] },
+                { id: "PI1322", n: "ELECTROQUIMICA INDUSTRIAL", c: 3, r: ["QU428"] },
+                { id: "PI1345", n: "ACEITES Y GRASAS", c: 2, r: ["PI318"] },
+                { id: "PI1356", n: "TRATAMIENTO DE AGUA INDUSTRIAL", c: 3, r: ["PI318", "QU518"] },
+                { id: "PI1366", n: "POLIMEROS II", c: 3, r: ["PI365"] },
+                { id: "PI1381", n: "DISEÑO, SELEC. Y MANTENIMIENTO", c: 3, r: ["PI135", "PI144"] },
+                { id: "PI1376", n: "CONSERVACION DE ENERGIA", c: 3, r: ["PI143", "PI216"] },
+                { id: "PI1475", n: "REFINACION PETROLEO Y GAS", c: 4, r: ["PI143", "PI144"] },
+                { id: "PI1515", n: "CORROSION I", c: 3, r: ["PI514"] },
+                { id: "PI1535", n: "QUIMICA DE LOS ALIMENTOS", c: 3, r: ["PI520"] },
+                { id: "PI1721", n: "BIOQUIMICA Y MICROBIOLOGIA", c: 3, r: ["QU328", "QU518"] },
+                { id: "PI1722", n: "PROCESOS BIOQUIMICOS", c: 3, r: ["PI1721"] },
+                { id: "PI1823", n: "COMBUSTION Y COMBUSTIBLES", c: 3, r: ["PI225"] },
+                { id: "PI1824", n: "GAS NATURAL Y CONDENSADOS", c: 4, r: ["PI142", "PI217"] },
+                { id: "PI1826", n: "TRATAMIENTO EFLUENTES IND.", c: 3, r: ["PI146"] },
+                { id: "PI1828", n: "TRATAMIENTO RESIDUOS SOLIDOS", c: 3, r: ["PI146"] },
+                { id: "PI1913", n: "CONTROL ESTADISTICO PROCESOS", c: 3, r: ["MA613", "PI911"] }
+            ],
+            "Electivos Complement.": [
+                { id: "PA425", n: "DISEÑO Y EVALUACION PROYECTOS", c: 4, r: ["PI510"] },
+                { id: "PA515", n: "MERCADOTECNIA", c: 2, r: ["EP308"] },
+                { id: "PI1830", n: "ACEITES Y LUBRICANTES", c: 4, r: ["PI318"] },
+                { id: "PI1914", n: "INTROD. GESTION AMBIENTAL", c: 3, r: ["PI318"] },
+                { id: "QU565", n: "ANALISIS QUIMICO INSTRUMENTAL 1", c: 5, r: ["QU518"] }
+            ]
+        };
 
-    let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
-    function render() {
-        const container = document.getElementById('curriculum');
-        container.innerHTML = '';
-        
-        // Creamos dos secciones visuales
-        const mainMalla = document.createElement('div');
-        mainMalla.style.display = "flex";
-        mainMalla.style.gap = "35px";
-        mainMalla.style.marginBottom = "80px"; // Espacio para la sección de abajo
+        function render() {
+            const container = document.getElementById('curriculum');
+            container.innerHTML = '';
+            
+            // FILA 1: Ciclos del 1 al 10
+            const rowPrincipal = document.createElement('div');
+            rowPrincipal.className = "malla-row";
+            
+            // FILA 2: Electivos
+            const tituloElectivos = document.createElement('h2');
+            tituloElectivos.className = "seccion-titulo";
+            tituloElectivos.innerText = "CURSOS ELECTIVOS";
+            
+            const rowElectivos = document.createElement('div');
+            rowElectivos.className = "malla-row";
 
-        const electiveSection = document.createElement('div');
-        electiveSection.style.display = "flex";
-        electiveSection.style.gap = "35px";
-        electiveSection.style.paddingTop = "40px";
-        electiveSection.style.borderTop = "2px solid rgba(191,149,63,0.3)";
+            let total = 0;
 
-        let total = 0;
+            for (let cycle in coursesData) {
+                const col = document.createElement('div');
+                col.className = 'cycle-column';
+                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-        for (let cycle in coursesData) {
-            const col = document.createElement('div');
-            col.className = 'cycle-column';
-            col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+                coursesData[cycle].forEach(c => {
+                    const isApp = approved[c.id];
+                    const canUnlock = c.r.every(reqId => approved[reqId]);
+                    const div = document.createElement('div');
+                    div.className = `course ${isApp ? 'approved' : ''}`;
+                    if (!isApp && !canUnlock) div.style.opacity = "0.4";
 
-            coursesData[cycle].forEach(c => {
-                const isApp = approved[c.id];
-                const canUnlock = c.r.every(reqId => approved[reqId]);
-                const div = document.createElement('div');
-                div.className = `course ${isApp ? 'approved' : ''}`;
-                if (!isApp && !canUnlock) div.style.opacity = "0.4";
+                    div.innerHTML = `
+                        <span class="code">${c.id}</span>
+                        <span class="name">${c.n}</span>
+                        <span class="cred"><span class="emoji">🍂</span> ${c.c} CRÉDITOS</span>
+                    `;
 
-                div.innerHTML = `
-                    <span class="code">${c.id}</span>
-                    <span class="name">${c.n}</span>
-                    <span class="cred"><span class="emoji">🍂</span> ${c.c} CRÉDITOS</span>
-                `;
-
-                div.onclick = () => {
-                    if (isApp) { delete approved[c.id]; } 
-                    else {
-                        const missing = c.r.filter(reqId => !approved[reqId]);
-                        if (missing.length > 0) {
-                            alert(`BLOQUEADO: Necesitas aprobar primero: ${missing.join(", ")}`);
-                            return;
+                    div.onclick = () => {
+                        if (isApp) { delete approved[c.id]; } 
+                        else {
+                            const missing = c.r.filter(reqId => !approved[reqId]);
+                            if (missing.length > 0) {
+                                alert(`BLOQUEADO: Necesitas aprobar primero: ${missing.join(", ")}`);
+                                return;
+                            }
+                            approved[c.id] = true;
                         }
-                        approved[c.id] = true;
-                    }
-                    localStorage.setItem('malla_iq_final', JSON.stringify(approved));
-                    render();
-                };
+                        localStorage.setItem('malla_iq_final', JSON.stringify(approved));
+                        render();
+                    };
 
-                col.appendChild(div);
-                if (isApp) total += c.c;
-            });
+                    col.appendChild(div);
+                    if (isApp) total += c.c;
+                });
 
-            // Si es ciclo normal, va arriba. Si es Electivo, va abajo.
-            if (cycle.includes("Ciclo")) {
-                mainMalla.appendChild(col);
-            } else {
-                electiveSection.appendChild(col);
+                if (cycle.startsWith("Ciclo")) {
+                    rowPrincipal.appendChild(col);
+                } else {
+                    rowElectivos.appendChild(col);
+                }
             }
+            
+            container.appendChild(rowPrincipal);
+            container.appendChild(tituloElectivos);
+            container.appendChild(rowElectivos);
+            document.getElementById('total-credits').innerText = total;
         }
 
-        container.appendChild(mainMalla);
-        
-        // Título intermedio para Electivos
-        const subTitle = document.createElement('h2');
-        subTitle.innerText = "ESPECIALIZACIÓN Y ELECTIVOS";
-        subTitle.style.color = "#e2c17c";
-        subTitle.style.fontFamily = "'Cinzel', serif";
-        subTitle.style.letterSpacing = "5px";
-        subTitle.style.margin = "40px 0";
-        container.appendChild(subTitle);
-        
-        container.appendChild(electiveSection);
-        
-        document.getElementById('total-credits').innerText = total;
-    }
-
-    // Código de chispas y render inicial se mantienen igual...
-    const wrapper = document.querySelector('.counter-wrapper');
-    function crearSpark() {
-        const s = document.createElement('div');
-        s.className = 'spark';
-        const ang = Math.random() * Math.PI * 2;
-        const dist = 120 + Math.random() * 260;
-        s.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
-        s.style.setProperty('--y', `${Math.sin(ang) * dist}px`);
-        s.style.left = '50%'; s.style.top = '50%';
-        s.style.animationDuration = `${2 + Math.random() * 2}s`;
-        wrapper.appendChild(s);
-        setTimeout(() => s.remove(), 4000);
-    }
-    setInterval(crearSpark, 160);
-    render();
-</script>
+        const wrapper = document.querySelector('.counter-wrapper');
+        function crearSpark() {
+            const s = document.createElement('div');
+            s.className = 'spark';
+            const ang = Math.random() * Math.PI * 2;
+            const dist = 120 + Math.random() * 260;
+            s.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
+            s.style.setProperty('--y', `${Math.sin(ang) * dist}px`);
+            s.style.left = '50%'; s.style.top = '50%';
+            s.style.animationDuration = `${2 + Math.random() * 2}s`;
+            wrapper.appendChild(s);
+            setTimeout(() => s.remove(), 4000);
+        }
+        setInterval(crearSpark, 160);
+        render();
+    </script>
 </body>
 </html>
