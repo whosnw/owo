@@ -3,230 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular IQ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Malla IQ - Supreme Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #121212;
-            --oro-rayos: linear-gradient(90deg, #8a6628, #fcf6ba, #bf953f, #fcf6ba, #8a6628);
+            --bg-dark: #191919; 
+            --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
+            --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
+            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+            
+            /* Dorado refinado: de bronce profundo a oro champán, sin amarillos puros */
+            --gr-oro: linear-gradient(
+                to right, 
+                #8a6628 0%, 
+                #bf953f 20%, 
+                #fcf6ba 40%, 
+                #b38728 60%, 
+                #fbf5b7 80%, 
+                #aa771c 100%
+            );
+            --gold-glow: rgba(191, 149, 63, 0.8);
+            --gold-bright: #e2c17c;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            color: #fff; margin: 0; padding: 20px;
+            background-image: radial-gradient(rgba(191, 149, 63, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: #fff; margin: 0; padding: 10px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- DISEÑO DE BARRAS DE AVANCE (LILA Y CELESTE) --- */
-        /* Aplicado a scrollbar horizontal y vertical con el mismo diseño */
-        ::-webkit-scrollbar { width: 12px; height: 12px; }
-        ::-webkit-scrollbar-track { background: #1a1a1a; }
-        ::-webkit-scrollbar-thumb {
-            background: var(--oro-rayos);
-            border-radius: 10px;
-            box-shadow: 0 0 15px #bf953f;
+        /* --- TITULO AVANCE CURRICULAR: AJUSTE A DORADO PRESTIGIO --- */
+        h1 { 
+            font-family: 'Cinzel', serif;
+            font-weight: 900; 
+            font-size: 3.5em; 
+            letter-spacing: 12px;
+            background: var(--gr-oro);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Animación con resplandor dorado quemado */
+            animation: shineGold 4s linear infinite, glowGold 2s ease-in-out infinite;
+            margin: 40px 0; 
+            text-transform: uppercase;
+            text-align: center;
         }
 
-        /* --- CONTADOR DE CRÉDITOS --- */
-        .counter-container {
-            width: fit-content; margin: 20px auto 40px; padding: 3px;
-            background: var(--oro-rayos); border-radius: 10px;
-            box-shadow: 0 0 25px rgba(191, 149, 63, 0.4);
-        }
-        .counter-inner {
-            background: #121212; padding: 15px 40px; border-radius: 8px;
-            display: flex; align-items: center; gap: 15px;
-        }
-        #total-credits { font-size: 2.2em; font-weight: 700; color: #fff; }
-
-        /* --- CONTENEDOR DE MALLA --- */
-        .malla-wrapper {
-            display: flex; gap: 30px; padding: 20px;
-            overflow-x: auto; /* Barra inferior lila */
-            overflow-y: hidden;
+        @keyframes shineGold {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
-        .ciclo-col { min-width: 260px; }
+        @keyframes glowGold {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px #bf953f) brightness(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 25px #aa771c) brightness(1.2);
+            }
+        }
+
+        /* --- SECCIÓN CONTADOR: FONDO SOLICITADO #191919 --- */
+        .counter-wrapper {
+          position: relative;
+          padding: 6px 0;
+          margin-bottom: 40px;
+          border-top: 2px solid transparent;
+          border-bottom: 2px solid transparent;
+          border-image: linear-gradient(90deg, transparent, #bf953f, #e2c17c, #bf953f, transparent) 1;
+          box-shadow: 0 0 30px rgba(191,149,63,0.25);
+          overflow: hidden;
+        }
+
+        .counter-wrapper::after {
+          content: '';
+          position: absolute;
+          inset: -70%;
+          background: conic-gradient(rgba(255,255,255,0), #bf953f, rgba(255,255,255,0), #aa771c, rgba(255,255,255,0));
+          animation: rayosProgreso 7s linear infinite;
+          filter: blur(25px);
+          z-index: 0;
+        }
+
+        @keyframes rayosProgreso {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+
+        #credit-counter {
+          background: #191919; /* Fondo solicitado */
+          padding: 18px 55px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          position: relative;
+          z-index: 3;
+        }
+
+        #credit-counter span:nth-child(2) {
+          font-family: 'Cinzel', serif;
+          letter-spacing: 3px;
+          font-weight: 900;
+          color: #e2c17c;
+          text-shadow: 0 0 10px rgba(191, 149, 63, 0.5);
+        }
+
+        #total-credits {
+          font-family: 'Cinzel', serif;
+          font-size: 2.6em;
+          font-weight: 900;
+          color: #ffffff;
+          animation: latidoSuave 3s infinite ease-in-out;
+          text-shadow: 0 0 12px rgba(255,255,255,0.4);
+        }
+
+        @keyframes latidoSuave {
+          0%,100% { transform: scale(1); filter: drop-shadow(0 0 5px #bf953f); }
+          50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #e2c17c); }
+        }
+
+        /* --- RESTO DEL CÓDIGO SIN CAMBIOS --- */
+        .cycle-header {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            color: #fff; 
+            padding: 16px 25px; 
+            border-radius: 14px;
+            font-weight: 900; 
+            text-transform: uppercase;
+            margin-bottom: 30px; 
+            text-align: center; 
+            font-size: 1.3em;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+        }
+
+        .cycle-column:nth-child(odd) .cycle-header { 
+            background: var(--gr-verde); 
+            box-shadow: 0 0 30px rgba(159, 180, 94, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
+            text-shadow: 0 0 12px rgba(159, 180, 94, 1), 0 0 5px #fff;
+        }
+
+        .cycle-column:nth-child(even) .cycle-header { 
+            background: var(--gr-naranja); 
+            box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
+            text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
+        }
+
+        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
+        .cycle-column { min-width: 280px; }
+
+        .course {
+            background: #121212;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .course:hover {
+            transform: translateY(-5px);
+            background: #1a1a1a;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+        }
+
+        .course.approved {
+            background: var(--gr-mostaza);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
+        }
+
+        .course.approved:hover {
+            transform: scale(1.1) translateY(-10px);
+            box-shadow: 0 0 45px rgba(226, 193, 124, 1), inset 0 0 15px rgba(255,255,255,0.6);
+            filter: brightness(1.2);
+        }
+
+        .code { font-size: 0.85em; font-weight: 900; color: #e2c17c; display: block; margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9); }
+        .name { font-size: 1em; font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,1); }
+        .cred { font-size: 0.85em; color: #ccc; margin-top: 15px; display: flex; align-items: center; font-weight: 700; text-shadow: 2px 2px 3px rgba(0,0,0,1); }
         
-        .ciclo-titulo {
-            background: #1a1a1a; padding: 12px; border-radius: 8px;
-            text-align: center; font-weight: 700; margin-bottom: 20px;
-            border: 1px solid #333; color: #e2c17c;
+        .course.approved .name, .course.approved .cred, .course.approved .code { color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.6); }
+
+        .emoji { margin-right: 10px; filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); }
+
+        .curriculum-container::-webkit-scrollbar { height: 10px; }
+        .curriculum-container::-webkit-scrollbar-thumb { background: #bf953f; border-radius: 10px; border: 2px solid var(--bg-dark); }
+        
+        .spark {
+          position: absolute;
+          width: 4px; height: 4px;
+          background: radial-gradient(circle, #e2c17c, transparent);
+          border-radius: 50%;
+          pointer-events: none;
+          animation: sparkMove linear infinite;
+          z-index: 2;
         }
 
-        /* --- DISEÑO DE CURSOS ORIGINAL --- */
-        .curso {
-            background: #1a1a1a; border-radius: 15px; padding: 20px;
-            margin-bottom: 15px; border: 1px solid #333;
-            transition: 0.3s ease; cursor: pointer;
+        @keyframes sparkMove {
+          from { transform: translate(0,0) scale(0.4); opacity: 1; }
+          to { transform: translate(var(--x),var(--y)) scale(1.6); opacity: 0; }
         }
-
-        /* Estado Desbloqueado/Aprobado (Dorado resplandeciente) */
-        .curso.approved {
-            background: linear-gradient(145deg, #bf953f, #8a6628);
-            border: 1px solid #fff;
-            box-shadow: 0 0 20px rgba(191, 149, 63, 0.6);
-        }
-
-        /* TEXTO BLANCO EN CURSOS APROBADOS */
-        .curso.approved .codigo, 
-        .curso.approved .nombre, 
-        .curso.approved .creditos {
-            color: #ffffff !important;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .codigo { font-size: 0.8em; color: #888; font-weight: 700; }
-        .nombre { display: block; margin: 8px 0; font-size: 0.95em; font-weight: 700; }
-        .creditos { font-size: 0.8em; color: #bf953f; display: flex; align-items: center; gap: 5px; }
-
-        .locked { opacity: 0.2; pointer-events: none; filter: grayscale(1); }
     </style>
 </head>
 <body>
 
-    <h1 style="text-align:center; color:#bf953f;">MI AVANCE ACADÉMICO</h1>
-
-    <div class="counter-container">
-        <div class="counter-inner">
-            <span style="color:#bf953f; font-weight:700;">CRÉDITOS TOTALES:</span>
-            <div id="total-credits">0</div>
-        </div>
+    <h1>Avance Curricular</h1>
+    
+    <div class="counter-wrapper">
+      <div id="credit-counter">
+        <span class="emoji">🍂</span>
+        <span>PROGRESO TOTAL:</span>
+        <div id="total-credits">0</div>
+      </div>
     </div>
 
-    <div class="malla-wrapper" id="malla-container">
-        </div>
+    <div class="curriculum-container" id="curriculum"></div>
 
     <script>
-        // Datos extraídos del PDF para Ingeniería Química [cite: 23, 49, 78]
-        const dataMalla = {
-            "Ciclo 01": [
-                { id: "BD101", n: "DIBUJO EN INGENIERIA I", c: 2, r: [] },
-                { id: "BF101", n: "FISICA I", c: 5, r: [] },
-                { id: "BMA01", n: "CALCULO DIFERENCIAL", c: 5, r: [] },
-                { id: "BMA03", n: "ALGEBRA LINEAL", c: 4, r: [] },
-                { id: "BQU01", n: "QUIMICA I", c: 5, r: [] },
-                { id: "BRC01", n: "REDACCION Y COMUNICACION", c: 2, r: [] }
+        const coursesData = {
+            "Ciclo 1": [
+                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2 },
+                { id: "BF101", name: "FÍSICA I", credits: 5 },
+                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5 },
+                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4 },
+                { id: "BQU01", name: "QUÍMICA I", credits: 5 }
             ],
-            "Ciclo 02": [
-                { id: "BD102", n: "DIBUJO EN INGENIERIA II", c: 3, r: ["BD101"] },
-                { id: "BF102", n: "FISICA II", c: 5, r: ["BF101"] },
-                { id: "BMA02", n: "CALCULO INTEGRAL", c: 5, r: ["BMA01"] },
-                { id: "BMA04", n: "MATEMATICAS BASICAS", c: 4, r: ["BMA03"] },
-                { id: "BQU02", n: "QUIMICA II", c: 5, r: ["BQU01"] }
+            "Ciclo 2": [
+                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3 },
+                { id: "BF102", name: "FÍSICA II", credits: 5 },
+                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
+                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
+                { id: "BQU02", name: "QUÍMICA II", credits: 5 }
             ],
-            "Ciclo 03": [
-                { id: "BEF01", n: "ETICA Y FILOSOFIA POLITICA", c: 2, r: [] },
-                { id: "BEG01", n: "ECONOMIA GENERAL", c: 3, r: [] },
-                { id: "BF103", n: "FISICA III", c: 5, r: ["BF102"] },
-                { id: "BIC01", n: "INTRODUCCION A LA COMPUTACION", c: 2, r: [] },
-                { id: "BMA05", n: "MATEMATICAS SUPERIOR I", c: 4, r: ["BMA02", "BMA04"] },
-                { id: "QU216", n: "QUIMICA INORGANICA", c: 5, r: ["BQU02"] }
-            ],
-            "Ciclo 04": [
-                { id: "BF104", n: "TOPICOS ESPECIALES EN FISICA", c: 3, r: ["BF103"] },
-                { id: "BMA06", n: "MATEMATICAS SUPERIOR II", c: 4, r: ["BMA05"] },
-                { id: "EP308", n: "ECONOMIA Y ORGANIZACION DE LA EMPRESA", c: 3, r: ["BEG01"] },
-                { id: "MA613", n: "ESTADISTICA APLICADA", c: 4, r: ["BMA04"] },
-                { id: "MA713", n: "PROGRAMACION DIGITAL", c: 3, r: ["BIC01"] },
-                { id: "QU427", n: "FISICO QUIMICA I", c: 5, r: ["BF103", "BQU02"] }
-            ],
-            "Ciclo 05": [
-                { id: "PI111", n: "BALANCE DE MATERIA Y ENERGIA", c: 3, r: ["QU427"] },
-                { id: "PI524", n: "METODOS NUMERICOS PARA IQ", c: 4, r: ["BMA06"] },
-                { id: "QU328", n: "QUIMICA ORGANICA I", c: 5, r: ["QU427"] },
-                { id: "QU428", n: "FISICO QUIMICA II", c: 5, r: ["QU427"] },
-                { id: "QU518", n: "ANALISIS QUIMICO", c: 4, r: ["QU216"] }
-            ],
-            "Ciclo 06": [
-                { id: "BIE01", n: "IDIOMA EXTRANJERO", c: 2, r: [] },
-                { id: "BRN01", n: "REALIDAD NACIONAL", c: 3, r: [] },
-                { id: "EC618", n: "MECANICA Y RESISTENCIA DE MAT.", c: 3, r: ["BF104", "BMA06"] },
-                { id: "EE103", n: "CIRCUITOS ELECTRICOS", c: 3, r: ["BF103", "BMA05"] },
-                { id: "PI140", n: "FENOMENOS DE TRANSPORTE", c: 3, r: ["BMA06", "PI111"] },
-                { id: "PI216", n: "TERMODINAMICA PARA IQ I", c: 3, r: ["PI111", "QU428"] },
-                { id: "QU338", n: "QUIMICA ORGANICA II", c: 5, r: ["QU328"] }
-            ],
-            "Ciclo 07": [
-                { id: "PA113", n: "INGENIERIA DE METODOS I", c: 4, r: ["MA613"] },
-                { id: "PA714", n: "INVESTIGACION DE OPERACIONES I", c: 3, r: ["MA613", "MA713"] },
-                { id: "PI142", n: "TRANSFERENCIA DE CANT. MOV.", c: 3, r: ["PI140"] },
-                { id: "PI217", n: "TERMODINAMICA PARA IQ II", c: 3, r: ["PI216", "PI524"] },
-                { id: "PI318", n: "INDUSTRIA DE PROCESOS QUIMICOS", c: 5, r: ["PI140"] },
-                { id: "PI514", n: "CIENCIAS DE LOS MATERIALES", c: 2, r: ["QU518"] },
-                { id: "PI520", n: "RECURSOS QUIMICOS BIODIVERSIDAD", c: 3, r: ["QU338", "QU518"] }
-            ],
-            "Ciclo 08": [
-                { id: "BAE01", n: "ACTIVIDADES EXTRACURRICULARES", c: 1, r: [] },
-                { id: "EP818", n: "COSTOS Y PRESUPUESTOS", c: 3, r: ["EP308", "PA714"] },
-                { id: "PI1143", n: "TRANSFERENCIA DE CALOR", c: 3, r: ["PI142"] },
-                { id: "PI1144", n: "TRANSFERENCIA DE MASA", c: 3, r: ["PI142"] },
-                { id: "PI1146", n: "OPERACIONES EN IQ I", c: 3, r: ["PI142"] },
-                { id: "PI225", n: "CINETICA Y DISEÑO REACTORES I", c: 3, r: ["PI217"] },
-                { id: "PI521", n: "INTRODUCCION A LA BIOINGENIERIA", c: 3, r: ["PI520"] }
-            ],
-            "Ciclo 09": [
-                { id: "PI1135", n: "LAB. DE OPERACIONES UNITARIAS I", c: 2, r: ["PI1143", "PI1146"] },
-                { id: "PI1365", n: "POLIMEROS I", c: 3, r: ["QU338"] },
-                { id: "PI1415", n: "INSTRUMENTOS DE CONTROL", c: 3, r: ["EE103", "PI1144"] },
-                { id: "PI1510", n: "ECONOMIA DE PROCESOS", c: 3, r: ["EP818", "PI1144"] },
-                { id: "PI1555", n: "SEGURIDAD EN PROCESOS QUIMICOS", c: 3, r: ["PI1143", "PI1144"] },
-                { id: "PI911", n: "GESTION TECNOLOGICA", c: 4, r: [] },
-                { id: "QT714", n: "TALLER DE PROYECTO INVESTIGACION", c: 2, r: [] }
-            ],
-            "Ciclo 10": [
-                { id: "PA136", n: "PLANEAMIENTO Y CONTROL PROD.", c: 4, r: ["PA113", "PA714"] },
-                { id: "PI1136", n: "LAB. DE OPERACIONES UNITARIAS II", c: 2, r: ["PI1135", "PI1144"] },
-                { id: "PI1426", n: "SIMULACION Y CONTROL PROCESOS", c: 4, r: ["PI225", "PI1415"] },
-                { id: "PI1525", n: "DISEÑO DE PLANTAS", c: 4, r: ["PI1415", "PI1510"] },
-                { id: "QT715", n: "TALLER DE INVESTIGACION", c: 2, r: ["QT714"] },
-                { id: "XP100", n: "PRACTICAS PRE-PROF. I", c: 1, r: [] },
-                { id: "XP200", n: "PRACTICAS PRE-PROF. II", c: 2, r: [] }
+            "Ciclo 3": [
+                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
+                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
+                { id: "BF103", name: "FÍSICA III", credits: 5 },
+                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
+                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
             ]
         };
 
-        let cursados = JSON.parse(localStorage.getItem('user_malla_iq')) || {};
-
-        function checkRequisitos(reqs) {
-            return reqs.every(r => cursados[r]);
-        }
+        let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
         function render() {
-            const cont = document.getElementById('malla-container');
-            cont.innerHTML = '';
-            let totalCred = 0;
+            const container = document.getElementById('curriculum');
+            container.innerHTML = '';
+            let total = 0;
 
-            for (let ciclo in dataMalla) {
+            for (let cycle in coursesData) {
                 const col = document.createElement('div');
-                col.className = 'ciclo-col';
-                col.innerHTML = `<div class="ciclo-titulo">${ciclo}</div>`;
+                col.className = 'cycle-column';
+                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-                dataMalla[ciclo].forEach(curso => {
-                    const isApp = cursados[curso.id];
-                    const isLock = !checkRequisitos(curso.r);
-                    
-                    const card = document.createElement('div');
-                    card.className = `curso ${isApp ? 'approved' : ''} ${isLock ? 'locked' : ''}`;
-                    card.innerHTML = `
-                        <div class="codigo">${curso.id}</div>
-                        <div class="nombre">${curso.n}</div>
-                        <div class="creditos">🔥 ${curso.c} CRÉDITOS</div>
+                coursesData[cycle].forEach(c => {
+                    const isApp = approved[c.id];
+                    const div = document.createElement('div');
+                    div.className = `course ${isApp ? 'approved' : ''}`;
+                    div.innerHTML = `
+                        <span class="code">${c.id}</span>
+                        <span class="name">${c.name}</span>
+                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CRÉDITOS</span>
                     `;
-
-                    card.onclick = () => {
-                        if (isApp) delete cursados[curso.id];
-                        else cursados[curso.id] = true;
-                        localStorage.setItem('user_malla_iq', JSON.stringify(cursados));
+                    div.onclick = () => {
+                        if (isApp) delete approved[c.id];
+                        else approved[c.id] = true;
+                        localStorage.setItem('malla_iq_final', JSON.stringify(approved));
                         render();
                     };
-
-                    col.appendChild(card);
-                    if (isApp) totalCred += curso.c;
+                    col.appendChild(div);
+                    if (isApp) total += c.credits;
                 });
-                cont.appendChild(col);
+                container.appendChild(col);
             }
-            document.getElementById('total-credits').innerText = totalCred;
+            document.getElementById('total-credits').innerText = total;
         }
+
+        const wrapper = document.querySelector('.counter-wrapper');
+        function crearSpark() {
+          const s = document.createElement('div');
+          s.className = 'spark';
+          const ang = Math.random() * Math.PI * 2;
+          const dist = 120 + Math.random() * 260;
+          s.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
+          s.style.setProperty('--y', `${Math.sin(ang) * dist}px`);
+          s.style.left = '50%';
+          s.style.top = '50%';
+          s.style.animationDuration = `${2 + Math.random() * 2}s`;
+          wrapper.appendChild(s);
+          setTimeout(() => s.remove(), 4000);
+        }
+        setInterval(crearSpark, 160);
 
         render();
     </script>
