@@ -12,7 +12,6 @@
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
             --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
             
-            /* Dorado refinado */
             --gr-oro: linear-gradient(
                 to right, 
                 #8a6628 0%, 
@@ -22,33 +21,8 @@
                 #fbf5b7 80%, 
                 #aa771c 100%
             );
-            --gold-glow: rgba(191, 149, 63, 0.9); /* Iluminación más fuerte */
+            --gold-glow: rgba(191, 149, 63, 0.8);
             --gold-bright: #e2c17c;
-        }
-
-        /* --- LAS LÍNEAS DORADAS CON ILUMINACIÓN PERMANENTE --- */
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #121212; 
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gr-oro);
-            border-radius: 10px;
-            /* Iluminación constante con box-shadow */
-            box-shadow: 0 0 15px var(--gold-glow), 
-                        inset 0 0 4px rgba(255, 255, 255, 0.5);
-            border: 1px solid #191919;
-        }
-
-        /* Mantenemos el brillo incluso sin hover */
-        ::-webkit-scrollbar-thumb:vertical,
-        ::-webkit-scrollbar-thumb:horizontal {
-            background: var(--gr-oro);
         }
 
         body {
@@ -60,7 +34,45 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- TITULO AVANCE CURRICULAR --- */
+        /* --- LAS BARRAS DORADAS VAN AQUÍ --- */
+        ::-webkit-scrollbar {
+            width: 14px;
+            height: 14px; 
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(
+                to bottom, 
+                #bf953f 0%, 
+                #fcf6ba 50%, 
+                #bf953f 100%
+            );
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ffcc00, 
+                        0 0 10px #bf953f, 
+                        inset 0 0 6px #ffffff;
+            border: 2px solid #0d0d0d;
+        }
+
+        ::-webkit-scrollbar-thumb:horizontal {
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 50%, 
+                #bf953f 100%
+            );
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background: #fcf6ba;
+            box-shadow: 0 0 30px #ffcc00, inset 0 0 10px #ffffff;
+        }
+
+        /* --- CONTINUACIÓN DE TU CÓDIGO --- */
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; 
@@ -86,7 +98,6 @@
             50% { filter: drop-shadow(0 0 25px #aa771c) brightness(1.2); }
         }
 
-        /* --- SECCIÓN CONTADOR --- */
         .counter-wrapper {
           position: relative;
           padding: 6px 0;
@@ -145,7 +156,6 @@
           50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #e2c17c); }
         }
 
-        /* --- MALLA --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 4px;
@@ -188,10 +198,22 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
+        .course:hover {
+            transform: translateY(-5px);
+            background: #1a1a1a;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+        }
+
         .course.approved {
             background: var(--gr-mostaza);
             border: 1px solid rgba(255,255,255,0.5);
             box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
+        }
+
+        .course.approved:hover {
+            transform: scale(1.1) translateY(-10px);
+            box-shadow: 0 0 45px rgba(226, 193, 124, 1), inset 0 0 15px rgba(255,255,255,0.6);
+            filter: brightness(1.2);
         }
 
         .code { font-size: 0.85em; font-weight: 900; color: #e2c17c; display: block; margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9); }
@@ -199,6 +221,8 @@
         .cred { font-size: 0.85em; color: #ccc; margin-top: 15px; display: flex; align-items: center; font-weight: 700; text-shadow: 2px 2px 3px rgba(0,0,0,1); }
         
         .course.approved .name, .course.approved .cred, .course.approved .code { color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.6); }
+
+        .emoji { margin-right: 10px; filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); }
 
         .spark {
           position: absolute;
