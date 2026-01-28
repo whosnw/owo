@@ -187,7 +187,14 @@ body {
             text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
         }
 
-        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 95vw; padding: 25px; }
+        .curriculum-container { 
+    display: flex; 
+    flex-wrap: wrap; /* Permite que los elementos bajen */
+    justify-content: center; /* Centra los ciclos */
+    gap: 35px; 
+    width: 95vw; 
+    padding: 25px; 
+}
         .cycle-column { min-width: 280px; }
 
         .course {
@@ -373,55 +380,81 @@ body {
 
         let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
+    // --- ESTO ES EL PASO 3 (Cópialo y pégalo justo aquí) ---
+function createCourseElement(c) {
+    const isApp = approved[c.id];
+    // Lógica de validación: ¿Están todos sus prerrequisitos aprobados?
+    const canUnlock = c.r.every(reqId => approved[reqId]);
+
+    const div = document.createElement('div');
+    // Si no está aprobado y no puede desbloquearse, le bajamos la opacidad
+    div.className = `course ${isApp ? 'approved' : ''}`;
+    if (!isApp && !canUnlock) div.style.opacity = "0.4";
+
+    div.innerHTML = `
+        <span class="code">${c.id}</span>
+        <span class="name">${c.n}</span>
+        <span class="cred"><span class="emoji">🍂</span> ${c.c} CRÉDITOS</span>
+    `;
+
+    div.onclick = () => {
+        if (isApp) {
+            // Si ya está aprobado, al hacer clic lo desmarcamos
+            delete approved[c.id];
+        } else {
+            // SI NO ESTÁ APROBADO, VERIFICAMOS REQUISITOS
+            const missing = c.r.filter(reqId => !approved[reqId]);
+            if (missing.length > 0) {
+                alert(`BLOQUEADO: Necesitas aprobar primero: ${missing.join(", ")}`);
+                return; // Detiene la ejecución
+            }
+            approved[c.id] = true;
+        }
+        localStorage.setItem('malla_iq_final', JSON.stringify(approved));
+        render(); // Volvemos a dibujar todo
+    };
+    return div;
+}
+
+// ABAJO DE ESTO DEBERÍA SEGUIR TU FUNCIÓN RENDER:
+// function render() { ...
 function render() {
             const container = document.getElementById('curriculum');
             container.innerHTML = '';
             let total = 0;
 
-            for (let cycle in coursesData) {
-                const col = document.createElement('div');
-                col.className = 'cycle-column';
-                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+for (let cycle in coursesData) {
+    const col = document.createElement('div');
+    col.className = 'cycle-column';
+    
+    // Si el nombre dice "Electivo", forzamos que ocupe todo el ancho abajo
+    if (cycle.toLowerCase().includes("electivo")) {
+        col.style.flex = "1 1 100%"; 
+        col.style.marginTop = "50px";
+    }
 
-                coursesData[cycle].forEach(c => {
-                    const isApp = approved[c.id];
-                    
-                    // Lógica de validación: ¿Están todos sus prerrequisitos aprobados?
-                    const canUnlock = c.r.every(reqId => approved[reqId]);
+    col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-                    const div = document.createElement('div');
-                    // Si no está aprobado y no puede desbloquearse, le bajamos la opacidad
-                    div.className = `course ${isApp ? 'approved' : ''}`;
-                    if (!isApp && !canUnlock) div.style.opacity = "0.4";
+    // Contenedor interno para los cursos
+    const coursesWrapper = document.createElement('div');
+    
+    // Si son electivos, los ponemos en una cuadrícula (grid) para que no sea una lista infinita
+    if (cycle.toLowerCase().includes("electivo")) {
+        coursesWrapper.style.display = "grid";
+        coursesWrapper.style.gridTemplateColumns = "repeat(auto-fill, minmax(280px, 1fr))";
+        coursesWrapper.style.gap = "20px";
+    }
 
-                    div.innerHTML = `
-                        <span class="code">${c.id}</span>
-                        <span class="name">${c.n}</span>
-                        <span class="cred"><span class="emoji">🍂</span> ${c.c} CRÉDITOS</span>
-                    `;
+    coursesData[cycle].forEach(c => {
+        // Usamos la función createCourseElement (Paso 3) para crear cada tarjeta
+        const div = createCourseElement(c);
+        coursesWrapper.appendChild(div);
+        if (approved[c.id]) total += c.c;
+    });
 
-                    div.onclick = () => {
-                        if (isApp) {
-                            // Si ya está aprobado, al hacer clic lo desmarcamos
-                            delete approved[c.id];
-                        } else {
-                            // SI NO ESTÁ APROBADO, VERIFICAMOS REQUISITOS
-                            const missing = c.r.filter(reqId => !approved[reqId]);
-                            if (missing.length > 0) {
-                                alert(`BLOQUEADO: Necesitas aprobar primero: ${missing.join(", ")}`);
-                                return; // Detiene la ejecución, no lo marca
-                            }
-                            approved[c.id] = true;
-                        }
-                        localStorage.setItem('malla_iq_final', JSON.stringify(approved));
-                        render();
-                    };
-
-                    col.appendChild(div);
-                    if (isApp) total += c.c;
-                });
-                container.appendChild(col);
-            }
+    col.appendChild(coursesWrapper);
+    container.appendChild(col);
+}
             // Actualización del contador de créditos
             document.getElementById('total-credits').innerText = total;
         }
