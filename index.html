@@ -22,44 +22,57 @@
                 #aa771c 100%
             );
         }
-/* --- BARRAS SUPREME: ILUMINACIÓN HACIA ADENTRO --- */
+/* --- CORRECCIÓN DEFINITIVA DE ILUMINACIÓN SUPREME --- */
 ::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
+    width: 18px; 
+    height: 18px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 ::-webkit-scrollbar-thumb {
     background: #BF953F;
     border-radius: 10px;
     background-clip: padding-box;
-    border: 2px solid transparent;
 }
 
-/* BARRA VERTICAL: Sombra hacia la IZQUIERDA */
+/* --- ILUMINACIÓN SUPREME CORREGIDA --- */
+::-webkit-scrollbar {
+    width: 18px; 
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Transparente para que no se vea un bloque negro */
+}
+
 ::-webkit-scrollbar-thumb:vertical {
-    box-shadow: -12px 0 20px 2px rgba(191, 149, 63, 0.9), 
-                inset 0 0 8px #fcf6ba;
-    border-left: 2px solid #fcf6ba; /* Línea de luz frontal */
+    background: #BF953F;
+    border-radius: 10px;
+    /* EL SECRETO: -25px empuja la luz hacia la IZQUIERDA */
+    box-shadow: -25px 0 35px 5px rgba(191, 149, 63, 0.9), 
+                inset 0 0 10px #fcf6ba;
+    /* Línea de luz sólida */
+    border-left: 3px solid #fcf6ba;
+    background-clip: padding-box;
+    border-right: 5px solid transparent; 
 }
 
-/* BARRA HORIZONTAL: Sombra hacia ARRIBA */
-::-webkit-scrollbar-thumb:horizontal {
-    box-shadow: 0 -12px 20px 2px rgba(191, 149, 63, 0.9), 
-                inset 0 0 8px #fcf6ba;
-    border-top: 2px solid #fcf6ba;
-}
-
-        body {
+body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
             background-image: radial-gradient(rgba(191, 149, 63, 0.05) 1px, transparent 1px);
             background-size: 30px 30px;
-            color: #fff; margin: 0; padding: 10px;
-            display: flex; flex-direction: column; align-items: center;
+            color: #fff; 
+            margin: 0; 
+            /* Espacio de 30px a la derecha para que el brillo respire */
+            padding: 10px 35px 10px 10px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            /* Evita el rebote horizontal */
+            overflow-x: hidden; 
         }
 
         h1 { 
