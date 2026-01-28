@@ -239,26 +239,88 @@
 
     <script>
         const coursesData = {
-            "Ciclo 1": [
-                { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2 },
-                { id: "BF101", name: "FÍSICA I", credits: 5 },
-                { id: "BMA01", name: "CÁLCULO DIFERENCIAL", credits: 5 },
-                { id: "BMA03", name: "ÁLGEBRA LINEAL", credits: 4 },
-                { id: "BQU01", name: "QUÍMICA I", credits: 5 }
+"Ciclo 01": [
+                { id: "BD101", n: "DIBUJO EN INGENIERIA I", c: 2, r: [] },
+                { id: "BF101", n: "FISICA I", c: 5, r: [] },
+                { id: "BMA01", n: "CALCULO DIFERENCIAL", c: 5, r: [] },
+                { id: "BMA03", n: "ALGEBRA LINEAL", c: 4, r: [] },
+                { id: "BQU01", n: "QUIMICA I", c: 5, r: [] },
+                { id: "BRC01", n: "REDACCION Y COMUNICACION", c: 2, r: [] }
             ],
-            "Ciclo 2": [
-                { id: "BD102", name: "DIBUJO EN INGENIERÍA II", credits: 3 },
-                { id: "BF102", name: "FÍSICA II", credits: 5 },
-                { id: "BMA02", name: "CÁLCULO INTEGRAL", credits: 5 },
-                { id: "BMA04", name: "MATEMÁTICAS BÁSICAS", credits: 4 },
-                { id: "BQU02", name: "QUÍMICA II", credits: 5 }
+            "Ciclo 02": [
+                { id: "BD102", n: "DIBUJO EN INGENIERIA II", c: 3, r: ["BD101"] },
+                { id: "BF102", n: "FISICA II", c: 5, r: ["BF101"] },
+                { id: "BMA02", n: "CALCULO INTEGRAL", c: 5, r: ["BMA01"] },
+                { id: "BMA04", n: "MATEMATICAS BASICAS", c: 4, r: ["BMA03"] },
+                { id: "BQU02", n: "QUIMICA II", c: 5, r: ["BQU01"] }
             ],
-            "Ciclo 3": [
-                { id: "BEF01", name: "ÉTICA Y FILOSOFÍA POLÍTICA", credits: 2 },
-                { id: "BEG01", name: "ECONOMÍA GENERAL", credits: 3 },
-                { id: "BF103", name: "FÍSICA III", credits: 5 },
-                { id: "BMA05", name: "MATEMÁTICAS SUPERIOR I", credits: 4 },
-                { id: "QU216", name: "QUÍMICA INORGÁNICA", credits: 5 }
+            "Ciclo 03": [
+                { id: "BEF01", n: "ETICA Y FILOSOFIA POLITICA", c: 2, r: [] },
+                { id: "BEG01", n: "ECONOMIA GENERAL", c: 3, r: [] },
+                { id: "BF103", n: "FISICA III", c: 5, r: ["BF102"] },
+                { id: "BIC01", n: "INTRODUCCION A LA COMPUTACION", c: 2, r: [] },
+                { id: "BMA05", n: "MATEMATICAS SUPERIOR I", c: 4, r: ["BMA02", "BMA04"] },
+                { id: "QU216", n: "QUIMICA INORGANICA", c: 5, r: ["BQU02"] }
+            ],
+            "Ciclo 04": [
+                { id: "BF104", n: "TOPICOS ESPECIALES EN FISICA", c: 3, r: ["BF103"] },
+                { id: "BMA06", n: "MATEMATICAS SUPERIOR II", c: 4, r: ["BMA05"] },
+                { id: "EP308", n: "ECONOMIA Y ORGANIZACION DE LA EMPRESA", c: 3, r: ["BEG01"] },
+                { id: "MA613", n: "ESTADISTICA APLICADA", c: 4, r: ["BMA04"] },
+                { id: "MA713", n: "PROGRAMACION DIGITAL", c: 3, r: ["BIC01"] },
+                { id: "QU427", n: "FISICO QUIMICA I", c: 5, r: ["BF103", "BQU02"] }
+            ],
+            "Ciclo 05": [
+                { id: "PI111", n: "BALANCE DE MATERIA Y ENERGIA", c: 3, r: ["QU427"] },
+                { id: "PI524", n: "METODOS NUMERICOS PARA IQ", c: 4, r: ["BMA06"] },
+                { id: "QU328", n: "QUIMICA ORGANICA I", c: 5, r: ["QU427"] },
+                { id: "QU428", n: "FISICO QUIMICA II", c: 5, r: ["QU427"] },
+                { id: "QU518", n: "ANALISIS QUIMICO", c: 4, r: ["QU216"] }
+            ],
+            "Ciclo 06": [
+                { id: "BIE01", n: "IDIOMA EXTRANJERO", c: 2, r: [] },
+                { id: "BRN01", n: "REALIDAD NACIONAL", c: 3, r: [] },
+                { id: "EC618", n: "MECANICA Y RESISTENCIA DE MAT.", c: 3, r: ["BF104", "BMA06"] },
+                { id: "EE103", n: "CIRCUITOS ELECTRICOS", c: 3, r: ["BF103", "BMA05"] },
+                { id: "PI140", n: "FENOMENOS DE TRANSPORTE", c: 3, r: ["BMA06", "PI111"] },
+                { id: "PI216", n: "TERMODINAMICA PARA IQ I", c: 3, r: ["PI111", "QU428"] },
+                { id: "QU338", n: "QUIMICA ORGANICA II", c: 5, r: ["QU328"] }
+            ],
+            "Ciclo 07": [
+                { id: "PA113", n: "INGENIERIA DE METODOS I", c: 4, r: ["MA613"] },
+                { id: "PA714", n: "INVESTIGACION DE OPERACIONES I", c: 3, r: ["MA613", "MA713"] },
+                { id: "PI142", n: "TRANSFERENCIA DE CANT. MOV.", c: 3, r: ["PI140"] },
+                { id: "PI217", n: "TERMODINAMICA PARA IQ II", c: 3, r: ["PI216", "PI524"] },
+                { id: "PI318", n: "INDUSTRIA DE PROCESOS QUIMICOS", c: 5, r: ["PI140"] },
+                { id: "PI514", n: "CIENCIAS DE LOS MATERIALES", c: 2, r: ["QU518"] },
+                { id: "PI520", n: "RECURSOS QUIMICOS BIODIVERSIDAD", c: 3, r: ["QU338", "QU518"] }
+            ],
+            "Ciclo 08": [
+                { id: "BAE01", n: "ACTIVIDADES EXTRACURRICULARES", c: 1, r: [] },
+                { id: "EP818", n: "COSTOS Y PRESUPUESTOS", c: 3, r: ["EP308", "PA714"] },
+                { id: "PI1143", n: "TRANSFERENCIA DE CALOR", c: 3, r: ["PI142"] },
+                { id: "PI1144", n: "TRANSFERENCIA DE MASA", c: 3, r: ["PI142"] },
+                { id: "PI1146", n: "OPERACIONES EN IQ I", c: 3, r: ["PI142"] },
+                { id: "PI225", n: "CINETICA Y DISEÑO REACTORES I", c: 3, r: ["PI217"] },
+                { id: "PI521", n: "INTRODUCCION A LA BIOINGENIERIA", c: 3, r: ["PI520"] }
+            ],
+            "Ciclo 09": [
+                { id: "PI1135", n: "LAB. DE OPERACIONES UNITARIAS I", c: 2, r: ["PI1143", "PI1146"] },
+                { id: "PI1365", n: "POLIMEROS I", c: 3, r: ["QU338"] },
+                { id: "PI1415", n: "INSTRUMENTOS DE CONTROL", c: 3, r: ["EE103", "PI1144"] },
+                { id: "PI1510", n: "ECONOMIA DE PROCESOS", c: 3, r: ["EP818", "PI1144"] },
+                { id: "PI1555", n: "SEGURIDAD EN PROCESOS QUIMICOS", c: 3, r: ["PI1143", "PI1144"] },
+                { id: "PI911", n: "GESTION TECNOLOGICA", c: 4, r: [] },
+                { id: "QT714", n: "TALLER DE PROYECTO INVESTIGACION", c: 2, r: [] }
+            ],
+            "Ciclo 10": [
+                { id: "PA136", n: "PLANEAMIENTO Y CONTROL PROD.", c: 4, r: ["PA113", "PA714"] },
+                { id: "PI1136", n: "LAB. DE OPERACIONES UNITARIAS II", c: 2, r: ["PI1135", "PI1144"] },
+                { id: "PI1426", n: "SIMULACION Y CONTROL PROCESOS", c: 4, r: ["PI225", "PI1415"] },
+                { id: "PI1525", n: "DISEÑO DE PLANTAS", c: 4, r: ["PI1415", "PI1510"] },
+                { id: "QT715", n: "TALLER DE INVESTIGACION", c: 2, r: ["QT714"] },
+                { id: "XP100", n: "PRACTICAS PRE-PROF. I", c: 1, r: [] },
+                { id: "XP200", n: "PRACTICAS PRE-PROF. II", c: 2, r: [] }
             ]
         };
 
