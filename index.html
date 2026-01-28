@@ -23,7 +23,7 @@
             );
         }
 
-        /* --- BARRA DORADA SIN BORDES E ILUMINADA SIEMPRE --- */
+/* --- ESTILO DE BARRAS DORADAS SUPREME --- */
         ::-webkit-scrollbar {
             width: 14px;  /* Grosor barra vertical */
             height: 14px; /* Grosor barra horizontal */
@@ -36,23 +36,21 @@
         ::-webkit-scrollbar-thumb {
             background: #BF953F;
             border-radius: 10px;
-            /* Esta sombra ahora se aplica a AMBAS barras */
-            box-shadow: 0 0 15px #BF953F, inset 0 0 8px #fcf6ba;
+            /* Resplandor base para ambas barras */
+            box-shadow: inset 0 0 8px #fcf6ba;
         }
 
-        /* Ajuste para que la barra vertical brille hacia la izquierda (adentro de la pantalla) */
+        /* Iluminación para la barra VERTICAL (brillo hacia la izquierda) */
         ::-webkit-scrollbar-thumb:vertical {
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: -4px 0 15px #BF953F;
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: -5px 0 15px #BF953F, -2px 0 20px #aa771c;
         }
 
-        /* Ajuste para que la barra horizontal brille hacia arriba */
+        /* Iluminación para la barra HORIZONTAL (brillo hacia arriba) */
         ::-webkit-scrollbar-thumb:horizontal {
-            border-top: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 -4px 15px #BF953F;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 -5px 15px #BF953F, 0 -2px 20px #aa771c;
         }
-
-        /* Removidos todos los efectos de hover y active para que no cambie nada al tocarla */
 
         body {
             font-family: 'Quicksand', sans-serif;
