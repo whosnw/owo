@@ -66,16 +66,17 @@ body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--bg-dark);
     margin: 0; 
-    padding: 20px 50px 0px 20px; 
+    /* Ajustamos el padding para que no empuje el Ciclo 1 hacia afuera */
+    padding: 10px; 
     display: flex; 
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
     overflow-x: auto;
-    /* --- CAMBIO: Escala general al 80% --- */
-    zoom: 0.8; 
-    -moz-transform: scale(0.8);
+    /* Subimos el zoom a 0.85 para que se vea "Normal" y no tan pequeño */
+    zoom: 0.85; 
+    -moz-transform: scale(0.85);
     -moz-transform-origin: top center;
 }
 h1 { 
@@ -191,28 +192,41 @@ h1 {
 
 .curriculum-container { 
     display: grid;
-    /* Bajamos a 140px para asegurar que quepan los 10 ciclos */
-    grid-template-columns: repeat(10, 140px); 
+    /* 180px es el punto medio perfecto: legible y compacto */
+    grid-template-columns: repeat(10, 180px); 
     align-items: flex-start;
-    gap: 8px; 
+    gap: 10px; 
     width: max-content;
     padding: 10px; 
 }
 
-/* Esta regla hará que los bloques de electivos salten a una nueva fila */
+/* Esta regla mantiene los electivos en su propia fila abajo */
 .cycle-column.is-electivo {
     grid-column: 1 / -1; 
     width: 100%;
     margin-top: 30px;
 }
 
-/* IMPORTANTE: El min-width debe ser igual al del grid (140px) */
-.cycle-column { min-width: 140px; }
+/* IMPORTANTE: El min-width debe coincidir con el del grid (180px) */
+.cycle-column { 
+    min-width: 180px; 
+}
 
-/* Reducimos el tamaño de letra para que los nombres no se corten */
-.name { font-size: 0.75em !important; }
-.code { font-size: 0.7em !important; }
-.cycle-header { font-size: 0.85em !important; padding: 10px 5px !important; letter-spacing: 1px !important; }
+/* Tamaño de letra "Normal" para que no fuerces la vista */
+.name { 
+    font-size: 0.9em !important; 
+    line-height: 1.2;
+}
+
+.code { 
+    font-size: 0.8em !important; 
+}
+
+.cycle-header { 
+    font-size: 1.1em !important; 
+    padding: 12px 5px !important; 
+    letter-spacing: 2px !important; 
+}
         .course {
             background: #121212;
             border-radius: 12px;
