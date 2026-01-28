@@ -14,54 +14,52 @@
             --gr-oro: linear-gradient(to right, #8a6628 0%, #bf953f 20%, #fcf6ba 40%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
         }
 
-/* --- BARRAS SUPREME: SIMETRÍA Y ESTILO CLÁSICO --- */
+/* --- BARRAS SUPREME: SIMETRÍA TOTAL --- */
 ::-webkit-scrollbar {
-    /* Mismo tamaño para ambas */
     width: 18px;  
     height: 18px; 
 }
 
 ::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.3);
+    /* Añadimos un pequeño margen en los extremos para que la barra no choque con los bordes y no se vea cortada */
+    margin: 5px; 
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #BF953F; /* Oro base */
+    background: #BF953F;
     border-radius: 10px;
+    /* El background-clip es clave para que el color no se coma los bordes que definamos */
     background-clip: padding-box;
-    transition: background 0.3s;
 }
 
-/* BARRA VERTICAL: Sin resplandores externos */
+/* BARRA VERTICAL */
 ::-webkit-scrollbar-thumb:vertical {
-    border-left: 3px solid #fcf6ba; /* Línea de detalle */
-    border-right: 4px solid transparent;
-    box-shadow: inset 0 0 8px rgba(252, 246, 186, 0.5); /* Solo brillo interno */
+    border-left: 3px solid #fcf6ba;
+    border-right: 3px solid transparent;
+    /* Solo brillo interno para que sea "clasera" como pediste */
+    box-shadow: inset 0 0 8px rgba(252, 246, 186, 0.5);
 }
 
-/* BARRA HORIZONTAL: Pegada al ras y sin luces */
+/* BARRA HORIZONTAL */
 ::-webkit-scrollbar-thumb:horizontal {
     border-top: 3px solid #fcf6ba;
-    border-bottom: 0px; 
-    box-shadow: inset 0 0 8px rgba(252, 246, 186, 0.5); /* Solo brillo interno */
+    border-bottom: 3px solid transparent;
+    box-shadow: inset 0 0 8px rgba(252, 246, 186, 0.5);
 }
 
-/* CAMBIO DE COLOR (HOVER): Solo color, CERO resplandor */
+/* HOVER: Solo cambio de color, sin resplandores locos */
 ::-webkit-scrollbar-thumb:hover {
-    background: #fcf6ba !important; /* Oro blanco al pasar el mouse */
-    box-shadow: inset 0 0 10px #ffffff !important; /* Refuerza el brillo interno */
-    /* Aquí quitamos cualquier sombra externa */
-    box-shadow: none !important; 
-    /* Si quieres que mantenga el brillo de adentro pero no el de afuera: */
-    box-shadow: inset 0 0 15px #ffffff !important; 
+    background: #fcf6ba !important;
+    box-shadow: inset 0 0 10px #ffffff !important;
 }
 
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--bg-dark);
     margin: 0; 
-    /* Quitamos el padding extra de la derecha ya que no hay luz que mostrar */
-    padding: 20px 20px 0px 20px; 
+    /* Padding uniforme para que nada se pegue a los bordes */
+    padding: 20px; 
     display: flex; 
     flex-direction: column; 
     align-items: center;
