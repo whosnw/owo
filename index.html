@@ -7,142 +7,86 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #191919; 
+            --bg-dark: #121212; 
             --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
-            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-            --gr-oro: linear-gradient(
-                to right, 
-                #8a6628 0%, 
-                #bf953f 20%, 
-                #fcf6ba 40%, 
-                #b38728 60%, 
-                #fbf5b7 80%, 
-                #aa771c 100%
-            );
+            --gr-oro: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+            --oro-rayos: linear-gradient(90deg, #8a6628, #fcf6ba, #8a6628);
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(191, 149, 63, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #fff; margin: 0; padding: 10px;
+            color: #fff; margin: 0; padding: 20px;
             display: flex; flex-direction: column; align-items: center;
+            overflow-y: scroll; /* Para ver la barra lateral siempre */
         }
 
-        /* --- LINEA DE DISEÑO VERTICAL (IGUAL A LA HORIZONTAL) --- */
-        .vertical-line-wrapper {
-            position: fixed;
-            left: 20px; top: 0; bottom: 0;
-            width: 8px;
-            z-index: -1;
-            border-left: 2px solid transparent;
-            border-right: 2px solid transparent;
-            border-image: linear-gradient(180deg, transparent, #bf953f, #e2c17c, #bf953f, transparent) 1;
-            box-shadow: 0 0 30px rgba(191,149,63,0.25);
-            background: #191919;
-            overflow: hidden;
+        /* --- DISEÑO DE BARRAS (LILA Y CELESTE) --- */
+        /* Scrollbar Horizontal (Abajo) */
+        ::-webkit-scrollbar { width: 14px; height: 14px; }
+        ::-webkit-scrollbar-track { background: #191919; border: 1px solid #333; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--oro-rayos);
+            border: 2px solid #191919;
+            box-shadow: 0 0 15px #bf953f;
         }
 
-        .vertical-line-wrapper::after {
-            content: ''; position: absolute; inset: -500% -100%;
-            background: conic-gradient(rgba(255,255,255,0), #bf953f, rgba(255,255,255,0), #aa771c, rgba(255,255,255,0));
-            animation: rayosProgreso 10s linear infinite;
-            filter: blur(15px);
-        }
-
-        h1 { 
-            font-family: 'Cinzel', serif; font-weight: 900; font-size: 3.5em; letter-spacing: 12px;
-            background: var(--gr-oro); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shineGold 4s linear infinite, glowGold 2s ease-in-out infinite;
-            margin: 40px 0; text-transform: uppercase; text-align: center;
-        }
-
-        @keyframes shineGold { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
-        @keyframes glowGold { 0%, 100% { filter: drop-shadow(0 0 10px #bf953f) brightness(1); } 50% { filter: drop-shadow(0 0 25px #aa771c) brightness(1.2); } }
-
-        /* --- CONTADOR --- */
+        /* --- CONTADOR CON EFECTO DE RAYOS --- */
         .counter-wrapper {
-          position: relative; padding: 6px 0; margin-bottom: 40px;
-          border-top: 2px solid transparent; border-bottom: 2px solid transparent;
-          border-image: linear-gradient(90deg, transparent, #bf953f, #e2c17c, #bf953f, transparent) 1;
-          box-shadow: 0 0 30px rgba(191,149,63,0.25); overflow: hidden;
+          position: relative; padding: 4px; margin-bottom: 40px;
+          background: var(--oro-rayos);
+          box-shadow: 0 0 30px rgba(191,149,63,0.5);
         }
-
-        .counter-wrapper::after {
-          content: ''; position: absolute; inset: -70%;
-          background: conic-gradient(rgba(255,255,255,0), #bf953f, rgba(255,255,255,0), #aa771c, rgba(255,255,255,0));
-          animation: rayosProgreso 7s linear infinite; filter: blur(25px); z-index: 0;
-        }
-
-        @keyframes rayosProgreso { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        #credit-counter { background: #191919; padding: 18px 55px; display: flex; align-items: center; gap: 20px; position: relative; z-index: 3; }
-        #credit-counter span:nth-child(2) { font-family: 'Cinzel', serif; letter-spacing: 3px; font-weight: 900; color: #e2c17c; text-shadow: 0 0 10px rgba(191, 149, 63, 0.5); }
-        #total-credits { font-family: 'Cinzel', serif; font-size: 2.6em; font-weight: 900; color: #ffffff; animation: latidoSuave 3s infinite ease-in-out; text-shadow: 0 0 12px rgba(255,255,255,0.4); }
-
-        @keyframes latidoSuave { 0%,100% { transform: scale(1); filter: drop-shadow(0 0 5px #bf953f); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #e2c17c); } }
+        #credit-counter { background: #121212; padding: 15px 40px; display: flex; align-items: center; gap: 20px; }
+        #total-credits { font-family: 'Cinzel', serif; font-size: 2.5em; font-weight: 900; color: #fff; }
 
         /* --- MALLA --- */
-        .curriculum-container { display: flex; overflow-x: auto; gap: 35px; width: 92vw; padding: 25px; margin-left: 40px; }
+        .curriculum-container { display: flex; gap: 30px; padding: 20px; width: 100%; overflow-x: auto; }
         .cycle-column { min-width: 280px; }
 
         .cycle-header {
-            font-family: 'Cinzel', serif; letter-spacing: 4px; color: #fff; padding: 16px 25px; border-radius: 14px;
-            font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; font-size: 1.3em;
-            border: 1.5px solid rgba(255, 255, 255, 0.7); position: relative;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+            font-family: 'Cinzel', serif; color: #fff; padding: 12px; border-radius: 8px;
+            font-weight: 900; text-transform: uppercase; margin-bottom: 25px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.4);
         }
+        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); }
+        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); }
 
-        .cycle-column:nth-child(odd) .cycle-header { background: var(--gr-verde); box-shadow: 0 0 30px rgba(159, 180, 94, 0.8), inset 0 0 20px rgba(255,255,255,0.3); }
-        .cycle-column:nth-child(even) .cycle-header { background: var(--gr-naranja); box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3); }
-
-        /* --- DISEÑO DE CURSOS (RECUPERADO) --- */
+        /* --- CURSOS --- */
         .course {
-            background: #121212; border-radius: 12px; padding: 20px; margin-bottom: 20px; cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: #1a1a1a; border-radius: 10px; padding: 18px; margin-bottom: 15px;
+            cursor: pointer; border: 1px solid #333; transition: 0.3s;
         }
+        .course.locked { opacity: 0.2; pointer-events: none; filter: grayscale(1); }
 
-        .course:hover { transform: translateY(-5px); background: #1a1a1a; box-shadow: 0 12px 25px rgba(0,0,0,0.8); }
-
-        .course.locked { opacity: 0.2; cursor: not-allowed; filter: grayscale(1); pointer-events: none; }
-
+        /* --- CURSO APROBADO (TEXTO BLANCO) --- */
         .course.approved {
-            background: var(--gr-mostaza); border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
+            background: var(--gr-oro);
+            border: 1px solid #fff;
+            box-shadow: 0 0 20px rgba(229, 183, 116, 0.6);
+        }
+        .course.approved .code, 
+        .course.approved .name, 
+        .course.approved .cred { 
+            color: #ffffff !important; 
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8); 
         }
 
-        .course.approved:hover {
-            transform: scale(1.1) translateY(-10px);
-            box-shadow: 0 0 45px rgba(226, 193, 124, 1), inset 0 0 15px rgba(255,255,255,0.6);
-            filter: brightness(1.2);
-        }
+        .code { font-size: 0.8em; color: #e2c17c; font-weight: 900; }
+        .name { display: block; font-size: 0.95em; font-weight: 700; margin: 5px 0; }
+        .cred { font-size: 0.8em; color: #aaa; font-weight: 700; }
 
-        .code { font-size: 0.85em; font-weight: 900; color: #e2c17c; display: block; margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9); }
-        .name { font-size: 1em; font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,1); }
-        .cred { font-size: 0.85em; color: #ccc; margin-top: 15px; display: flex; align-items: center; font-weight: 700; text-shadow: 2px 2px 3px rgba(0,0,0,1); }
-        
-        .emoji { margin-right: 10px; filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.8)); }
-
-        .curriculum-container::-webkit-scrollbar { height: 10px; }
-        .curriculum-container::-webkit-scrollbar-thumb { background: #bf953f; border-radius: 10px; }
-
-        .spark { position: absolute; width: 4px; height: 4px; background: radial-gradient(circle, #e2c17c, transparent); border-radius: 50%; pointer-events: none; animation: sparkMove linear infinite; z-index: 2; }
-        @keyframes sparkMove { from { transform: translate(0,0) scale(0.4); opacity: 1; } to { transform: translate(var(--x),var(--y)) scale(1.6); opacity: 0; } }
+        h1 { font-family: 'Cinzel', serif; font-size: 3em; color: #bf953f; letter-spacing: 5px; }
     </style>
 </head>
 <body>
 
-    <div class="vertical-line-wrapper"></div>
-
-    <h1>Avance Curricular</h1>
+    <h1>AVANCE CURRICULAR</h1>
     
     <div class="counter-wrapper">
       <div id="credit-counter">
-        <span class="emoji">🍂</span>
-        <span>PROGRESO TOTAL:</span>
+        <span style="color:#bf953f; font-weight:900;">PROGRESO:</span>
         <div id="total-credits">0</div>
       </div>
     </div>
@@ -150,6 +94,7 @@
     <div class="curriculum-container" id="curriculum"></div>
 
     <script>
+        // Cursos extraídos del PDF 
         const coursesData = {
             "Ciclo 1": [
                 { id: "BD101", name: "DIBUJO EN INGENIERÍA I", credits: 2, req: [] },
@@ -177,66 +122,66 @@
             "Ciclo 4": [
                 { id: "BF104", name: "TÓPICOS ESPECIALES EN FÍSICA", credits: 3, req: ["BF103"] },
                 { id: "BMA06", name: "MATEMÁTICAS SUPERIOR II", credits: 4, req: ["BMA05"] },
-                { id: "EP308", name: "ECONOMÍA Y ORGANIZACIÓN DE LA EMPRESA", credits: 3, req: ["BEG01"] },
+                { id: "EP308", name: "ECONOMÍA Y ORGANIZACIÓN", credits: 3, req: ["BEG01"] },
                 { id: "MA613", name: "ESTADÍSTICA APLICADA", credits: 4, req: ["BMA04"] },
                 { id: "MA713", name: "PROGRAMACIÓN DIGITAL", credits: 3, req: ["BIC01"] },
                 { id: "QU427", name: "FISICOQUÍMICA I", credits: 5, req: ["BF103", "BQU02"] }
             ],
             "Ciclo 5": [
-                { id: "PI111", name: "BALANCE DE MATERIA Y ENERGÍA", credits: 3, req: ["QU427"] },
-                { id: "PI524", name: "MÉTODOS NUMÉRICOS PARA INGENIERÍA QUÍMICA", credits: 4, req: ["BMA06"] },
+                { id: "PI111", name: "BALANCE MATERIA Y ENERGÍA", credits: 3, req: ["QU427"] },
+                { id: "PI524", name: "MÉTODOS NUMÉRICOS IQ", credits: 4, req: ["BMA06"] },
                 { id: "QU328", name: "QUÍMICA ORGÁNICA I", credits: 5, req: ["QU427"] },
                 { id: "QU428", name: "FISICOQUÍMICA II", credits: 5, req: ["QU427"] },
                 { id: "QU518", name: "ANÁLISIS QUÍMICO", credits: 4, req: ["QU216"] }
             ],
             "Ciclo 6": [
                 { id: "BIE01", name: "IDIOMA EXTRANJERO", credits: 2, req: [] },
-                { id: "BRN01", name: "REALIDAD NACIONAL CONST. Y DD.HH.", credits: 3, req: [] },
-                { id: "EC618", name: "MECÁNICA Y RESISTENCIA DE MATERIALES", credits: 3, req: ["BF104", "BMA06"] },
-                { id: "EE103", name: "CIRCUITOS E INSTALACIONES ELÉCTRICAS", credits: 3, req: ["BF103", "BMA05"] },
+                { id: "BRN01", name: "REALIDAD NACIONAL", credits: 3, req: [] },
+                { id: "EC618", name: "MECÁNICA DE MATERIALES", credits: 3, req: ["BF104", "BMA06"] },
+                { id: "EE103", name: "CIRCUITOS ELÉCTRICOS", credits: 3, req: ["BF103", "BMA05"] },
                 { id: "PI140", name: "FENÓMENOS DE TRANSPORTE", credits: 3, req: ["BMA06", "PI111"] },
-                { id: "PI216", name: "TERMODINÁMICA PARA ING. QUÍMICA I", credits: 3, req: ["PI111", "QU428"] },
+                { id: "PI216", name: "TERMODINÁMICA IQ I", credits: 3, req: ["PI111", "QU428"] },
                 { id: "QU338", name: "QUÍMICA ORGÁNICA II", credits: 5, req: ["QU328"] }
             ],
             "Ciclo 7": [
                 { id: "PA113", name: "INGENIERÍA DE MÉTODOS I", credits: 4, req: ["MA613"] },
-                { id: "PA714", name: "INVESTIGACIÓN DE OPERACIONES I", credits: 3, req: ["MA613", "MA713"] },
-                { id: "PI142", name: "TRANSF. DE CANTIDAD DE MOVIMIENTO", credits: 3, req: ["PI140"] },
-                { id: "PI217", name: "TERMODINÁMICA PARA ING. QUÍMICA II", credits: 3, req: ["PI216", "PI524"] },
-                { id: "PI318", name: "INDUSTRIA DE LOS PROCESOS QUÍMICOS", credits: 5, req: ["PI140"] },
-                { id: "PI514", name: "CIENCIAS DE LOS MATERIALES", credits: 2, req: ["QU518"] },
-                { id: "PI520", name: "RECURSOS QUÍMICOS BIODIVERSIDAD", credits: 3, req: ["QU338", "QU518"] }
+                { id: "PA714", name: "INVEST. DE OPERACIONES I", credits: 3, req: ["MA613", "MA713"] },
+                { id: "PI142", name: "TRANSF. DE MOVIMIENTO", credits: 3, req: ["PI140"] },
+                { id: "PI217", name: "TERMODINÁMICA IQ II", credits: 3, req: ["PI216", "PI524"] },
+                { id: "PI318", name: "IND. PROCESOS QUÍMICOS", credits: 5, req: ["PI140"] },
+                { id: "PI514", name: "CIENCIAS DE MATERIALES", credits: 2, req: ["QU518"] },
+                { id: "PI520", name: "RECURSOS BIODIVERSIDAD", credits: 3, req: ["QU338", "QU518"] }
             ],
             "Ciclo 8": [
-                { id: "BAE01", name: "ACTIVIDADES EXTRACURRICULARES", credits: 1, req: [] },
+                { id: "BAE01", name: "ACTIVIDADES EXTRACURRIC.", credits: 1, req: [] },
                 { id: "EP818", name: "COSTOS Y PRESUPUESTOS", credits: 3, req: ["EP308", "PA714"] },
                 { id: "PI1143", name: "TRANSFERENCIA DE CALOR", credits: 3, req: ["PI142"] },
                 { id: "PI1144", name: "TRANSFERENCIA DE MASA", credits: 3, req: ["PI142"] },
-                { id: "PI1146", name: "OPERACIONES EN ING. QUÍMICA I", credits: 3, req: ["PI142"] },
-                { id: "PI225", name: "CINÉTICA Y DISEÑO REACTORES I", credits: 3, req: ["PI217"] },
-                { id: "PI521", name: "INTRODUCCIÓN A LA BIOINGENIERÍA", credits: 3, req: ["PI520"] }
+                { id: "PI1146", name: "OPERACIONES EN IQ I", credits: 3, req: ["PI142"] },
+                { id: "PI225", name: "CINÉTICA Y REACTORES I", credits: 3, req: ["PI217"] },
+                { id: "PI521", name: "INTROD. A BIOINGENIERÍA", credits: 3, req: ["PI520"] }
             ],
             "Ciclo 9": [
-                { id: "PI1135", name: "LAB. OPERACIONES UNITARIAS I", credits: 2, req: ["PI1143", "PI1146"] },
+                { id: "PI1135", name: "LAB. OP. UNITARIAS I", credits: 2, req: ["PI1143", "PI1146"] },
                 { id: "PI1365", name: "POLÍMEROS I", credits: 3, req: ["QU338"] },
-                { id: "PI1415", name: "INSTRUMENTOS DE CONTROL", credits: 3, req: ["EE103", "PI1144"] },
+                { id: "PI1415", name: "INSTRUM. DE CONTROL", credits: 3, req: ["EE103", "PI1144"] },
                 { id: "PI1510", name: "ECONOMÍA DE PROCESOS", credits: 3, req: ["EP818", "PI1144"] },
-                { id: "PI1555", name: "SEGURIDAD PROCESOS INDUSTRIALES", credits: 3, req: ["PI1143", "PI1144"] },
-                { id: "PI911", name: "GESTIÓN TECNOLÓGICA Y EMPRESARIAL", credits: 4, req: [] },
-                { id: "QT714", name: "TALLER PROYECTO INVESTIGACIÓN", credits: 2, req: [] }
+                { id: "PI1555", name: "SEGURIDAD INDUSTRIAL", credits: 3, req: ["PI1143", "PI1144"] },
+                { id: "PI911", name: "GESTIÓN EMPRESARIAL", credits: 4, req: [] },
+                { id: "QT714", name: "TALLER PROY. INVEST.", credits: 2, req: [] }
             ],
             "Ciclo 10": [
-                { id: "PA136", name: "PLANEAMIENTO Y CONTROL PRODUCCIÓN", credits: 4, req: ["PA113", "PA714"] },
-                { id: "PI1136", name: "LAB. OPERACIONES UNITARIAS II", credits: 2, req: ["PI1135", "PI1144"] },
-                { id: "PI1426", name: "SIMULACIÓN Y CONTROL PROCESOS", credits: 4, req: ["PI225", "PI1415"] },
+                { id: "PA136", name: "CONTROL DE PRODUCCIÓN", credits: 4, req: ["PA113", "PA714"] },
+                { id: "PI1136", name: "LAB. OP. UNITARIAS II", credits: 2, req: ["PI1135", "PI1144"] },
+                { id: "PI1426", name: "SIMUL. Y CONTROL PROC.", credits: 4, req: ["PI225", "PI1415"] },
                 { id: "PI1525", name: "DISEÑO DE PLANTAS", credits: 4, req: ["PI1415", "PI1510"] },
                 { id: "QT715", name: "TALLER DE INVESTIGACIÓN", credits: 2, req: ["QT714"] },
-                { id: "XP100", name: "PRÁCTICAS PRE-PROFESIONALES I", credits: 1, req: [] },
-                { id: "XP200", name: "PRÁCTICAS PRE-PROFESIONALES II", credits: 2, req: [] }
+                { id: "XP100", name: "PRACT. PRE-PROF. I", credits: 1, req: [] },
+                { id: "XP200", name: "PRACT. PRE-PROF. II", credits: 2, req: [] }
             ]
         };
 
-        let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
+        let approved = JSON.parse(localStorage.getItem('malla_final_user')) || {};
 
         function checkLocked(id) {
             const course = Object.values(coursesData).flat().find(c => c.id === id);
@@ -261,13 +206,12 @@
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
                         <span class="name">${c.name}</span>
-                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CRÉDITOS</span>
+                        <span class="cred">🍂 ${c.credits} CRÉDITOS</span>
                     `;
                     div.onclick = () => {
-                        if (isLocked && !isApp) return;
                         if (isApp) delete approved[c.id];
                         else approved[c.id] = true;
-                        localStorage.setItem('malla_iq_final', JSON.stringify(approved));
+                        localStorage.setItem('malla_final_user', JSON.stringify(approved));
                         render();
                     };
                     col.appendChild(div);
@@ -277,21 +221,6 @@
             }
             document.getElementById('total-credits').innerText = total;
         }
-
-        const wrapper = document.querySelector('.counter-wrapper');
-        function crearSpark() {
-          const s = document.createElement('div');
-          s.className = 'spark';
-          const ang = Math.random() * Math.PI * 2;
-          const dist = 120 + Math.random() * 260;
-          s.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
-          s.style.setProperty('--y', `${Math.sin(ang) * dist}px`);
-          s.style.left = '50%'; s.style.top = '50%';
-          s.style.animationDuration = `${2 + Math.random() * 2}s`;
-          wrapper.appendChild(s);
-          setTimeout(() => s.remove(), 4000);
-        }
-        setInterval(crearSpark, 160);
 
         render();
     </script>
