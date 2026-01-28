@@ -62,34 +62,36 @@
     box-shadow: inset 0 0 10px #ffffff !important;
 }
 
-/* --- AJUSTE DEL CUERPO --- */
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--bg-dark);
     margin: 0; 
-    /* Padding: 20px arriba, 50px derecha (para que la vertical respire), 0 abajo (al ras) */
     padding: 20px 50px 0px 20px; 
     display: flex; 
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
-    overflow-x: auto; 
+    overflow-x: auto;
+    /* --- CAMBIO: Escala general al 80% --- */
+    zoom: 0.8; 
+    -moz-transform: scale(0.8);
+    -moz-transform-origin: top center;
 }
-        h1 { 
-            font-family: 'Cinzel', serif;
-            font-weight: 900; 
-            font-size: 3.5em; 
-            letter-spacing: 12px;
-            background: var(--gr-oro);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shineGold 4s linear infinite, glowGold 2s ease-in-out infinite;
-            margin: 40px 0; 
-            text-transform: uppercase;
-            text-align: center;
-        }
+h1 { 
+    font-family: 'Cinzel', serif;
+    font-weight: 900; 
+    font-size: 2.5em; /* Bajó de 3.5em */
+    letter-spacing: 10px;
+    background: var(--gr-oro);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineGold 4s linear infinite, glowGold 2s ease-in-out infinite;
+    margin: 20px 0; /* Bajó de 40px */
+    text-transform: uppercase;
+    text-align: center;
+}
 
         @keyframes shineGold {
             0% { background-position: 0% center; }
@@ -146,13 +148,13 @@ body {
         }
 
         #total-credits {
-          font-family: 'Cinzel', serif;
-          font-size: 2.6em;
-          font-weight: 900;
-          color: #ffffff;
-          animation: latidoSuave 3s infinite ease-in-out;
-          text-shadow: 0 0 12px rgba(255,255,255,0.4);
-        }
+    font-family: 'Cinzel', serif;
+    font-size: 2em; /* Bajó de 2.6em */
+    font-weight: 900;
+    color: #ffffff;
+    animation: latidoSuave 3s infinite ease-in-out;
+    text-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
 
         @keyframes latidoSuave {
           0%,100% { transform: scale(1); filter: drop-shadow(0 0 5px #bf953f); }
@@ -189,13 +191,13 @@ body {
 
 .curriculum-container { 
     display: flex; 
-    flex-wrap: nowrap; /* Mantiene los ciclos 1-10 en una sola fila */
+    flex-wrap: nowrap;
     align-items: flex-start;
-    gap: 35px; 
-    width: max-content; /* Permite que crezca a lo largo */
-    padding: 25px; 
+    gap: 20px; /* Reducimos el espacio entre columnas */
+    width: max-content;
+    padding: 20px; 
     display: grid;
-    grid-template-columns: repeat(10, 300px); /* Crea las 10 columnas fijas */
+    grid-template-columns: repeat(10, 250px); /* Columnas más delgadas (de 300 a 250) */
 }
 
 /* Esta regla hará que los bloques de electivos salten a una nueva fila y ocupen todo el ancho */
@@ -204,7 +206,7 @@ body {
     width: 100%;
     margin-top: 50px;
 }
-        .cycle-column { min-width: 280px; }
+        .cycle-column { min-width: 230px; }
 
         .course {
             background: #121212;
