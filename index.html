@@ -187,13 +187,13 @@ body {
             text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
         }
 
-        .curriculum-container { 
+.curriculum-container { 
     display: flex; 
-    flex-wrap: wrap; /* Permite que los elementos bajen */
-    justify-content: center; /* Centra los ciclos */
+    flex-wrap: wrap; /* ESTO ES LO QUE PERMITE QUE LOS ELECTIVOS BAJEN */
     gap: 35px; 
     width: 95vw; 
     padding: 25px; 
+    overflow-x: auto; 
 }
         .cycle-column { min-width: 280px; }
 
@@ -424,37 +424,39 @@ function render() {
             let total = 0;
 
 for (let cycle in coursesData) {
-    const col = document.createElement('div');
-    col.className = 'cycle-column';
-    
-    // Si el nombre dice "Electivo", forzamos que ocupe todo el ancho abajo
-    if (cycle.toLowerCase().includes("electivo")) {
-        col.style.flex = "1 1 100%"; 
-        col.style.marginTop = "50px";
-    }
+                const col = document.createElement('div');
+                col.className = 'cycle-column';
+                
+                // --- CAMBIO CLAVE AQUÍ ---
+                if (cycle.toLowerCase().includes("electivo")) {
+                    // Si es electivo, ocupa todo el ancho y baja
+                    col.style.flex = "1 1 100%"; 
+                    col.style.marginTop = "50px";
+                } else {
+                    // Si es ciclo 1-10, mantiene su forma de columna original
+                    col.style.flex = "0 0 auto"; 
+                }
 
-    col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
+                col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
 
-    // Contenedor interno para los cursos
-    const coursesWrapper = document.createElement('div');
-    
-    // Si son electivos, los ponemos en una cuadrícula (grid) para que no sea una lista infinita
-    if (cycle.toLowerCase().includes("electivo")) {
-        coursesWrapper.style.display = "grid";
-        coursesWrapper.style.gridTemplateColumns = "repeat(auto-fill, minmax(280px, 1fr))";
-        coursesWrapper.style.gap = "20px";
-    }
+                const coursesWrapper = document.createElement('div');
+                
+                // Diseño de rejilla solo para los electivos de abajo
+                if (cycle.toLowerCase().includes("electivo")) {
+                    coursesWrapper.style.display = "grid";
+                    coursesWrapper.style.gridTemplateColumns = "repeat(auto-fill, minmax(280px, 1fr))";
+                    coursesWrapper.style.gap = "20px";
+                }
 
-    coursesData[cycle].forEach(c => {
-        // Usamos la función createCourseElement (Paso 3) para crear cada tarjeta
-        const div = createCourseElement(c);
-        coursesWrapper.appendChild(div);
-        if (approved[c.id]) total += c.c;
-    });
+                coursesData[cycle].forEach(c => {
+                    const div = createCourseElement(c);
+                    coursesWrapper.appendChild(div);
+                    if (approved[c.id]) total += c.c;
+                });
 
-    col.appendChild(coursesWrapper);
-    container.appendChild(col);
-}
+                col.appendChild(coursesWrapper);
+                container.appendChild(col);
+            }
             // Actualización del contador de créditos
             document.getElementById('total-credits').innerText = total;
         }
