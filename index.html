@@ -66,17 +66,17 @@ body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--bg-dark);
     margin: 0; 
-    /* Ajustamos el padding para que no empuje el Ciclo 1 hacia afuera */
-    padding: 10px; 
+    /* Eliminamos márgenes laterales para ganar espacio */
+    padding: 10px 5px; 
     display: flex; 
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
     overflow-x: auto;
-    /* Subimos el zoom a 0.85 para que se vea "Normal" y no tan pequeño */
-    zoom: 0.85; 
-    -moz-transform: scale(0.85);
+    /* Subimos el zoom para que se vea "grandecito" */
+    zoom: 0.9; 
+    -moz-transform: scale(0.9);
     -moz-transform-origin: top center;
 }
 h1 { 
@@ -192,40 +192,40 @@ h1 {
 
 .curriculum-container { 
     display: grid;
-    /* 180px es el punto medio perfecto: legible y compacto */
-    grid-template-columns: repeat(10, 180px); 
+    /* 190px es el ancho ideal para que los nombres se vean grandes y quepan 10 */
+    grid-template-columns: repeat(10, 190px); 
     align-items: flex-start;
-    gap: 10px; 
+    gap: 12px; 
     width: max-content;
-    padding: 10px; 
+    padding: 15px; 
 }
 
-/* Esta regla mantiene los electivos en su propia fila abajo */
+/* Esta regla mantiene los electivos abajo ocupando todo el ancho */
 .cycle-column.is-electivo {
     grid-column: 1 / -1; 
     width: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
-/* IMPORTANTE: El min-width debe coincidir con el del grid (180px) */
+/* La columna debe medir lo mismo que el grid (190px) */
 .cycle-column { 
-    min-width: 180px; 
+    min-width: 190px; 
 }
 
-/* Tamaño de letra "Normal" para que no fuerces la vista */
+/* Ajustamos el texto para que se vea nítido y grande */
 .name { 
-    font-size: 0.9em !important; 
+    font-size: 0.95em !important; 
     line-height: 1.2;
+    letter-spacing: 0.3px;
 }
 
 .code { 
-    font-size: 0.8em !important; 
+    font-size: 0.85em !important; 
 }
 
 .cycle-header { 
-    font-size: 1.1em !important; 
-    padding: 12px 5px !important; 
-    letter-spacing: 2px !important; 
+    font-size: 1.2em !important; 
+    padding: 15px 5px !important; 
 }
         .course {
             background: #121212;
