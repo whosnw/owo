@@ -22,62 +22,58 @@
                 #aa771c 100%
             );
         }
-/* --- BARRAS SUPREME UNIFICADAS --- */
-::-webkit-scrollbar {
-    width: 18px;  
-    height: 18px; 
-}
+/* --- BARRAS AL RAZ --- */
+        ::-webkit-scrollbar {
+            width: 18px;  
+            height: 18px; 
+        }
 
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.3);
-}
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
 
-::-webkit-scrollbar-thumb {
-    background: #BF953F;
-    border-radius: 10px;
-    background-clip: padding-box;
-    transition: 0.3s;
-}
+        ::-webkit-scrollbar-thumb {
+            background: #BF953F;
+            border-radius: 10px;
+            background-clip: padding-box;
+        }
 
-/* VERTICAL: Iluminación a la Izquierda */
-::-webkit-scrollbar-thumb:vertical {
-    box-shadow: -20px 0 35px 5px rgba(191, 149, 63, 0.8), 
-                inset 0 0 10px #fcf6ba;
-    border-left: 3px solid #fcf6ba;
-    border-right: 4px solid transparent;
-}
+        /* BARRA VERTICAL: Con brillo hacia la izquierda */
+        ::-webkit-scrollbar-thumb:vertical {
+            box-shadow: -20px 0 35px 5px rgba(191, 149, 63, 0.8), 
+                        inset 0 0 10px #fcf6ba;
+            border-left: 3px solid #fcf6ba;
+            border-right: 4px solid transparent;
+        }
 
-/* HORIZONTAL: Iluminación hacia Arriba (Mismo tamaño) */
-::-webkit-scrollbar-thumb:horizontal {
-    box-shadow: 0 -20px 35px 5px rgba(191, 149, 63, 0.8), 
-                inset 0 0 10px #fcf6ba;
-    border-top: 3px solid #fcf6ba;
-    border-bottom: 4px solid transparent;
-}
+        /* BARRA HORIZONTAL: Pegadita al borde (al ras) */
+        ::-webkit-scrollbar-thumb:horizontal {
+            box-shadow: 0 -15px 25px 2px rgba(191, 149, 63, 0.6), 
+                        inset 0 0 10px #fcf6ba;
+            border-top: 3px solid #fcf6ba;
+            /* Quitamos el borde transparente inferior para que pegue más */
+            border-bottom: 0px; 
+        }
 
-/* EFECTO HOVER: Super Resplandor al pasar el mouse */
-::-webkit-scrollbar-thumb:hover {
-    background: #fcf6ba; /* Color oro blanco al tocar */
-    /* El resplandor se vuelve 100% opaco y más grande */
-    box-shadow: 0 0 50px 15px rgba(191, 149, 63, 1), 
-                inset 0 0 15px #ffffff;
-}
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fcf6ba;
+            box-shadow: 0 0 50px 15px rgba(191, 149, 63, 1), inset 0 0 15px #ffffff;
+        }
 
-body {
+        body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-dark);
             background-image: radial-gradient(rgba(191, 149, 63, 0.05) 1px, transparent 1px);
             background-size: 30px 30px;
             color: #fff; 
             margin: 0; 
-            /* ESPACIO CLAVE: 50px a la derecha y 80px abajo para las luces */
-            padding: 20px 50px 80px 20px; 
+            /* 50px a la derecha para la luz, 0px abajo para que esté al ras */
+            padding: 20px 50px 0px 20px; 
             display: flex; 
             flex-direction: column; 
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
-            /* Evitamos que el contenido se pegue y corte el brillo */
             overflow-x: auto; 
         }
 
