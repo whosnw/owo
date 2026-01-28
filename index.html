@@ -22,12 +22,10 @@
                 #aa771c 100%
             );
         }
-/* --- BARRAS SUPREME: LUZ INTEGRAL (VERTICAL Y HORIZONTAL) --- */
-
-/* 1. Tamaño de las barras */
+/* --- BARRAS SUPREME UNIFICADAS --- */
 ::-webkit-scrollbar {
-    width: 18px;  /* Ancho de la vertical */
-    height: 18px; /* Alto de la horizontal */
+    width: 18px;  
+    height: 18px; 
 }
 
 ::-webkit-scrollbar-track {
@@ -38,30 +36,31 @@
     background: #BF953F;
     border-radius: 10px;
     background-clip: padding-box;
+    transition: 0.3s;
 }
 
-/* 2. BARRA VERTICAL: Brilla hacia la IZQUIERDA */
+/* VERTICAL: Iluminación a la Izquierda */
 ::-webkit-scrollbar-thumb:vertical {
-    box-shadow: -20px 0 40px 5px rgba(191, 149, 63, 0.8), 
+    box-shadow: -20px 0 35px 5px rgba(191, 149, 63, 0.8), 
                 inset 0 0 10px #fcf6ba;
     border-left: 3px solid #fcf6ba;
     border-right: 4px solid transparent;
 }
 
-/* 3. BARRA HORIZONTAL: Brilla hacia ARRIBA (Para moverte entre ciclos) */
+/* HORIZONTAL: Iluminación hacia Arriba (Mismo tamaño) */
 ::-webkit-scrollbar-thumb:horizontal {
-    /* El valor -20px en el segundo eje empuja la sombra hacia ARRIBA */
-    box-shadow: 0 -10px 15px 2px rgba(191, 149, 63, 0.4), 
-                inset 0 0 5px rgba(252, 246, 186, 0.5);
-    /* La línea de luz ahora va en la parte superior */
-    border-top: 2px solid #fcf6ba;
-    border-bottom: 6px solid transparent;
+    box-shadow: 0 -20px 35px 5px rgba(191, 149, 63, 0.8), 
+                inset 0 0 10px #fcf6ba;
+    border-top: 3px solid #fcf6ba;
+    border-bottom: 4px solid transparent;
 }
 
-/* Cambio de color al pasar el mouse (Efecto Activo) */
+/* EFECTO HOVER: Super Resplandor al pasar el mouse */
 ::-webkit-scrollbar-thumb:hover {
-    background: #fcf6ba;
-    box-shadow: 0 0 50px 10px rgba(191, 149, 63, 1);
+    background: #fcf6ba; /* Color oro blanco al tocar */
+    /* El resplandor se vuelve 100% opaco y más grande */
+    box-shadow: 0 0 50px 15px rgba(191, 149, 63, 1), 
+                inset 0 0 15px #ffffff;
 }
 
 body {
@@ -71,12 +70,15 @@ body {
             background-size: 30px 30px;
             color: #fff; 
             margin: 0; 
-            /* Importante: el padding-right da espacio al brillo de la barra */
-            padding: 20px 50px 20px 20px;
+            /* ESPACIO CLAVE: 50px a la derecha y 80px abajo para las luces */
+            padding: 20px 50px 80px 20px; 
             display: flex; 
             flex-direction: column; 
             align-items: center;
-            overflow-x: hidden;
+            min-height: 100vh;
+            box-sizing: border-box;
+            /* Evitamos que el contenido se pegue y corte el brillo */
+            overflow-x: auto; 
         }
 
         h1 { 
