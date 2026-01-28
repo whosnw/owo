@@ -25,8 +25,8 @@
 
         /* --- BARRA DORADA SIN BORDES E ILUMINADA SIEMPRE --- */
         ::-webkit-scrollbar {
-            width: 14px;
-            height: 14px; 
+            width: 14px;  /* Grosor barra vertical */
+            height: 14px; /* Grosor barra horizontal */
         }
 
         ::-webkit-scrollbar-track {
@@ -34,15 +34,22 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            /* Dorado intenso #FFD700 */
             background: #BF953F;
             border-radius: 10px;
-            /* Resplandor dorado fuerte constante sin bordes negros */
-            box-shadow: 0 0 20px #BF953F, inset 0 0 10px #BF953F;
+            /* Esta sombra ahora se aplica a AMBAS barras */
+            box-shadow: 0 0 15px #BF953F, inset 0 0 8px #fcf6ba;
         }
 
+        /* Ajuste para que la barra vertical brille hacia la izquierda (adentro de la pantalla) */
+        ::-webkit-scrollbar-thumb:vertical {
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: -4px 0 15px #BF953F;
+        }
+
+        /* Ajuste para que la barra horizontal brille hacia arriba */
         ::-webkit-scrollbar-thumb:horizontal {
-            background: #BF953F;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 -4px 15px #BF953F;
         }
 
         /* Removidos todos los efectos de hover y active para que no cambie nada al tocarla */
@@ -342,8 +349,8 @@
                     div.className = `course ${isApp ? 'approved' : ''}`;
                     div.innerHTML = `
                         <span class="code">${c.id}</span>
-                        <span class="name">${c.name}</span>
-                        <span class="cred"><span class="emoji">🍂</span> ${c.credits} CRÉDITOS</span>
+                        <span class="name">${c.n}</span>
+                        <span class="cred"><span class="emoji">🍂</span> ${c.c} CRÉDITOS</span>
                     `;
                     div.onclick = () => {
                         if (isApp) delete approved[c.id];
