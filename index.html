@@ -10,19 +10,11 @@
             --bg-dark: #191919; 
             --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
-            --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
-            
-            --gr-oro: linear-gradient(
-                to right, 
-                #8a6628 0%, 
-                #bf953f 20%, 
-                #fcf6ba 40%, 
-                #b38728 60%, 
-                #fbf5b7 80%, 
-                #aa771c 100%
-            );
+--gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+            --gr-oro: linear-gradient(to right, #8a6628 0%, #bf953f 20%, #fcf6ba 40%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
         }
-/* --- BARRAS AL RAZ --- */
+
+        /* --- BARRAS PERSONALIZADAS --- */
         ::-webkit-scrollbar {
             width: 18px;  
             height: 18px; 
@@ -46,17 +38,18 @@
             border-right: 4px solid transparent;
         }
 
-        /* BARRA HORIZONTAL: Pegadita al borde (al ras) */
+        /* BARRA HORIZONTAL: Sin iluminación fija, pegada al ras */
         ::-webkit-scrollbar-thumb:horizontal {
-            box-shadow: 0 -12px 15px 2px var(--oro-suave), 
-                        inset 0 0 5px rgba(252, 246, 186, 0.4);
-            border-top: 2px solid rgba(252, 246, 186, 0.5);
+            box-shadow: inset 0 0 10px #fcf6ba; /* Solo brillo interno para que no esté vacía */
+            border-top: 3px solid #fcf6ba;
             border-bottom: 0px; 
         }
 
+        /* SUPER HOVER PARA AMBAS: Aquí se activa toda la potencia */
         ::-webkit-scrollbar-thumb:hover {
             background: #fcf6ba;
-            box-shadow: 0 0 50px 15px rgba(191, 149, 63, 1), inset 0 0 15px #ffffff;
+            box-shadow: 0 0 50px 15px rgba(191, 149, 63, 1), 
+                        inset 0 0 15px #ffffff !important;
         }
 
         body {
@@ -66,7 +59,7 @@
             background-size: 30px 30px;
             color: #fff; 
             margin: 0; 
-            /* 50px a la derecha para la luz, 0px abajo para que esté al ras */
+            /* Espacio a la derecha para la luz vertical, 0 abajo para que la horiz. esté al ras */
             padding: 20px 50px 0px 20px; 
             display: flex; 
             flex-direction: column; 
@@ -75,7 +68,6 @@
             box-sizing: border-box;
             overflow-x: auto; 
         }
-
         h1 { 
             font-family: 'Cinzel', serif;
             font-weight: 900; 
