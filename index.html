@@ -22,26 +22,46 @@
                 #aa771c 100%
             );
         }
-/* --- LUZ DORADA PROYECTADA --- */
+/* --- BARRAS SUPREME: LUZ INTEGRAL (VERTICAL Y HORIZONTAL) --- */
+
+/* 1. Tamaño de las barras */
 ::-webkit-scrollbar {
-    width: 16px; 
+    width: 18px;  /* Ancho de la vertical */
+    height: 18px; /* Alto de la horizontal */
 }
 
 ::-webkit-scrollbar-track {
-    /* Un toque de brillo de fondo para que no se vea un hueco negro */
-    background: rgba(191, 149, 63, 0.05); 
+    background: rgba(0, 0, 0, 0.3);
 }
 
-::-webkit-scrollbar-thumb:vertical {
+::-webkit-scrollbar-thumb {
     background: #BF953F;
     border-radius: 10px;
-    /* Sombras: La primera es el brillo externo que entra a la página */
-    box-shadow: 
-        -15px 0 60px 10px rgba(191, 149, 63, 0.8), 
-        inset 0 0 10px #fcf6ba;
-    /* Esta línea es el borde "afilado" de luz que ves en el extremo derecho */
-    border-left: 3px solid #fcf6ba;
     background-clip: padding-box;
+}
+
+/* 2. BARRA VERTICAL: Brilla hacia la IZQUIERDA */
+::-webkit-scrollbar-thumb:vertical {
+    box-shadow: -20px 0 40px 5px rgba(191, 149, 63, 0.8), 
+                inset 0 0 10px #fcf6ba;
+    border-left: 3px solid #fcf6ba;
+    border-right: 4px solid transparent;
+}
+
+/* 3. BARRA HORIZONTAL: Brilla hacia ARRIBA (Para moverte entre ciclos) */
+::-webkit-scrollbar-thumb:horizontal {
+    /* El valor -20px en el segundo eje empuja la sombra hacia ARRIBA */
+    box-shadow: 0 -20px 40px 5px rgba(191, 149, 63, 0.8), 
+                inset 0 0 10px #fcf6ba;
+    /* La línea de luz ahora va en la parte superior */
+    border-top: 3px solid #fcf6ba;
+    border-bottom: 4px solid transparent;
+}
+
+/* Cambio de color al pasar el mouse (Efecto Activo) */
+::-webkit-scrollbar-thumb:hover {
+    background: #fcf6ba;
+    box-shadow: 0 0 50px 10px rgba(191, 149, 63, 1);
 }
 
 body {
