@@ -14,7 +14,7 @@
             --gr-oro: linear-gradient(to right, #8a6628 0%, #bf953f 20%, #fcf6ba 40%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
         }
 
-/* --- BARRAS SUPREME: SIMETRÍA TOTAL --- */
+/* --- CONFIGURACIÓN BASE --- */
 ::-webkit-scrollbar {
     width: 18px;  
     height: 18px; 
@@ -22,44 +22,53 @@
 
 ::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.3);
-    /* Añadimos un pequeño margen en los extremos para que la barra no choque con los bordes y no se vea cortada */
-    margin: 5px; 
 }
 
-::-webkit-scrollbar-thumb {
+/* --- BARRA VERTICAL (La que se cortaba) --- */
+::-webkit-scrollbar-track:vertical {
+    /* Le damos un margen arriba y abajo para que el thumb no choque y se vea completo */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
     background: #BF953F;
     border-radius: 10px;
-    /* El background-clip es clave para que el color no se coma los bordes que definamos */
     background-clip: padding-box;
-}
-
-/* BARRA VERTICAL */
-::-webkit-scrollbar-thumb:vertical {
     border-left: 3px solid #fcf6ba;
-    border-right: 3px solid transparent;
-    /* Solo brillo interno para que sea "clasera" como pediste */
+    border-right: 4px solid transparent;
+    /* Solo brillo interno */
     box-shadow: inset 0 0 8px rgba(252, 246, 186, 0.5);
 }
 
-/* BARRA HORIZONTAL */
+/* --- BARRA HORIZONTAL (Al ras total) --- */
+::-webkit-scrollbar-track:horizontal {
+    margin: 0; /* Sin margen para que pegue al borde */
+}
+
 ::-webkit-scrollbar-thumb:horizontal {
+    background: #BF953F;
+    /* Quitamos el redondeado de abajo para que se vea más pegada al borde */
+    border-radius: 10px 10px 0 0; 
+    background-clip: padding-box;
     border-top: 3px solid #fcf6ba;
-    border-bottom: 3px solid transparent;
+    border-bottom: 0px; 
     box-shadow: inset 0 0 8px rgba(252, 246, 186, 0.5);
 }
 
-/* HOVER: Solo cambio de color, sin resplandores locos */
+/* --- HOVER CLASERO (Solo cambio de color) --- */
 ::-webkit-scrollbar-thumb:hover {
     background: #fcf6ba !important;
     box-shadow: inset 0 0 10px #ffffff !important;
 }
 
+/* --- AJUSTE DEL CUERPO --- */
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--bg-dark);
     margin: 0; 
-    /* Padding uniforme para que nada se pegue a los bordes */
-    padding: 20px; 
+    /* Padding: 20px arriba, 50px derecha (para que la vertical respire), 0 abajo (al ras) */
+    padding: 20px 50px 0px 20px; 
     display: flex; 
     flex-direction: column; 
     align-items: center;
