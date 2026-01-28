@@ -22,58 +22,39 @@
                 #aa771c 100%
             );
         }
-/* --- CORRECCIÓN DEFINITIVA DE ILUMINACIÓN SUPREME --- */
+/* --- LUZ DORADA PROYECTADA --- */
 ::-webkit-scrollbar {
-    width: 18px; 
-    height: 18px;
+    width: 16px; 
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.4);
-}
-
-::-webkit-scrollbar-thumb {
-    background: #BF953F;
-    border-radius: 10px;
-    background-clip: padding-box;
-}
-
-/* --- ILUMINACIÓN SUPREME CORREGIDA --- */
-::-webkit-scrollbar {
-    width: 18px; 
-}
-
-::-webkit-scrollbar-track {
-    background: transparent; /* Transparente para que no se vea un bloque negro */
+    /* Un toque de brillo de fondo para que no se vea un hueco negro */
+    background: rgba(191, 149, 63, 0.05); 
 }
 
 ::-webkit-scrollbar-thumb:vertical {
     background: #BF953F;
     border-radius: 10px;
-    /* EL SECRETO: -25px empuja la luz hacia la IZQUIERDA */
-    box-shadow: -25px 0 35px 5px rgba(191, 149, 63, 0.9), 
-                inset 0 0 10px #fcf6ba;
-    /* Línea de luz sólida */
+    /* Sombras: La primera es el brillo externo que entra a la página */
+    box-shadow: 
+        -15px 0 60px 10px rgba(191, 149, 63, 0.8), 
+        inset 0 0 10px #fcf6ba;
+    /* Esta línea es el borde "afilado" de luz que ves en el extremo derecho */
     border-left: 3px solid #fcf6ba;
     background-clip: padding-box;
-    border-right: 5px solid transparent; 
 }
 
 body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-dark);
-            background-image: radial-gradient(rgba(191, 149, 63, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #fff; 
-            margin: 0; 
-            /* Espacio de 30px a la derecha para que el brillo respire */
-            padding: 10px 35px 10px 10px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-            /* Evita el rebote horizontal */
-            overflow-x: hidden; 
-        }
+    /* ... tus fuentes y fondo ... */
+    margin: 0;
+    /* Dejamos un margen a la derecha para que la sombra de la barra
+       se proyecte sobre el fondo y no sobre el texto del curso */
+    padding: 10px 40px 10px 10px; 
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
         h1 { 
             font-family: 'Cinzel', serif;
