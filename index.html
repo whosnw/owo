@@ -262,36 +262,38 @@ h1 {
 .course.approved {
     background: linear-gradient(180deg, #FFE6A7 0%, #DCAF56 50%, #8C5A05 100%) !important;
     border: 1.5px solid #FFE6A7;
-    box-shadow: 0 0 20px rgba(220, 175, 86, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+    /* Brillo color ambar/dorado */
+    box-shadow: 0 0 20px rgba(220, 175, 86, 0.7), inset 0 0 10px rgba(255,255,255,0.2);
 }
 
 /* --- CURSOS ELECTIVOS (NARANJA VIBRANTE) --- */
 .course.approved.es-electivo {
     background: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%) !important;
     border: 1.5px solid #FED69B;
-    box-shadow: 0 0 20px rgba(213, 125, 61, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+    /* Brillo color naranja cobrizo */
+    box-shadow: 0 0 20px rgba(213, 125, 61, 0.7), inset 0 0 10px rgba(255,255,255,0.2);
 }
 
 /* --- ELECTIVOS COMPLEMENTARIOS (PIEL/TIERRA) --- */
 .course.approved.es-complementario {
     background: linear-gradient(180deg, #EAC1A0 0%, #C88F7C 50%, #946052 100%) !important;
     border: 1.5px solid #EAC1A0;
-    box-shadow: 0 0 20px rgba(148, 96, 82, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+    /* Brillo color tierra suave */
+    box-shadow: 0 0 20px rgba(148, 96, 82, 0.7), inset 0 0 10px rgba(255,255,255,0.2);
+}
+/* Brillo al pasar el mouse - Ciclos normales */
+.course.approved:not(.es-electivo):not(.es-complementario):hover {
+    box-shadow: 0 0 45px #DCAF56, inset 0 0 15px rgba(255,255,255,0.6);
 }
 
-/* EFECTO HOVER PARA TODOS LOS APROBADOS */
-.course.approved:hover {
-    transform: scale(1.1) translateY(-10px);
-    box-shadow: 0 0 45px rgba(255,255,255,0.4), inset 0 0 15px rgba(255,255,255,0.6);
-    filter: brightness(1.2);
-    z-index: 10;
-}
-/* Hover especial para electivos aprobados (Manteniendo todos los efectos) */
-.cycle-column.is-electivo .course.approved:hover {
-    transform: scale(1.1) translateY(-10px);
-    /* Brillo intenso con el color medio del degradado */
+/* Brillo al pasar el mouse - Electivos */
+.course.approved.es-electivo:hover {
     box-shadow: 0 0 45px #D57D3D, inset 0 0 15px rgba(255,255,255,0.6);
-    filter: brightness(1.2);
+}
+
+/* Brillo al pasar el mouse - Complementarios */
+.course.approved.es-complementario:hover {
+    box-shadow: 0 0 45px #C88F7C, inset 0 0 15px rgba(255,255,255,0.6);
 }
         .code { font-size: 0.85em; font-weight: 900; color: #e2c17c; display: block; margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9); }
         .name { font-size: 1em; font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,1); }
