@@ -258,26 +258,34 @@ h1 {
             box-shadow: 0 12px 25px rgba(0,0,0,0.8);
         }
 
+/* --- 1° A 10° CICLO (DORADO CLÁSICO) --- */
 .course.approved {
-            background: var(--gr-mostaza);
-            /* Borde claro para resaltar el degradado */
-            border: 1.5px solid #FFF2A1; 
-            /* Brillo exterior (Glow) usando el color medio #DCAF56 */
-            box-shadow: 0 0 20px rgba(220, 175, 86, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
-        }
-/* COLOR ESPECIAL PARA ELECTIVOS APROBADOS */
-.cycle-column.is-electivo .course.approved {
-    background: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%) !important;
-    border: 1px solid #FED69B;
-    /* Brillo naranja para que haga juego */
-    box-shadow: 0 0 25px rgba(213, 125, 61, 0.7), inset 0 0 10px rgba(255,255,255,0.4);
+    background: linear-gradient(180deg, #FFE6A7 0%, #DCAF56 50%, #8C5A05 100%) !important;
+    border: 1.5px solid #FFE6A7;
+    box-shadow: 0 0 20px rgba(220, 175, 86, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
 }
+
+/* --- CURSOS ELECTIVOS (NARANJA VIBRANTE) --- */
+.course.approved.es-electivo {
+    background: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%) !important;
+    border: 1.5px solid #FED69B;
+    box-shadow: 0 0 20px rgba(213, 125, 61, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* --- ELECTIVOS COMPLEMENTARIOS (PIEL/TIERRA) --- */
+.course.approved.es-complementario {
+    background: linear-gradient(180deg, #EAC1A0 0%, #C88F7C 50%, #946052 100%) !important;
+    border: 1.5px solid #EAC1A0;
+    box-shadow: 0 0 20px rgba(148, 96, 82, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* EFECTO HOVER PARA TODOS LOS APROBADOS */
 .course.approved:hover {
-            transform: scale(1.1) translateY(-10px);
-            /* Brillo intenso (Glow Supreme) ajustado al nuevo dorado */
-            box-shadow: 0 0 45px #DCAF56, inset 0 0 15px rgba(255,255,255,0.6);
-            filter: brightness(1.2);
-        }
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 0 45px rgba(255,255,255,0.4), inset 0 0 15px rgba(255,255,255,0.6);
+    filter: brightness(1.2);
+    z-index: 10;
+}
 /* Hover especial para electivos aprobados (Manteniendo todos los efectos) */
 .cycle-column.is-electivo .course.approved:hover {
     transform: scale(1.1) translateY(-10px);
@@ -439,11 +447,17 @@ h1 {
 
         let approved = JSON.parse(localStorage.getItem('malla_iq_final')) || {};
 
-function createCourseElement(c) {
+function createCourseElement(c, tipoElectivo) {
     const isApp = approved[c.id];
     const canUnlock = c.r.every(reqId => approved[reqId]);
     const div = document.createElement('div');
-    div.className = `course ${isApp ? 'approved' : ''}`;
+    
+    // Aquí asignamos las clases según el tipo para que el CSS reconozca los colores nuevos
+    let claseTipo = '';
+    if (tipoElectivo === "normal") claseTipo = 'es-electivo';
+    if (tipoElectivo === "complementario") claseTipo = 'es-complementario';
+    
+    div.className = `course ${isApp ? 'approved' : ''} ${claseTipo}`;
     if (!isApp && !canUnlock) div.style.opacity = "0.4";
 
     div.innerHTML = `
@@ -497,7 +511,13 @@ for (let cycle in coursesData) {
             }
 
             coursesData[cycle].forEach(c => {
-                const div = createCourseElement(c);
+                // Determinamos qué tipo de curso es para pasarle el color
+                let tipo = "normal-ciclo";
+                if (cycle === "CURSOS ELECTIVOS") tipo = "normal";
+                if (cycle === "CURSOS ELECTIVOS COMPLEMENTARIOS") tipo = "complementario";
+
+                const div = createCourseElement(c, tipo);
+                
                 if (isElectivo) {
                     div.style.minWidth = "auto";
                 }
