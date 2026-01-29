@@ -12,6 +12,8 @@
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
 --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
             --gr-oro: linear-gradient(to right, #8a6628 0%, #bf953f 20%, #fcf6ba 40%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
+            /* Nueva variable con tus colores específicos */
+    --gr-electivo: linear-gradient(0deg, #6D482B 0%, #B78158 50%, #E29F6B 100%);
         }
 
 /* --- CONFIGURACIÓN BASE --- */
@@ -189,7 +191,21 @@ h1 {
             box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
             text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
         }
+/* --- NUEVO COLOR PARA ELECTIVOS (Añadir debajo de los anteriores) --- */
 
+.cycle-column.is-electivo .cycle-header {
+    /* Degradado: Claro arriba (#E29F6B) a Oscuro abajo (#6D482B) */
+    background: linear-gradient(180deg, #E29F6B 0%, #B78158 50%, #6D482B 100%) !important;
+    
+    /* Brillo exterior e interior ajustado al tono café/ocre */
+    box-shadow: 0 0 30px rgba(183, 129, 88, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
+    
+    /* Sombra de texto para que resalte el blanco */
+    text-shadow: 0 0 12px rgba(109, 72, 43, 1), 0 0 5px #fff;
+    
+    /* Borde sutil del color más claro */
+    border: 1.5px solid #E29F6B;
+}
 .curriculum-container { 
     display: grid;
     /* 190px es el ancho ideal para que los nombres se vean grandes y quepan 10 */
