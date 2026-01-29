@@ -13,7 +13,7 @@
 --gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
             --gr-oro: linear-gradient(to right, #8a6628 0%, #bf953f 20%, #fcf6ba 40%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
             /* Nueva variable con tus colores específicos */
-    --gr-electivo: linear-gradient(0deg, #6D482B 0%, #B78158 50%, #E29F6B 100%);
+--gr-electivo-nuevo: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%);
         }
 
 /* --- CONFIGURACIÓN BASE --- */
@@ -191,20 +191,18 @@ h1 {
             box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
             text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
         }
-/* --- NUEVO COLOR PARA ELECTIVOS (Añadir debajo de los anteriores) --- */
-
 .cycle-column.is-electivo .cycle-header {
-    /* Degradado: Claro arriba (#E29F6B) a Oscuro abajo (#6D482B) */
-    background: linear-gradient(180deg, #E29F6B 0%, #B78158 50%, #6D482B 100%) !important;
+    /* Degradado con tus 3 colores exactos */
+    background: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%) !important;
     
-    /* Brillo exterior e interior ajustado al tono café/ocre */
-    box-shadow: 0 0 30px rgba(183, 129, 88, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
+    /* Mantenemos el brillo exterior ajustado al nuevo color naranja */
+    box-shadow: 0 0 30px rgba(213, 125, 61, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
     
-    /* Sombra de texto para que resalte el blanco */
-    text-shadow: 0 0 12px rgba(109, 72, 43, 1), 0 0 5px #fff;
+    /* Mantenemos la sombra de texto */
+    text-shadow: 0 0 12px rgba(140, 62, 13, 1), 0 0 5px #fff;
     
-    /* Borde sutil del color más claro */
-    border: 1.5px solid #E29F6B;
+    /* Borde del color crema claro */
+    border: 1.5px solid #FED69B;
 }
 .curriculum-container { 
     display: grid;
@@ -266,20 +264,24 @@ h1 {
             box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
         }
 /* COLOR ESPECIAL PARA ELECTIVOS APROBADOS */
-        .cycle-column.is-electivo .course.approved {
-            background: linear-gradient(180deg, #E29F6B 0%, #B78158 50%, #6D482B 100%) !important;
-            border: 1px solid #E29F6B;
-            box-shadow: 0 0 25px rgba(226, 159, 107, 0.7), inset 0 0 10px rgba(255,255,255,0.4);
-        }
+.cycle-column.is-electivo .course.approved {
+    background: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%) !important;
+    border: 1px solid #FED69B;
+    /* Brillo naranja para que haga juego */
+    box-shadow: 0 0 25px rgba(213, 125, 61, 0.7), inset 0 0 10px rgba(255,255,255,0.4);
+}
         .course.approved:hover {
             transform: scale(1.1) translateY(-10px);
             box-shadow: 0 0 45px rgba(226, 193, 124, 1), inset 0 0 15px rgba(255,255,255,0.6);
             filter: brightness(1.2);
         }
-/* Hover especial para electivos aprobados */
-        .cycle-column.is-electivo .course.approved:hover {
-            box-shadow: 0 0 45px #B78158, inset 0 0 15px rgba(255,255,255,0.6);
-        }
+/* Hover especial para electivos aprobados (Manteniendo todos los efectos) */
+.cycle-column.is-electivo .course.approved:hover {
+    transform: scale(1.1) translateY(-10px);
+    /* Brillo intenso con el color medio del degradado */
+    box-shadow: 0 0 45px #D57D3D, inset 0 0 15px rgba(255,255,255,0.6);
+    filter: brightness(1.2);
+}
         .code { font-size: 0.85em; font-weight: 900; color: #e2c17c; display: block; margin-bottom: 6px; text-shadow: 2px 2px 3px rgba(0,0,0,0.9); }
         .name { font-size: 1em; font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,1); }
         .cred { font-size: 0.85em; color: #ccc; margin-top: 15px; display: flex; align-items: center; font-weight: 700; text-shadow: 2px 2px 3px rgba(0,0,0,1); }
