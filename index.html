@@ -164,6 +164,7 @@ h1 {
           50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #e2c17c); }
         }
 
+ /* --- ESTILO BASE DE LOS RECTÁNGULOS DE TÍTULO --- */
         .cycle-header {
             font-family: 'Cinzel', serif;
             letter-spacing: 4px;
@@ -175,35 +176,41 @@ h1 {
             margin-bottom: 30px; 
             text-align: center; 
             font-size: 1.3em;
-            border: 1.5px solid rgba(255, 255, 255, 0.7);
             position: relative;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
         }
 
+        /* --- CICLOS IMPARES (1, 3, 5, 7, 9) - AZULES --- */
         .cycle-column:nth-child(odd) .cycle-header { 
-            background: var(--gr-verde); 
-            box-shadow: 0 0 30px rgba(159, 180, 94, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
-            text-shadow: 0 0 12px rgba(159, 180, 94, 1), 0 0 5px #fff;
+            background: linear-gradient(180deg, #B8F9FF 0%, #98C6EC 50%, #66AAD4 100%) !important;
+            box-shadow: 0 0 25px rgba(102, 170, 212, 0.8), inset 0 0 10px rgba(255,255,255,0.4);
+            text-shadow: 0 0 10px #66AAD4, 0 0 5px #fff;
+            border-color: #B8F9FF;
         }
 
+        /* --- CICLOS PARES (2, 4, 6, 8, 10) - ROJOS --- */
         .cycle-column:nth-child(even) .cycle-header { 
-            background: var(--gr-naranja); 
-            box-shadow: 0 0 30px rgba(230, 111, 64, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
-            text-shadow: 0 0 12px rgba(230, 111, 64, 1), 0 0 5px #fff;
+            background: linear-gradient(180deg, #FED3D4 0%, #E37F7A 50%, #A95650 100%) !important;
+            box-shadow: 0 0 25px rgba(227, 127, 122, 0.8), inset 0 0 10px rgba(255,255,255,0.4);
+            text-shadow: 0 0 10px #A95650, 0 0 5px #fff;
+            border-color: #FED3D4;
         }
-.cycle-column.is-electivo .cycle-header {
-    /* Degradado con tus 3 colores exactos */
-    background: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%) !important;
-    
-    /* Mantenemos el brillo exterior ajustado al nuevo color naranja */
-    box-shadow: 0 0 30px rgba(213, 125, 61, 0.8), inset 0 0 20px rgba(255,255,255,0.3);
-    
-    /* Mantenemos la sombra de texto */
-    text-shadow: 0 0 12px rgba(140, 62, 13, 1), 0 0 5px #fff;
-    
-    /* Borde del color crema claro */
-    border: 1.5px solid #FED69B;
-}
+
+        /* --- RECTÁNGULO CURSOS ELECTIVOS - VERDE LIMÓN --- */
+        .header-electivo-normal .cycle-header {
+            background: linear-gradient(180deg, #F3FFC9 0%, #B9CF72 50%, #8DBA3C 100%) !important;
+            box-shadow: 0 0 25px rgba(185, 207, 114, 0.8), inset 0 0 10px rgba(255,255,255,0.4);
+            text-shadow: 0 0 10px #8DBA3C, 0 0 5px #fff;
+            border-color: #F3FFC9;
+        }
+
+        /* --- RECTÁNGULO ELECTIVOS COMPLEMENTARIOS - TURQUESA --- */
+        .header-electivo-complementario .cycle-header {
+            background: linear-gradient(180deg, #BEF7F2 0%, #8CD1CA 50%, #72BFB5 100%) !important;
+            box-shadow: 0 0 25px rgba(140, 209, 202, 0.8), inset 0 0 10px rgba(255,255,255,0.4);
+            text-shadow: 0 0 10px #72BFB5, 0 0 5px #fff;
+            border-color: #BEF7F2;
+        }
 .curriculum-container { 
     display: grid;
     /* 190px es el ancho ideal para que los nombres se vean grandes y quepan 10 */
@@ -495,9 +502,14 @@ for (let cycle in coursesData) {
             
             const isElectivo = cycle.toLowerCase().includes("electivo");
 
-            if (isElectivo) {
-                // Aplicamos la clase que definimos en el CSS para que baje
+if (isElectivo) {
                 col.classList.add('is-electivo');
+                // Esto es solo para que el CSS sepa qué color ponerle al título
+                if (cycle === "CURSOS ELECTIVOS") {
+                    col.classList.add('header-electivo-normal');
+                } else if (cycle === "CURSOS ELECTIVOS COMPLEMENTARIOS") {
+                    col.classList.add('header-electivo-complementario');
+                }
             }
 
             col.innerHTML = `<div class="cycle-header">${cycle}</div>`;
