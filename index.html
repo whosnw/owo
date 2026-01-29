@@ -10,7 +10,7 @@
             --bg-dark: #191919; 
             --gr-verde: linear-gradient(0deg, #3d461d 0%, #9FB45E 100%);
             --gr-naranja: linear-gradient(0deg, #6b2e15 0%, #E66F40 100%);
---gr-mostaza: linear-gradient(0deg, #705832 0%, #E5B774 100%);
+--gr-mostaza: linear-gradient(180deg, #FFF2A1 0%, #DCAF56 50%, #8C5A05 100%);
             --gr-oro: linear-gradient(to right, #8a6628 0%, #bf953f 20%, #fcf6ba 40%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
             /* Nueva variable con tus colores específicos */
 --gr-electivo-nuevo: linear-gradient(180deg, #FED69B 0%, #D57D3D 50%, #8C3E0D 100%);
@@ -258,10 +258,12 @@ h1 {
             box-shadow: 0 12px 25px rgba(0,0,0,0.8);
         }
 
-        .course.approved {
+.course.approved {
             background: var(--gr-mostaza);
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 0 20px rgba(229, 183, 116, 0.4);
+            /* Borde claro para resaltar el degradado */
+            border: 1.5px solid #FFF2A1; 
+            /* Brillo exterior (Glow) usando el color medio #DCAF56 */
+            box-shadow: 0 0 20px rgba(220, 175, 86, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
         }
 /* COLOR ESPECIAL PARA ELECTIVOS APROBADOS */
 .cycle-column.is-electivo .course.approved {
@@ -270,9 +272,10 @@ h1 {
     /* Brillo naranja para que haga juego */
     box-shadow: 0 0 25px rgba(213, 125, 61, 0.7), inset 0 0 10px rgba(255,255,255,0.4);
 }
-        .course.approved:hover {
+.course.approved:hover {
             transform: scale(1.1) translateY(-10px);
-            box-shadow: 0 0 45px rgba(226, 193, 124, 1), inset 0 0 15px rgba(255,255,255,0.6);
+            /* Brillo intenso (Glow Supreme) ajustado al nuevo dorado */
+            box-shadow: 0 0 45px #DCAF56, inset 0 0 15px rgba(255,255,255,0.6);
             filter: brightness(1.2);
         }
 /* Hover especial para electivos aprobados (Manteniendo todos los efectos) */
