@@ -164,7 +164,7 @@ h1 {
           50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #e2c17c); }
         }
 
-/* --- ESTILO BASE DE LOS CUADRADOS DE TÍTULO --- */
+/* --- ESTILO BASE DE LOS CUADRADOS DE TÍTULO (ILUMINACIÓN POTENCIADA) --- */
 .cycle-header {
     font-family: 'Cinzel', serif;
     letter-spacing: 2px;
@@ -177,42 +177,49 @@ h1 {
     text-align: center; 
     font-size: 1.1em;
     position: relative;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    /* Borde tipo Neón */
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
 }
 
-/* CICLOS IMPARES: AZULES (#B8F9FF -> #66AAD4) */
+/* CICLOS IMPARES: AZULES (Efecto Neón Cyan) */
 .cycle-column:nth-child(1) .cycle-header,
 .cycle-column:nth-child(3) .cycle-header,
 .cycle-column:nth-child(5) .cycle-header,
 .cycle-column:nth-child(7) .cycle-header,
 .cycle-column:nth-child(9) .cycle-header {
     background: linear-gradient(180deg, #B8F9FF 0%, #98C6EC 50%, #66AAD4 100%) !important;
-    box-shadow: 0 0 20px rgba(102, 170, 212, 0.7), inset 0 0 10px rgba(255,255,255,0.3);
+    /* Doble sombra: una pequeña intensa y una grande difuminada */
+    box-shadow: 0 0 15px #B8F9FF, 0 0 40px rgba(102, 170, 212, 0.8), inset 0 0 15px rgba(255,255,255,0.5);
+    text-shadow: 0 0 10px #fff, 0 0 20px #66AAD4;
     border-color: #B8F9FF;
 }
 
-/* CICLOS PARES: ROJOS (#FED3D4 -> #A95650) */
+/* CICLOS PARES: ROJOS (Efecto Neón Fuego) */
 .cycle-column:nth-child(2) .cycle-header,
 .cycle-column:nth-child(4) .cycle-header,
 .cycle-column:nth-child(6) .cycle-header,
 .cycle-column:nth-child(8) .cycle-header,
 .cycle-column:nth-child(10) .cycle-header {
     background: linear-gradient(180deg, #FED3D4 0%, #E37F7A 50%, #A95650 100%) !important;
-    box-shadow: 0 0 20px rgba(227, 127, 122, 0.7), inset 0 0 10px rgba(255,255,255,0.3);
+    box-shadow: 0 0 15px #FED3D4, 0 0 40px rgba(227, 127, 122, 0.8), inset 0 0 15px rgba(255,255,255,0.5);
+    text-shadow: 0 0 10px #fff, 0 0 20px #A95650;
     border-color: #FED3D4;
 }
 
-/* CUADRADO ELECTIVOS: VERDE (#F3FFC9 -> #8DBA3C) */
+/* CUADRADO ELECTIVOS: VERDE LIMÓN (Efecto Radiactivo) */
 .header-electivo-normal .cycle-header {
     background: linear-gradient(180deg, #F3FFC9 0%, #B9CF72 50%, #8DBA3C 100%) !important;
-    box-shadow: 0 0 20px rgba(185, 207, 114, 0.7), inset 0 0 10px rgba(255,255,255,0.3);
+    box-shadow: 0 0 15px #F3FFC9, 0 0 40px rgba(185, 207, 114, 0.8), inset 0 0 15px rgba(255,255,255,0.5);
+    text-shadow: 0 0 10px #fff, 0 0 20px #8DBA3C;
     border-color: #F3FFC9;
 }
 
-/* CUADRADO COMPLEMENTARIOS: TURQUESA (#BEF7F2 -> #72BFB5) */
+/* CUADRADO COMPLEMENTARIOS: TURQUESA (Efecto Mar Profundo) */
 .header-electivo-complementario .cycle-header {
     background: linear-gradient(180deg, #BEF7F2 0%, #8CD1CA 50%, #72BFB5 100%) !important;
-    box-shadow: 0 0 20px rgba(140, 209, 202, 0.7), inset 0 0 10px rgba(255,255,255,0.3);
+    box-shadow: 0 0 15px #BEF7F2, 0 0 40px rgba(114, 191, 181, 0.8), inset 0 0 15px rgba(255,255,255,0.5);
+    text-shadow: 0 0 10px #fff, 0 0 20px #72BFB5;
     border-color: #BEF7F2;
 }
 .curriculum-container { 
